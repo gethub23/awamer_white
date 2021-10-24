@@ -3,23 +3,22 @@
     <section class="content">
         <div class="row">
             @foreach($menus as $menu)
-                <a href="{{$menu['url']}}" class="col-xl-3 col-lg-6 col-12" >
-                    <div class="card homeCard" >
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="media d-flex">
-                                    <div class="align-self-center">
-                                        {!! $menu['icon'] !!}
-                                    </div>
-                                    <div class="media-body text-right  float-left">
-                                        <h3>{{$menu['count']}}</h3>
-                                        <span>{{$menu['name']}}</span>
-                                    </div>
-                                </div>
+            <div class="col-lg-2">
+                <div class="price_card">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-12 text-center">
+                            
+                            {!! $menu['icon'] !!}
+                        </div>
+                        <div class="col-12">
+                            <div class="title text-center">
+                                <h3>{{$menu['count']}}</h3>
+                                <span>{{$menu['name']}}</span>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
+            </div>
             @endforeach
         </div>
     </section>
