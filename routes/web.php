@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::get('dashboard', [
                 'uses'      => 'HomeController@dashboard',
                 'as'        => 'dashboard',
-                'icon'      => '<i class="la la-home"></i>',
+                'icon'      => '<i class="fas fa-home"></i>',
                 'title'     => 'الرئيسيه',
                 'type'      => 'parent'
             ]);
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of intro site  ----------*/
             Route::get('intro-site', [
                 'as'        => 'intro_site',
-                'icon'      => '<i class="la la-image"></i>',
+                'icon'      => '<i class="fas fa-sitemap"></i>',
                 'title'     => 'الموقع التعريفي',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -354,7 +354,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
             Route::get('users', [
                 'as'        => 'users',
-                'icon'      => '<i class="la la-users"></i>',
+                'icon'      => '<i class="fas fa-users"></i>',
                 'title'     => 'المستخدمين',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -465,7 +465,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of Settings && permissions ----------*/
             Route::get('permissions-Settings', [
                 'as'        => 'Settings.permissions',
-                'icon'      => '<i class="la la-eye"></i>',
+                'icon'      => '<i class="fas fa-eye"></i>',
                 'title'     => 'الاعدادات والصلاحيات',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -564,7 +564,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of statistics && seo ----------*/
             Route::get('seo-statistics', [
                 'as'        => 'statistics.seo',
-                'icon'      => '<i class="la la-bar-chart-o"></i>',
+                'icon'      => '<i class="fas fa-list"></i>',
                 'title'     => 'السيو والاحصائيات',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -624,7 +624,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'      => 'SocialController@index',
                 'as'        => 'socials.index',
                 'title'     => 'وسائل التواصل',
-                'icon'      => '<i class="la la-facebook-f"></i>',
+                'icon'      => '<i class="fas fa-thumbs-up"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => [ 'socials.store', 'socials.update', 'socials.delete' ,'socials.deleteAll']
@@ -663,7 +663,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::get('all-complaints', [
                 'as'        => 'all_complaints',
                 'uses'      => 'ComplaintController@index',
-                'icon'      => '<i class="la la-bullhorn"></i>',
+                'icon'      => '<i class="fas fa-envelope"></i>',
                 'title'     => 'الشكاوي والمقترحات',
                 'type'      => 'parent',
                 'sub_route' => false,

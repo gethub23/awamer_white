@@ -47,12 +47,12 @@ trait  SideBar
                             $child_name = substr(Route::currentRouteName(), 6);
                             if(in_array($child_name, $value->getAction()['child'])){
                                 $active = 'active';
-                                $opend  = 'open';
+                                $opend  = 'open_drop';
                             }
 
-                            $html .= '<li class="nav-item ' . $opend . '" >
-                                    <a href="javascript:void(0);" class="'.$active.'">' . $value->getAction()['icon'] . '<span class="menu-title" data-i18n="nav.dash.main">' . awtTrans($value->getAction()['title']) . '</a>
-                                    <ul class="menu-content">';
+                            $html .= '<li class="nav-item dropdown_item" >
+                                <a href="javascript:void(0);" class="' . $opend . ' '.$active.' nav-link open_drop d-flex align-items-center justify-content-between"><span class="link-text d-flex align-items-center"> <div class="icons">' . $value->getAction()['icon'] . '</div>' . awtTrans($value->getAction()['title']) . '</span><i class="fas fa-chevron-left"></i></a>
+                                <ul class="drop_menu">';
 
                             // display child sub directories
                             foreach ($value->getAction()['child'] as $child){
@@ -60,7 +60,7 @@ trait  SideBar
 
 
                                 if (isset($routes_data['"admin.' . $child . '"']) && $routes_data['"admin.' . $child . '"']['title'] && $routes_data['"admin.' . $child . '"']['icon'])
-                                    $html .=  '<li class="' .$active.' menu-item"><a href="' . route('admin.'.$child) . '">' . $routes_data['"admin.' . $child . '"']['icon'] .  awtTrans($routes_data['"admin.' . $child . '"']['title']) . ' </a></li>';
+                                    $html .=  '<li class="' .$active.'"><a class=" dropdown-item" href="' . route('admin.'.$child) . '">' . awtTrans($routes_data['"admin.' . $child . '"']['title']) . ' </a></li>';
                             }
 
                             $html .= '</ul></li>';
@@ -71,7 +71,10 @@ trait  SideBar
                         $active = $value->getName() == Route::currentRouteName() ? 'active' : '';
                         $open = $value->getName() == Route::currentRouteName() ? 'open' : '';
 
-                        $html .= '<li class="nav-item '.$open.'"><a href="' . route($value->getName()) . '" class="' . $active . '">' . $value->getAction()['icon'] . ' <span class="menu-title" data-i18n="nav.scrumboard.main">' . awtTrans($value->getAction()['title']) . ' </span>  </a></li>';
+                        $html .= '<li class="nav-item"><a href="' . route($value->getName()) . '" class="' . $active . ' nav-link d-flex align-items-center justify-content-between"> <span class="link-text d-flex align-items-center">
+                        <div class="icons">
+                        ' . $value->getAction()['icon'] . '
+                        </div>' . awtTrans($value->getAction()['title']) . '   </span>   <i class="fas fa-chevron-left"></i> </a></li>';
                     }
                 }
             }

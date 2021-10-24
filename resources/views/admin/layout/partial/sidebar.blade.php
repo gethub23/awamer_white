@@ -1,9 +1,12 @@
-<div class="main-menu menu-static menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            {{-- {{sidebar()}} --}}
+<div class="l-navbar show" id="navbar">
+    <div class=".nav">
+        <!-- Logo+Text -->
+        <a href="{{url('admin/dashboard')}}" class="nav-logo-container">
+            <img src="{{asset('storage/images/settings/logo.png')}}" alt="">
+        </a>
+        <!-- List -->
+        <ul class="nav-list">
             {!! \App\Traits\SideBar::sidebar() !!}
         </ul>
     </div>
 </div>
-<!-- side bar -->
