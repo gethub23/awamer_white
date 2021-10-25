@@ -97,7 +97,7 @@
 
        new ApexCharts(
             document.querySelector("#customer-chart"),
-            pieChartFunction(['active', 'not active'] , ['{{$activeUsers}}', '{{$notActiveUsers}}'] , ['#7367F0', '#FF9F43'])
+            pieChartFunction(['active', 'not active'] , [ Number('{{$activeUsers}}'), Number('{{$notActiveUsers}}')] , ['#7367F0', '#FF9F43'])
         ).render();
 
     </script>
