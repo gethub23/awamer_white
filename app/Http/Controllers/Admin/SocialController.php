@@ -19,17 +19,30 @@ class SocialController extends Controller
 
 
     /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.socials.create');
+    }
+    
+    /***************************  store  **************************/
     public function store(Store $request)
     {
         Social::create($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.socials.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = Social::findOrFail($id);
+        return view('admin.socials.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
         Social::findOrFail($id)->update($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.socials.index')]);
     }
 
     /***************************  delete  **************************/

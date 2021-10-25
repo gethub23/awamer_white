@@ -627,16 +627,35 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'icon'      => '<i class="fas fa-thumbs-up"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => [ 'socials.store', 'socials.update', 'socials.delete' ,'socials.deleteAll']
+                'child'     => ['socials.create', 'socials.store', 'socials.show', 'socials.update', 'socials.edit', 'socials.delete' ,'socials.deleteAll']
             ]);
 
             # socials store
-            Route::post('socials/store', [
+            Route::get('socials/create', [
+                'uses'  => 'SocialController@create',
+                'as'    => 'socials.create',
+                'title' => ' صفحة اضافة تواصل'
+            ]);
+            
+            # socials store
+            Route::post('socials', [
                 'uses'  => 'SocialController@store',
                 'as'    => 'socials.store',
                 'title' => ' اضافة تواصل'
             ]);
 
+            # socials update
+            Route::get('socials/{id}', [
+                'uses'  => 'SocialController@show',
+                'as'    => 'socials.show',
+                'title' => 'صفحه عرض تواصل'
+            ]);
+            # socials update
+            Route::get('socials/{id}/edit', [
+                'uses'  => 'SocialController@edit',
+                'as'    => 'socials.edit',
+                'title' => 'صفحه تحديث تواصل'
+            ]);
             # socials update
             Route::put('socials/{id}', [
                 'uses'  => 'SocialController@update',

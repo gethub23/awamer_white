@@ -1,12 +1,8 @@
 @extends('admin.layout.master')
-<x-admin.breadcrumb singleName='{{awtTrans("تواصل")}}' deletebutton="true" addbutton="true" >
-    <x-slot name="moreButtons">
-    </x-slot> 
- </x-admin.breadcrumb >
 @section('content')
     <section class="content">
          {{-- table --}}
-            <x-admin.table >
+            <x-admin.table  addbutton="{{route('admin.socials.create')}}" deletebutton="{{route('admin.socials.deleteAll')}}">
                 <x-slot name="tableHead">
                     <th>
                        <div class="form-checkbox">
@@ -21,34 +17,25 @@
                 </x-slot>
                 <x-slot name="tableBody">
                     @foreach($rows as $row)
-                        <tr class="delete_row_{{$row->id}}">
+                        <tr class="delete_row">
                             <td class="text-center">
                                <div class="form-checkbox">
                                    <input type="checkbox" class="checkSingle" id="{{$row->id}}">
                                    <span class="check"><i class="zmdi zmdi-check zmdi-hc-lg"></i></span>
                                </div>
                             </td>
-                            <td><img src="{{$row->icon}}" alt=""></td>
+                            <td><img src="{{$row->icon}}" width="50px" height="50px" alt=""></td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->link}}</td>
-                            <td>
-                                <x-admin.edit-button>
-                                    <x-slot name="data">
-                                            data-id       = '{{$row->id}}'
-                                            data-route    = '{{route('admin.socials.update' , [$row->id])}}'
-                                            data-icon     = '{{$row->icon}}'
-                                            data-link      = '{{$row->link}}'
-                                            data-name     = '{{$row->name}}'
-                                    </x-slot>
-                                </x-admin.edit-button>
-                                <x-admin.show-button>
-                                    <x-slot name="data">
-                                            data-icon     = '{{$row->icon}}'
-                                            data-link      = '{{$row->link}}'
-                                            data-name     = '{{$row->name}}'
-                                    </x-slot>
-                                </x-admin.show-button>
-                                <x-admin.delete route="{{route('admin.socials.delete' , [$row->id])}}" />
+                            <td class="open">
+                                <div class="position-relative">
+                                    <div class="main-nav"><i class="fas fa-bars icons"></i></div>
+                                    <ul class="open_ul" style="display: none;">
+                                        <li><a href="{{route('admin.socials.edit' , ['id' => $row->id])}}">{{awtTrans('edit')}}</a></li>
+                                        <li><a href="{{route('admin.socials.show', ['id' => $row->id])}}">{{awtTrans('show')}}</a></li>
+                                        <li><a class="delete-row" data-url="{{url('admin/socials/'.$row->id)}}">{{awtTrans('delete')}}</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -57,156 +44,113 @@
         {{-- #table --}}
     </section>
 
- <!-- add model -->
-    <x-admin.AddModel route='{{route("admin.socials.store")}}' singleName='{{awtTrans("تواصل")}}' >
-        <x-slot name="inputs">
-           <div class="col-12">
-                <div class="imgMontg col-12 text-center">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="la la-image"></i></span>
-                                    <input type="file" accept="image/*" name="icon" class="imageUploader">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الاسم')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="name" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الرابط')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="url" name="link" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.AddModel >
- <!-- add model -->
-
- <!-- edit model -->
-    <x-admin.edit-model singleName='{{awtTrans("تواصل")}}' >
-        <x-slot name="inputs">
-          <div class="col-sm-12">  
-                <div class="imgMontg">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="far fa-image"></i></span>
-                                    <input type="file" accept="image/*" name="icon" class="imageUploader">
-                                </label>
-                                <div class="uploadedBlock">
-                                    <img src=""  id="icon">
-                                    <button class="close">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الاسم')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="name" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الرابط')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="url" name="link" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.edit-model >
- <!-- add model -->
- 
- <!-- show model -->
-    <x-admin.show-model  singleName='{{awtTrans("تواصل")}}' >
-        <x-slot name="inputs">
-          <div class="col-sm-12">  
-                <div class="imgMontg">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="far fa-image"></i></span>
-                                    <input type="file" accept="image/*" name="icon" class="imageUploader">
-                                </label>
-                                <div class="uploadedBlock">
-                                    <img src=""  class="icon">
-                                    <button class="close">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الاسم')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="name" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('الرابط')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="url" name="link" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.show-model >
- <!-- show model -->
-
 {{-- delete all model  --}}
     <x-admin.delete-all route="{{route('admin.socials.deleteAll')}}" />
 {{-- #delete all model  --}}
 
+
+@section('js')
+<script>
+    $('.delete_all_button').hide()
+            $("#checkedAll").change(function(){
+                if(this.checked){
+                    $(".checkSingle").each(function(){
+                        this.checked=true;
+                        $('.delete_all_button').show()
+                    })
+                }else{
+                    $(".checkSingle").each(function(){
+                        this.checked=false;
+                        $('.delete_all_button').hide()
+                    })
+                }
+            });
+            $(".checkSingle").click(function () {
+                if ($(this).is(":checked")){
+                    var isAllChecked = 0;
+                    $(".checkSingle").each(function(){
+                        if(!this.checked)
+                            isAllChecked = 1;
+                    })
+                    if(isAllChecked == 0){ $("#checkedAll").prop("checked", true); }
+                     $('.delete_all_button').show()
+                }else {
+                    var count = 0;
+                    $(".checkSingle").each(function(){
+                        if(this.checked)
+                            count ++;
+                    })
+                    if (count > 0 ) {
+                        $('.delete_all_button').show()
+                    }else{
+                          $('.delete_all_button').hide()
+                    }
+                    $("#checkedAll").prop("checked", false);
+                }
+            });
+            $('.delete_all_button').on('click', function (e) {
+                e.preventDefault()
+                var result = confirm("{{__('هل انت متأكد انك تريد استكمال عملية الحذف')}}");
+                if (result) {
+                    e.preventDefault()
+                    var usersIds = [];
+                    $('.checkSingle:checked').each(function () {
+                        var id = $(this).attr('id');
+                        usersIds.push({
+                            id: id,
+                        });
+                    });
+
+                    var requestData = JSON.stringify(usersIds);
+                    if (usersIds.length > 0) {
+                        e.preventDefault();
+                        $.ajax({
+                            type: "POST",
+                            url: $(this).data('route'),
+                            data: {data : requestData},
+                            
+                            success: function( msg ) {
+                                if (msg == 'success') {
+                                    $('.delete_all_button').hide()
+                                    toastr.error("{{awtTrans('تم الحذف بنجاح')}}")
+                                    $('.checkSingle:checked').each(function () {
+                                        $('#example').DataTable().row( $(this).parents('.delete_row')).remove().draw();
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+</script>
+    <script>
+        $(document).on('click' , '.delete-row', function (e) {
+            e.preventDefault()
+            var result = confirm("{{__('هل انت متأكد انك تريد استكمال عملية الحذف')}}");
+            if (result) {
+                $.ajax({
+                    type: "delete",
+                    url: $(this).data('url'),
+                    data: {},
+                    dataType: "json",
+                    success:  (response) => {
+                        toastr.error('{{awtTrans('تم الحذف بنجاح')}}')
+                        $('#example').DataTable().row( $(this).parents('.delete_row')).remove().draw();
+                    }
+                });
+
+            }
+        });
+    </script>
 @endsection
-<x-admin.scripts >
+
+@endsection
+{{-- <x-admin.scripts >
     <x-slot name='moreScript'>
         <x-admin.confirm-delete />
         <script>
             
         </script>
     </x-slot >
-</x-admin.scripts >
+</x-admin.scripts > --}}

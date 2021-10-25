@@ -6,14 +6,18 @@ use Illuminate\View\Component;
 
 class table extends Component
 {
+    public $addbutton ; 
+    public $deletebutton ; 
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($addbutton = null , $deletebutton = null)
     {
-        
+        $this->addbutton = $addbutton ;
+        $this->deletebutton = $deletebutton ;
     }
 
     /**

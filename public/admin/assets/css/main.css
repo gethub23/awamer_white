@@ -1860,3 +1860,20 @@ div.dataTables_wrapper div.dataTables_length label{
 
 
 
+.delete_all{
+  display: flex;
+  flex-direction: row;
+  color: white;
+  background-color: red;
+  margin: auto;
+  height: 39px;
+  border-radius: 7px;
+  width: 160px;
+  padding: 9px 32px;
+  margin-right: 11px;
+  align-items: center;
+}
+
+.delete_all i {
+  margin: 0px 2px 0px 1px;
+}
