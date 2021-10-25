@@ -13,7 +13,11 @@ class HomeController extends Controller
     /***************** dashboard *****************/
     public function dashboard()
     {
+        $activeUsers = User::where(['active' => true])->count() ; 
+        $notActiveUsers = User::where(['active' => false])->count() ; 
         $menus = $this->home() ;
-        return view('admin.dashboard.index' , compact('menus'));
+        $colores = ['info' , 'danger' , 'warning' , 'success' , 'primary'];
+        
+        return view('admin.dashboard.index' , compact('menus' ,'colores' , 'activeUsers' , 'notActiveUsers'));
     }
 }

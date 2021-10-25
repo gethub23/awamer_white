@@ -1,28 +1,34 @@
-<div class="loader">
-    <img src="{{asset('/admin/asset/images/Mask_Group.png')}}" alt="">
-</div>
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-static footer-light">
+        <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2020<a class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent,</a>All rights Reserved</span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
+            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="feather icon-arrow-up"></i></button>
+        </p>
+    </footer>
+    <!-- END: Footer-->
 
 
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{asset('admin/app-assets/vendors/js/vendors.min.js')}}"></script>
+    <!-- BEGIN Vendor JS-->
 
-<script src="{{asset('admin/assets/js/jquery.js')}}"></script>
-<script src="{{asset('admin/assets/js/popper.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/owl.carousel.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/wow.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/Chart.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/b-print-2.0.1/cr-1.5.4/date-1.1.1/fc-4.0.0/fh-3.2.0/kt-2.6.4/r-2.2.9/rg-1.1.3/rr-1.2.8/sb-1.2.2/sp-1.4.0/sl-1.3.3/datatables.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-{{-- <script src="{{asset('dashboard/app-asset/vendors/js/extensions/toastr.min.js')}}" type="text/javascript"></script> --}}
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{{asset('admin/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
+    <!-- END: Page Vendor JS-->
 
-<script src="{{asset('admin/assets/js/main.js')}}"></script>
+    <!-- BEGIN: Theme JS-->
+    <script src="{{asset('admin/app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/core/app.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/components.js')}}"></script>
+    <!-- END: Theme JS-->
 
+    <!-- BEGIN: Page JS-->
+    {{-- <script src="{{asset('admin/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script> --}}
+    <!-- END: Page JS-->
 
-<script src="{{asset('admin/assets/js/main.js')}}"></script>
 @yield('js')
 {{-- ajax header and success --}}
 <script>

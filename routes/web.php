@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
     Route::get('login', 'AuthController@showLoginForm')->name('show.login');
     Route::post('login', 'AuthController@login')->name('login');
-    Route::post('logout', 'AuthController@logout')->name('logout');
+    Route::get('logout', 'AuthController@logout')->name('logout');
     Route::post('getCities', 'CityController@getCities')->name('getCities');
 
 
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::get('dashboard', [
                 'uses'      => 'HomeController@dashboard',
                 'as'        => 'dashboard',
-                'icon'      => '<i class="fas fa-home"></i>',
+                'icon'      => '<i class="feather icon-home"></i>',
                 'title'     => 'الرئيسيه',
                 'type'      => 'parent'
             ]);
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of intro site  ----------*/
             Route::get('intro-site', [
                 'as'        => 'intro_site',
-                'icon'      => '<i class="fas fa-sitemap"></i>',
+                'icon'      => '<i class="feather icon-map"></i>',
                 'title'     => 'الموقع التعريفي',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -63,7 +63,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'      => 'IntroSetting@index',
                 'as'        => 'intro_settings.index',
                 'title'     => 'اعدادات الموقع التعريفي',
-                'icon'      => '<i class="ft-settings icon-left"></i>',
+                'icon'      => '<i class="feather icon-settings"></i>',
             ]);
 
             /*------------ start Of introsliders ----------*/
@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'uses'      => 'IntroSliderController@index',
                     'as'        => 'introsliders.index',
                     'title'     => 'بنرات الاسلايدر',
-                    'icon'      => '<i class="la la-image"></i>',
+                    'icon'      => '<i class="feather icon-image"></i>',
                 ]);
 
                 # introsliders store
@@ -354,7 +354,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
             Route::get('users', [
                 'as'        => 'users',
-                'icon'      => '<i class="fas fa-users"></i>',
+                'icon'      => '<i class="feather icon-users"></i>',
                 'title'     => 'المستخدمين',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -465,7 +465,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of Settings && permissions ----------*/
             Route::get('permissions-Settings', [
                 'as'        => 'Settings.permissions',
-                'icon'      => '<i class="fas fa-eye"></i>',
+                'icon'      => '<i class="feather icon-eye"></i>',
                 'title'     => 'الاعدادات والصلاحيات',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -564,7 +564,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         /*------------ start Of statistics && seo ----------*/
             Route::get('seo-statistics', [
                 'as'        => 'statistics.seo',
-                'icon'      => '<i class="fas fa-list"></i>',
+                'icon'      => '<i class="feather icon-list"></i>',
                 'title'     => 'السيو والاحصائيات',
                 'type'      => 'parent',
                 'sub_route' => true,
@@ -624,7 +624,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'      => 'SocialController@index',
                 'as'        => 'socials.index',
                 'title'     => 'وسائل التواصل',
-                'icon'      => '<i class="fas fa-thumbs-up"></i>',
+                'icon'      => '<i class="feather icon-thumbs-up"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => ['socials.create', 'socials.store', 'socials.show', 'socials.update', 'socials.edit', 'socials.delete' ,'socials.deleteAll']
@@ -682,7 +682,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::get('all-complaints', [
                 'as'        => 'all_complaints',
                 'uses'      => 'ComplaintController@index',
-                'icon'      => '<i class="fas fa-envelope"></i>',
+                'icon'      => '<i class="feather icon-mail"></i>',
                 'title'     => 'الشكاوي والمقترحات',
                 'type'      => 'parent',
                 'sub_route' => false,

@@ -1,111 +1,176 @@
 <!-- fixed-Loader --><!doctype html>
-<html class="no-js" lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="rtl">
+<!-- BEGIN: Head-->
 
-    <head>
-        <meta charset="utf-8">
-        <title>{{__('site.login')}}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-        <meta property="og:title" content="">
-        <meta property="og:type" content="">
-        <meta property="og:url" content="">
-        <meta property="og:image" content="">
-    
-        <link rel="apple-touch-icon" href="icon.png">
-        <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" href="{{asset('admin/assets/css/all.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/css/animate.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/assets/css/owl.carousel.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/af-2.3.7/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/b-print-2.0.1/cr-1.5.4/date-1.1.1/fc-4.0.0/fh-3.2.0/kt-2.6.4/r-2.2.9/rg-1.1.3/rr-1.2.8/sb-1.2.2/sp-1.4.0/sl-1.3.3/datatables.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-        <link rel="stylesheet" href="{{asset('admin/assets/css/main.css')}}">
-    
-        @yield('css')
-    </head>
-    
-    <body>
-    
-    <section class="form_login" id="form_login">
-        <div class="container">
-            <div class="col-12 text-center">
-                <img class="logo_form" src="{{asset('storage/images/settings/logo.png')}}" alt="">
-            </div>
-            <div class="col-xl-7 col-lg-8 col-md-9 col-12 m-auto">
-                <form  class="form-horizontal"  action="{{route('admin.login')}}" method="post">
-                    @csrf
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="name_form_head">
-                                <h2>{{__('site.hi')}} {{$data['name_'.lang()]}}</h2>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>{{__('site.login')}}</title>
+    <link rel="apple-touch-icon" href="{{asset('storage/images/settings/logo.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/images/settings/logo.png')}}">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/vendors-rtl.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/components.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/themes/dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/themes/semi-dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/authentication.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/custom-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/plugins/extensions/toastr.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+<body class="vertical-layout vertical-menu-modern 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section class="row flexbox-container">
+                <div class="col-xl-8 col-11 d-flex justify-content-center">
+                    <div class="card bg-authentication rounded-0 mb-0">
+                        <div class="row m-0">
+                            <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
+                                <img src="{{asset('storage/images/settings/logo.png')}}" alt="branding logo">
                             </div>
-                        </div>
-    
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="">{{__('site.email')}}</label>
-                                <input class="form-control" placeholder="{{__('site.email')}}" name="email" type="email">
+                            <div class="col-lg-6 col-12 p-0">
+                                <div class="card rounded-0 mb-0 px-2">
+                                    <div class="card-header pb-1">
+                                        <div class="card-title">
+                                            <h4 class="mb-0">{{__('site.login')}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="px-2">{{__('site.hi')}} {{$data['name_'.lang()]}}</p>
+                                    <div class="card-content mb-4">
+                                        <div class="card-body pt-1">
+                                            <form class="form-horizontal"  action="{{route('admin.login')}}" method="post">
+                                                @csrf
+                                                <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                                    <input type="email" class="form-control"  placeholder="{{__('site.email')}}" name="email" required>
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-mail"></i>
+                                                    </div>
+                                                    <label for="phone">{{__('site.email')}}</label>
+                                                </fieldset>
+
+                                                <fieldset class="form-label-group position-relative has-icon-left">
+                                                    <input type="password" class="form-control" name="password" placeholder="{{__('site.password')}}" required>
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-lock"></i>
+                                                    </div>
+                                                    <label for="user-password">{{__('site.password')}}</label>
+                                                </fieldset>
+                                                <div class="form-group d-flex justify-content-between align-items-center">
+                                                    <div class="text-left">
+                                                        <fieldset class="checkbox">
+                                                            <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                <input type="checkbox">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span class="">{{__('site.remember')}}</span>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary float-right btn-inline submit_button">{{__('site.login')}}</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="">{{__('site.password')}}</label>
-                                <input class="form-control " name="password" placeholder="{{__('site.password')}}" type="password">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn-main w-100 submit_button">{{__('site.login')}} </button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </section>
+
         </div>
-</section>
+    </div>
+</div>
+<!-- END: Content-->
 
-@include('admin.layout.partial.footer')
-<script>
-    $(document).ready(function(){
-        $(document).on('submit','.form-horizontal',function(e){
-            e.preventDefault();
-            var url = $(this).attr('action')
-            $.ajax({
-                url: url,
-                method: 'post',
-                data: new FormData($(this)[0]),
-                dataType:'json',
-                processData: false,
-                contentType: false,
-                beforeSend: function(){
-                    $(".submit_button").html('<i class="fas fa-spinner"></i>').attr('disables',true);
-                },
-                success: function(response){
-                    $(".text-danger").remove()
-                    $('.form-horizontal input').removeClass('border-danger')
-                    if (response.status == 'login'){
-                        toastr.success(response.message)
-                        setTimeout(function(){
-                            window.location.replace(response.url)
-                        }, 1000);
-                    }else{
-                        $(".submit_button").html(`<i class="ft-unlock"></i> {{awtTrans('تسجيل دخول')}}`).attr('disable',false)
-                        $('.form-horizontal input[name=password]').addClass('border-danger')
-                        $('.form-horizontal input[name=password').after(`<span class="mt-5 text-danger">${response.message}</span>`);
-                    }
-                },
-                error: function (xhr) {
-                    $(".submit_button").html("{{awtTrans('تسجيل دخول')}}").attr('disable',false)
-                    $(".text-danger").remove()
-                    $('.form-horizontal input').removeClass('border-danger')
+    <script src="{{asset('admin/app-assets/vendors/js/vendors.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/core/app.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/components.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "showMethod": "slideDown",
+             "hideMethod": "slideUp",
+              timeOut: 2000 
+        };
+        $(document).ready(function(){
+            $(document).on('submit','.form-horizontal',function(e){
+                e.preventDefault();
+                var url = $(this).attr('action')
+                $.ajax({
+                    url: url,
+                    method: 'post',
+                    data: new FormData($(this)[0]),
+                    dataType:'json',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function(){
+                        $(".submit_button").html('<i class="fas fa-spinner"></i>').attr('disables',true);
+                    },
+                    success: function(response){
+                        $(".text-danger").remove()
+                        $('.form-horizontal input').removeClass('border-danger')
+                        if (response.status == 'login'){
+                            toastr.success(response.message)
+                            setTimeout(function(){
+                                window.location.replace(response.url)
+                            }, 1000);
+                        }else{
+                            $(".submit_button").html(`<i class="ft-unlock"></i> {{awtTrans('تسجيل دخول')}}`).attr('disable',false)
+                            $('.form-horizontal input[name=password]').addClass('border-danger')
+                            $('.form-horizontal input[name=password').after(`<span class="mt-5 text-danger">${response.message}</span>`);
+                        }
+                    },
+                    error: function (xhr) {
+                        $(".submit_button").html("{{awtTrans('تسجيل دخول')}}").attr('disable',false)
+                        $(".text-danger").remove()
+                        $('.form-horizontal input').removeClass('border-danger')
 
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('.form-horizontal input[name='+key+']').addClass('border-danger')
-                        $('.form-horizontal input[name='+key+']').after(`<span class="mt-5 text-danger">${value}</span>`);
-                    });
-                },
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            $('.form-horizontal input[name='+key+']').addClass('border-danger')
+                            $('.form-horizontal input[name='+key+']').after(`<span class="mt-5 text-danger">${value}</span>`);
+                        });
+                    },
+                });
+
             });
-
         });
-    });
-</script>
+    </script>
+
+</body>
+<!-- END: Body-->
+
+</html>
