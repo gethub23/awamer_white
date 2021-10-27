@@ -41,11 +41,12 @@ function pieChartFunction(lables , series , colors){
 }
 
 
-// pie function for drow digram
-// pass 3 arrays 
-// first array lables contains names of lables like ['active', 'not active']
-// secound array series contains numbers of lables like [200, 300]
-// third array colors contains colors of lables  like ['#7367F0', '#FF9F43']
+// pie function for drow radial Bar digram
+// pass 4 arrays 
+// first array colors contains colors of lables  like ['#7367F0', '#FF9F43']
+// secound array colors contains colors of lables  like ['#7367F0', '#FF9F43']
+// third array lables contains names of lables like ['active', 'not active']
+// fourth array series contains numbers of lables like [200, 300]
 
 function radialBarFunction(colors , colors2 , lables ,series){
     var supportChartoptions = {
@@ -102,4 +103,63 @@ function radialBarFunction(colors , colors2 , lables ,series){
     }
 
     return supportChartoptions ;
+}
+function radialBarFunction2(colors , gradientToColors , series , labels){
+var productChartoptions = {
+    chart: {
+      height: 325,
+      type: 'radialBar',
+    },
+    colors: colors,
+    fill: {
+      type: 'gradient',
+      gradient: {
+        // enabled: true,
+        shade: 'dark',
+        type: 'vertical',
+        shadeIntensity: 0.5,
+        gradientToColors: gradientToColors,
+        inverseColors: false,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100]
+      },
+    },
+    stroke: {
+      lineCap: 'round'
+    },
+    plotOptions: {
+      radialBar: {
+        size: 165,
+        hollow: {
+          size: '20%'
+        },
+        track: {
+          strokeWidth: '100%',
+          margin: 15,
+        },
+        dataLabels: {
+          name: {
+            fontSize: '18px',
+          },
+          value: {
+            fontSize: '16px',
+          },
+          total: {
+            show: true,
+            label: 'Total',
+
+            formatter: function (w) {
+              // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+            //   return 4
+            }
+          }
+        }
+      }
+    },
+    series: series,
+    labels: labels,
+
+  }
+  return productChartoptions ;
 }

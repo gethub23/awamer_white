@@ -6,21 +6,13 @@ use Illuminate\View\Component;
 
 class breadcrumb extends Component
 {
-    public $singleName ; 
-    public $moreButtons ; 
-    public $addbutton ; 
-    public $deletebutton ; 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($singleName  , $addbutton, $deletebutton , $moreButtons = null)
-    {
-        $this->singleName = $singleName ;
-        $this->moreButtons = $moreButtons ;
-        $this->addbutton = $addbutton ;
-        $this->deletebutton = $deletebutton ;
+    public function __construct(){
+        
     }
 
     /**

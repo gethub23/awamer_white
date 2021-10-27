@@ -7,7 +7,13 @@
                     <ul class="nav navbar-nav">
                         <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                     </ul>
+                    <div style="font-size:14px ; font-family:'cairo' ; color:black">
+                        <a href="{{url('admin/dashboard')}}">{{__('site.home')}}</a>
+                        / 
+                        <a href="javacsript:void(0)">{{awtTrans(\Request::route()->getAction()['title'])}}</a>
+                    </div>
                 </div>
+                
 
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,6 +26,9 @@
                             <a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-eg"></i> عربي</a>
                             <a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a>
                         </div>
+                    </li>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" id="layout-mode"><i class="ficon feather icon-sun" onclick="changeMode()"></i></a>
                     </li>
                     <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
                    

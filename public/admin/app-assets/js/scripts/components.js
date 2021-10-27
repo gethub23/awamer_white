@@ -65,4 +65,33 @@
   $('.chip-closeable').on('click', function () {
     $(this).closest('.chip').remove();
   })
+
+    
 })(window, document, jQuery);
+
+$(function(){
+  var currentLayout = localStorage.getItem("caberz_currentLayout");
+  $("#content_body").data('type' , currentLayout);
+  if (currentLayout != null && currentLayout != 'dark') {
+      $("#layout-mode").html(`<i class="ficon feather icon-moon" onclick="changeMode()"></i>`);
+      $("#content_body").removeClass('dark-layout');
+  }else{
+      $("#layout-mode").html(`<i class="ficon feather icon-sun" onclick="changeMode()"></i>`);
+      $("#content_body").addClass('dark-layout');
+  }
+});
+function changeMode() {
+  var layoutOptions = $("#content_body").data('type');
+  if (layoutOptions == 'dark') {
+      localStorage.setItem("caberz_currentLayout" , 'light')
+      $("#content_body").data('type' , 'light');
+      $("#content_body").removeClass('dark-layout');
+      $("#layout-mode").html(`<i class="ficon feather icon-moon" onclick="changeMode()"></i>`);
+
+  }else{
+      localStorage.setItem("caberz_currentLayout" , 'dark')
+      $("#content_body").data('type' , 'dark');
+      $("#layout-mode").html(`<i class="ficon feather icon-sun" onclick="changeMode()"></i>`);
+      $("#content_body").addClass('dark-layout');
+  }
+}

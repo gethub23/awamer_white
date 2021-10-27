@@ -21,7 +21,7 @@
             @endforeach
         </div>
         <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
                         <h4 class="card-title">{{__('site.users')}}</h4>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-3 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
                         <h4 class="card-title">{{__('site.users')}}</h4>
@@ -83,7 +83,47 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between pb-0">
+                        <h4>{{__('site.users')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div id="product-order-chart" class="mb-3"></div>
+                            <div class="chart-info d-flex justify-content-between mb-1">
+                                <div class="series-info d-flex align-items-center">
+                                    <i class="fa fa-circle-o text-bold-700 text-primary"></i>
+                                    <span class="text-bold-600 ml-50">{{__('site.active_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$activeUsers}}</span>
+                                </div>
+                            </div>
+                            <div class="chart-info d-flex justify-content-between mb-1">
+                                <div class="series-info d-flex align-items-center">
+                                    <i class="fa fa-circle-o text-bold-700 text-warning"></i>
+                                    <span class="text-bold-600 ml-50">{{__('site.not_active_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$notActiveUsers}}</span>
+                                </div>
+                            </div>
+                            <div class="chart-info d-flex justify-content-between mb-75">
+                                <div class="series-info d-flex align-items-center">
+                                    <i class="fa fa-circle-o text-bold-700 text-danger"></i>
+                                    <span class="text-bold-600 ml-50">{{__('site.all_users')}}</span>
+                                </div>
+                                <div class="product-result">
+                                    <span>{{$activeUsers + $notActiveUsers}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         
 @endsection
 @section('js')
@@ -98,6 +138,11 @@
        new ApexCharts(
             document.querySelector("#customer-chart"),
             pieChartFunction(['active', 'not active'] , [ Number('{{$activeUsers}}'), Number('{{$notActiveUsers}}')] , ['#7367F0', '#FF9F43'])
+        ).render();
+
+        var productChart = new ApexCharts(
+            document.querySelector("#product-order-chart"),
+            radialBarFunction2(['#7367F0', '#FF9F43'] , [ '#8F80F9', '#FFC085'] , [ (Number('{{$activeUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}'))) , (Number('{{$notActiveUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}')))] , ['Finished', 'Pending'])
         ).render();
 
     </script>

@@ -25,10 +25,17 @@
     <script src="{{asset('admin/app-assets/js/scripts/components.js')}}"></script>
     <!-- END: Theme JS-->
 
+    <script src="{{asset('admin/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <!-- BEGIN: Page JS-->
     {{-- <script src="{{asset('admin/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script> --}}
     <!-- END: Page JS-->
-
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+      </script>
 @yield('js')
 {{-- ajax header and success --}}
 <script>
@@ -64,6 +71,7 @@
 @endforeach
 </script>
 @endif
+
 {{-- #ajax header --}}
   <x-admin.alert />
 </body>

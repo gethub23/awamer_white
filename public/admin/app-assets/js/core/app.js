@@ -23,6 +23,8 @@
       compactMenu = true;
     }
 
+    $('.loader').fadeOut()
+
     if ($("html").data("textdirection") == "rtl") {
       rtl = true;
     }
