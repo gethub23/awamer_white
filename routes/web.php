@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'introfqscategories.index','introfqscategories.store','introfqscategories.create','introfqscategories.edit', 'introfqscategories.update', 'introfqscategories.delete' ,'introfqscategories.deleteAll' ,
                     'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll','introfqs.edit', 'introfqs.create',
                     'introparteners.index','introparteners.store', 'introparteners.update', 'introparteners.delete' ,'introparteners.deleteAll' ,
-                    'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll',
+                    'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll','intromessages.show',
                     'introsocials.index','introsocials.store', 'introsocials.update', 'introsocials.delete' ,'introsocials.deleteAll',
                     'introhowworks.index','introhowworks.store', 'introhowworks.update', 'introhowworks.delete' ,'introhowworks.deleteAll',
                 ]
@@ -323,6 +323,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'as'        => 'intromessages.index',
                     'title'     => 'رسائل العملاء',
                     'icon'      => '<i class="la la-envelope-square"></i>',
+                ]);
+
+                # socials update
+                Route::get('intromessages/{id}', [
+                    'uses'  => 'IntroMessagesController@show',
+                    'as'    => 'intromessages.show',
+                    'title' => 'صفحه عرض الرسالة'
                 ]);
 
                 # intromessages delete

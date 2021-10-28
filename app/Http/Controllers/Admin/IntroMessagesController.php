@@ -15,6 +15,13 @@ class IntroMessagesController extends Controller
         return view('admin.intromessages.index', compact('rows'));
     }
 
+    /***************************  get all   **************************/
+    public function show($id)
+    {
+        $row = IntroMessages::findOrFail($id);
+        return view('admin.intromessages.show', compact('row'));
+    }
+
     /***************************  delete  **************************/
     public function destroy($id)
     {

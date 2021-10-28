@@ -5,12 +5,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">{{awtTrans('عرض الشكوي او المقترح')}}</h4>
+                        <h4 class="card-title">{{awtTrans('عرض الرسالة')}}</h4>
                     </div>
 
                     <div class="card-content">
                         <div class="card-body">
-                            <form>
+                            <form >
                                 @csrf
                                 @method('PUT')
                                 <div class="form-body">
@@ -20,7 +20,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{awtTrans('اسم المستخدم')}}</label>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" value="{{$row->user_name}}" disabled>
+                                                    <input type="text" class="form-control" value="{{$row->name}}" disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -29,7 +29,7 @@
                                             <div class="form-group">
                                                 <label for="first-name-column">{{awtTrans('رقم الهاتف')}}</label>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" value="{{$row->phone}}" disabled>
+                                                    <input type="text" class="form-control" value="{{$row->phone}}" disabled >
                                                 </div>
                                             </div>
                                         </div>
@@ -44,9 +44,9 @@
                                         
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{awtTrans('الشكوي')}}</label>
+                                                <label for="first-name-column">{{awtTrans('نص الرسالة')}}</label>
                                                 <div class="controls">
-                                                    <textarea class="form-control" cols="30" rows="10" disabled>{{$row->complaint}}</textarea>
+                                                    <textarea class="form-control" cols="30" rows="10" disabled>{{$row->message}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
