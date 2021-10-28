@@ -42,6 +42,7 @@ trait  SideBar
 
 
                             //check if this is the current opened
+                            $activeLi     = '';
                             $active     = '';
                             $opend      = '';
                             $child_name = substr(Route::currentRouteName(), 6);

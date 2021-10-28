@@ -460,7 +460,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title'     => 'المستخدمين',
                 'type'      => 'parent',
                 'sub_route' => true,
-                'child'     => ['admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll',
+                'child'     => ['admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
                                 'clients.index', 'clients.store', 'clients.update', 'clients.delete' ,'clients.notify' , 'clients.deleteAll']
             ]);
 
@@ -488,13 +488,26 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
                 ]);
 
+                # admins store
+                Route::get('admins/create', [
+                    'uses'  => 'AdminController@create',
+                    'as'    => 'admins.create',
+                    'title' => ' صفحة اضافة مشرف'
+                ]);
+
                 #store
                 Route::post('admins/store', [
                     'uses'  => 'AdminController@store',
                     'as'    => 'admins.store',
                     'title' => 'اضافة مشرف'
                 ]);
-
+ 
+                # admins update
+                Route::get('admins/{id}/edit', [
+                    'uses'  => 'AdminController@edit',
+                    'as'    => 'admins.edit',
+                    'title' => 'صفحه تحديث مشرف'
+                ]);
                 #update
                 Route::put('admins/{id}', [
                     'uses'  => 'AdminController@update',

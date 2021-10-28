@@ -15,26 +15,38 @@ class AdminController extends Controller
     /***************************  get all admins  **************************/
     public function index()
     {
-        $admins = Admin::latest()->get();
-        $roles = Role::latest()->get();
-        return view('admin.admins.index', compact('admins','roles'));
+        $rows = Admin::latest()->get();
+        return view('admin.admins.index', compact('rows'));
     }
-
+    /***************************  store  **************************/
+    public function create()
+    {
+        $roles = Role::latest()->get();
+        return view('admin.admins.create', compact('roles'));
+    }
 
     /***************************  store admin **************************/
     public function store(Create $request)
     {
         Admin::create($request->all());
-        return response()->json();
+        return response()->json(['url' => route('admin.admins.index')]);
     }
 
+    
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = Admin::findOrFail($id);
+        $roles = Role::latest()->get();
+        return view('admin.admins.edit' , ['row' => $row , 'roles' => $roles]);
+    }
 
     /***************************  update admin  **************************/
     public function update( $id , Update $request)
     {
         $admin = Admin::findOrFail($id);
         $admin->update($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.admins.index')]);
     }
 
     /***************************  delete admin  **************************/
