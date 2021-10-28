@@ -1,4 +1,5 @@
 @extends('admin.layout.master')
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
@@ -6,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/colors/palette-gradient.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
 @endsection
+
 @section('content')
     {{-- table --}}
         <x-admin.table  addbutton="{{route('admin.socials.create')}}" deletebutton="{{route('admin.socials.deleteAll')}}">

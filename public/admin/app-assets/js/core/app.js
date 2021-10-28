@@ -945,3 +945,7 @@
   Waves.init();
   Waves.attach(".btn", ["waves-light"]);
 })(window, document, jQuery);
+
+$(document).on('click' , '.reload', function () {
+  location.reload();
+});

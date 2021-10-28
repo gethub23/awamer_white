@@ -687,8 +687,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => [
-                    'complaints.delete' ,'complaints.deleteAll',
+                    'complaints.delete' ,'complaints.deleteAll','complaints.show',
                 ]
+            ]);
+
+             # socials update
+             Route::get('complaints/{id}', [
+                'uses'  => 'ComplaintController@show',
+                'as'    => 'complaints.show',
+                'title' => 'صفحه عرض شكوي'
             ]);
             # complaints delete
             Route::delete('complaints/{id}', [

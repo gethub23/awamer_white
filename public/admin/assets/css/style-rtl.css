@@ -156,3 +156,109 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     justify-content: center;
     align-items: center;
 }
+
+
+.imagesUploadBlock {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	margin: 20px 0;
+}
+
+.uploadImg {
+	display: inline-block;
+	width: 140px;
+	height: 140px;
+	line-height: 110px;
+	text-align: center;
+	position: relative;
+	border-radius: 15px;
+	margin: 5px;
+	border: 3px dotted #e4e4e4;
+}
+
+.uploadImg:before {
+	content: '';
+	position: absolute;
+	width: 140px;
+	height: 140px;
+	border-radius: 15px;
+	right: 0;
+}
+
+.uploadImg span {
+	position: absolute;
+	right: 0;
+	left: 0;
+	margin: auto;
+	z-index: 9;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 22px;
+}
+
+.uploadImg span i {
+	color: #e4e4e4
+}
+
+.uploadImg i {
+	font-size: 20px;
+	color: #e4e4e4;
+}
+
+.uploadImg input {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+	display: none
+}
+
+.uploadedBlock {
+	bottom: 0;
+	position: absolute;
+	right: 0;
+	left: 0;
+	margin: auto;
+	top: 0;
+	z-index: 9;
+}
+
+.uploadedBlock img {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border-radius: 15px;
+}
+
+.uploadedBlock .close {
+	position: absolute;
+	top: 0;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.33) !important;
+	font-size: 18px;
+	border-radius: 15px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	opacity: 1;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.uploadedBlock .close i {
+	color: #292929;
+	font-size: 24px;
+}
+
+.imgMontg {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 25px;
+}
+
+label{
+	margin-bottom: 10px;
+}

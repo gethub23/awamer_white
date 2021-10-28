@@ -37,14 +37,6 @@
         });
       </script>
 @yield('js')
-{{-- ajax header and success --}}
-<script>
-  $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-</script>
 <script>
   $( document ).ajaxSuccess(function( event, request, settings ,response ) {
       if (response.type == 'notAuth') {

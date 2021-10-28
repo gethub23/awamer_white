@@ -15,6 +15,13 @@ class ComplaintController extends Controller
         return view('admin.complaints.index', compact('rows'));
     }
 
+    /***************************  get all   **************************/
+    public function show($id)
+    {
+        $row = Complaint::findOrFail($id);
+        return view('admin.complaints.show', compact('row'));
+    }
+
     /***************************  delete  **************************/
     public function destroy($id)
     {
