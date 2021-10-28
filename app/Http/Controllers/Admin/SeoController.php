@@ -15,6 +15,11 @@ class SeoController extends Controller
         $rows = Seo::get();
         return view('admin.seos.index', compact('rows'));
     }
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.seos.create');
+    }
 
     /***************************  store  **************************/
     public function store(Create $request)
@@ -24,9 +29,15 @@ class SeoController extends Controller
             'meta_description'  => ['ar' => $request->meta_description_ar , 'en' => $request->meta_description_en] ,
             'meta_keywords'     => ['ar' => $request->meta_keywords_ar , 'en' => $request->meta_keywords_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.seos.index')]);
     }
 
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = Seo::findOrFail($id);
+        return view('admin.seos.edit' , ['row' => $row]);
+    }
     /***************************  update  **************************/
     public function update(Create $request, $id)
     {
@@ -35,13 +46,29 @@ class SeoController extends Controller
             'meta_description'  => ['ar' => $request->meta_description_ar , 'en' => $request->meta_description_en] ,
             'meta_keywords'     => ['ar' => $request->meta_keywords_ar , 'en' => $request->meta_keywords_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.seos.index')]);
     }
 
+    /***************************  delete admin  **************************/
     public function destroy($id)
     {
-        Seo::findOrFail($id)->delete() ; 
-        return redirect()->back()->with('success', 'تم الحذف بنجاح');
+        $admin = Seo::findOrFail($id)->delete(); 
+        return response()->json(['id' =>$id]);
+    }
+
+
+    public function destroyAll(Request $request)
+    {
+        $requestIds = json_decode($request->data);
+        
+        foreach ($requestIds as $id) {
+            $ids[] = $id->id;
+        }
+        if (Seo::whereIn('id' , $ids)->delete()) {
+            return response()->json('success');
+        } else {
+            return response()->json('failed');
+        }
     }
 
 }

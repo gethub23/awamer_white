@@ -461,7 +461,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => true,
                 'child'     => ['admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
-                                'clients.index', 'clients.store', 'clients.update', 'clients.delete' ,'clients.notify' , 'clients.deleteAll']
+                                'clients.index', 'clients.store', 'clients.update', 'clients.delete' ,'clients.notify' , 'clients.deleteAll' , 'clients.create','clients.edit',]
             ]);
 
             /************ Admins ************/
@@ -544,7 +544,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 # clients store
                 Route::get('clients/create', [
                     'uses'  => 'ClientController@create',
-                    'as'    => 'clients.create',
+                    'as'    => 'clients.create','clients.edit',
                     'title' => ' صفحة اضافة عميل'
                 ]);
 
@@ -717,6 +717,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'as'        => 'seos.index',
                     'title'     => 'سيو',
                     'icon'      => '<i class="la la-google"></i>',
+                ]);
+
+                # seos store
+                Route::get('seos/create', [
+                    'uses'  => 'SeoController@create',
+                    'as'    => 'seos.create','clients.edit',
+                    'title' => ' صفحة اضافة سيو'
+                ]);
+
+                # seos update
+                Route::get('seos/{id}/edit', [
+                    'uses'  => 'SeoController@edit',
+                    'as'    => 'seos.edit',
+                    'title' => 'صفحه تحديث سيو'
                 ]);
 
                 #store
