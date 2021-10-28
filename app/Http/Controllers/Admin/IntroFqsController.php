@@ -14,8 +14,13 @@ class IntroFqsController extends Controller
     public function index()
     {
         $rows = IntroFqs::latest()->get();
+        return view('admin.introfqs.index', compact('rows'));
+    }
+    /***************************  store  **************************/
+    public function create()
+    {
         $categories = IntroFqsCategory::get() ;
-        return view('admin.introfqs.index', compact('rows' ,'categories'));
+        return view('admin.introfqs.create', compact('categories'));
     }
 
 
@@ -26,9 +31,17 @@ class IntroFqsController extends Controller
                 'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
                 'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
             ])) ;
-        return response()->json();
+        return response()->json(['url' => route('admin.introfqs.index')]);
     }
 
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroFqs::findOrFail($id);
+        $categories = IntroFqsCategory::get() ;
+
+        return view('admin.introfqs.edit' , ['row' => $row , 'categories' => $categories]);
+    }
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
@@ -36,7 +49,7 @@ class IntroFqsController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ])) ;
-        return response()->json();
+        return response()->json(['url' => route('admin.introfqs.index')]);
     }
 
     /***************************  delete  **************************/

@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'intro_settings.index','introsliders.index','introsliders.store', 'introsliders.update', 'introsliders.delete' ,'introsliders.deleteAll','introsliders.create','introsliders.edit',
                     'introservices.index','introservices.create','introservices.store','introservices.edit', 'introservices.update', 'introservices.delete' ,'introservices.deleteAll',
                     'introfqscategories.index','introfqscategories.store','introfqscategories.create','introfqscategories.edit', 'introfqscategories.update', 'introfqscategories.delete' ,'introfqscategories.deleteAll' ,
-                    'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll',
+                    'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll','introfqs.edit', 'introfqs.create',
                     'introparteners.index','introparteners.store', 'introparteners.update', 'introparteners.delete' ,'introparteners.deleteAll' ,
                     'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll',
                     'introsocials.index','introsocials.store', 'introsocials.update', 'introsocials.delete' ,'introsocials.deleteAll',
@@ -224,11 +224,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'      => '<i class="la la-bullhorn"></i>',
                 ]);
 
+                 # socials store
+                 Route::get('introfqs/create', [
+                    'uses'  => 'IntroFqsController@create',
+                    'as'    => 'introfqs.create',
+                    'title' => ' صفحة اضافة سؤال'
+                ]);
+
                 # introfqs store
                 Route::post('introfqs/store', [
                     'uses'  => 'IntroFqsController@store',
                     'as'    => 'introfqs.store',
                     'title' => ' اضافة سؤال'
+                ]);
+                # introfqscategories update
+                Route::get('introfqs/{id}/edit', [
+                    'uses'  => 'IntroFqsController@edit',
+                    'as'    => 'introfqs.edit',
+                    'title' => 'صفحه تحديث سؤال'
                 ]);
 
                 # introfqs update
