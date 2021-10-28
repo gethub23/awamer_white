@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => true,
                 'child'     => [
-                    'intro_settings.index','introsliders.index','introsliders.store', 'introsliders.update', 'introsliders.delete' ,'introsliders.deleteAll',
+                    'intro_settings.index','introsliders.index','introsliders.store', 'introsliders.update', 'introsliders.delete' ,'introsliders.deleteAll','introsliders.create',
                     'introservices.index','introservices.store', 'introservices.update', 'introservices.delete' ,'introservices.deleteAll',
                     'introfqscategories.index','introfqscategories.store', 'introfqscategories.update', 'introfqscategories.delete' ,'introfqscategories.deleteAll' ,
                     'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll',
@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'introhowworks.index','introhowworks.store', 'introhowworks.update', 'introhowworks.delete' ,'introhowworks.deleteAll',
                 ]
             ]);
+            
 
             Route::get('intro-settings', [
                 'uses'      => 'IntroSetting@index',
@@ -74,11 +75,26 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'      => '<i class="feather icon-image"></i>',
                 ]);
 
+                 # socials store
+                Route::get('introsliders/create', [
+                    'uses'  => 'IntroSliderController@create',
+                    'as'    => 'introsliders.create',
+                    'title' => ' صفحة اضافة بنر'
+                ]);
+                
+
                 # introsliders store
                 Route::post('introsliders/store', [
                     'uses'  => 'IntroSliderController@store',
                     'as'    => 'introsliders.store',
                     'title' => ' اضافة بنر'
+                ]);
+
+                # socials update
+                Route::get('introsliders/{id}/edit', [
+                    'uses'  => 'IntroSliderController@edit',
+                    'as'    => 'introsliders.edit',
+                    'title' => 'صفحه تحديث بنر'
                 ]);
 
                 # introsliders update

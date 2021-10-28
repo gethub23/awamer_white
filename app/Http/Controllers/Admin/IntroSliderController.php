@@ -16,6 +16,11 @@ class IntroSliderController extends Controller
         return view('admin.introsliders.index', compact('rows'));
     }
 
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introsliders.create');
+    }
 
     /***************************  store  **************************/
     public function store(Store $request)
@@ -24,7 +29,14 @@ class IntroSliderController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introsliders.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroSlider::findOrFail($id);
+        return view('admin.introsliders.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
@@ -34,7 +46,7 @@ class IntroSliderController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introsliders.index')]);
     }
 
     /***************************  delete  **************************/

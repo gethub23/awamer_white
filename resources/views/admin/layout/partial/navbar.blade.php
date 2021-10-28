@@ -8,9 +8,9 @@
                         <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                     </ul>
                     <div style="font-size:14px ; font-family:'cairo' ; color:black">
-                        <a href="{{url('admin/dashboard')}}">{{__('site.home')}}</a>
-                        / 
-                        <a href="javacsript:void(0)">{{awtTrans(\Request::route()->getAction()['title'])}}</a>
+                        <a  href="{{url('admin/dashboard')}}"><span class="user-name"> <i class="feather icon-home"></i> {{__('site.home')}}</span></a>
+                        <span class="user-name">/</span> 
+                        <a  href="javacsript:void(0)"><span class="user-name">{{awtTrans(\Request::route()->getAction()['title'])}}</span></a>
                     </div>
                 </div>
                 
