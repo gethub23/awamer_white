@@ -274,11 +274,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'      => '<i class="la la-list"></i>',
                 ]);
 
+                # socials store
+                Route::get('introparteners/create', [
+                    'uses'  => 'IntroPartenerController@create',
+                    'as'    => 'introparteners.create',
+                    'title' => ' صفحة اضافة شريك'
+                ]);
+
                 # introparteners store
                 Route::post('introparteners/store', [
                     'uses'  => 'IntroPartenerController@store',
                     'as'    => 'introparteners.store',
                     'title' => ' اضافة شريك'
+                ]);
+
+                # introparteners update
+                Route::get('introparteners/{id}/edit', [
+                    'uses'  => 'IntroPartenerController@edit',
+                    'as'    => 'introparteners.edit',
+                    'title' => 'صفحه تحديث شريك'
                 ]);
 
                 # introparteners update

@@ -15,20 +15,32 @@ class IntroPartenerController extends Controller
         $rows = IntroPartener::latest()->get();
         return view('admin.introparteners.index', compact('rows'));
     }
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introparteners.create');
+    }
 
 
     /***************************  store  **************************/
     public function store(Store $request)
     {
         IntroPartener::create($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.introparteners.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroPartener::findOrFail($id);
+        return view('admin.introparteners.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
         IntroPartener::findOrFail($id)->update($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.introparteners.index')]);
     }
 
     /***************************  delete  **************************/

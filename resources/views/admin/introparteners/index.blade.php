@@ -1,140 +1,55 @@
 @extends('admin.layout.master')
-<x-admin.breadcrumb singleName='{{awtTrans("شريك")}}' deletebutton="true" addbutton="true" >
-    <x-slot name="moreButtons">
-    </x-slot> 
- </x-admin.breadcrumb >
-@section('content')
-    <section class="content">
-         {{-- table --}}
-            <x-admin.table >
-                <x-slot name="tableHead">
-                    <th>
-                       <div class="form-checkbox">
-                           <input type="checkbox" value="value1" name="name1" id="checkedAll">
-                           <span class="check"><i class="zmdi zmdi-check zmdi-hc-lg"></i></span>
-                       </div>
-                    </th>
-                    <th>{{awtTrans('الصوره')}}</th>
-                    <th>{{awtTrans('التحكم')}}</th>
-                </x-slot>
-                <x-slot name="tableBody">
-                    @foreach($rows as $row)
-                        <tr class="delete_row_{{$row->id}}">
-                            <td class="text-center">
-                               <div class="form-checkbox">
-                                   <input type="checkbox" class="checkSingle" id="{{$row->id}}">
-                                   <span class="check"><i class="zmdi zmdi-check zmdi-hc-lg"></i></span>
-                               </div>
-                            </td>
-                            <td><img src="{{$row->image}}" alt=""></td>
-                            <td>
-                                <x-admin.edit-button>
-                                    <x-slot name="data">
-                                            data-id       = '{{$row->id}}'
-                                            data-route    = '{{route('admin.introparteners.update' , [$row->id])}}'
-                                            data-image    = '{{$row->image}}'
-                                    </x-slot>
-                                </x-admin.edit-button>
-                                <x-admin.show-button>
-                                    <x-slot name="data">
-                                            data-image    = '{{$row->image}}'
-                                    </x-slot>
-                                </x-admin.show-button>
-                                <x-admin.delete route="{{route('admin.introparteners.delete' , [$row->id])}}" />
-                            </td>
-                        </tr>
-                    @endforeach
-                </x-slot>
-            </x-admin.table >
-        {{-- #table --}}
-    </section>
 
- <!-- add model -->
-    <x-admin.AddModel route='{{route("admin.introparteners.store")}}' singleName='{{awtTrans("شريك")}}' >
-        <x-slot name="inputs">
-           <div class="col-12">
-                <div class="imgMontg col-12 text-center">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="la la-image"></i></span>
-                                    <input type="file" accept="image/*" name="image" class="imageUploader">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-    </x-admin.AddModel >
- <!-- add model -->
-
- <!-- edit model -->
-    <x-admin.edit-model singleName='{{awtTrans("شريك")}}' >
-        <x-slot name="inputs">
-          <div class="col-sm-12">  
-                <div class="imgMontg">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="far fa-image"></i></span>
-                                    <input type="file" accept="image/*" name="image" class="imageUploader">
-                                </label>
-                                <div class="uploadedBlock">
-                                    <img src=""  id="image">
-                                    <button class="close">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.edit-model >
- <!-- add model -->
- 
- <!-- show model -->
-    <x-admin.show-model  singleName='{{awtTrans("شريك")}}' >
-        <x-slot name="inputs">
-          <div class="col-sm-12">  
-                <div class="imgMontg">
-                    <div class="dropBox">
-                        <div class="textCenter">
-                            <div class="imagesUploadBlock">
-                                <label class="uploadImg">
-                                    <span><i class="far fa-image"></i></span>
-                                    <input type="file" accept="image/*" name="image" class="imageUploader">
-                                </label>
-                                <div class="uploadedBlock">
-                                    <img src=""  class="image">
-                                    <button class="close">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-    </x-admin.show-model >
- <!-- show model -->
-
-{{-- delete all model  --}}
-    <x-admin.delete-all route="{{route('admin.introparteners.deleteAll')}}" />
-{{-- #delete all model  --}}
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/data-list-view.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
 @endsection
-<x-admin.scripts >
-    <x-slot name='moreScript'>
-        <x-admin.confirm-delete />
-        <script>
-            
-        </script>
-    </x-slot >
-</x-admin.scripts >
+@section('content')
+    {{-- table --}}
+        <x-admin.table  addbutton="{{route('admin.introparteners.create')}}" deletebutton="{{route('admin.introparteners.deleteAll')}}">
+            <x-slot name="tableHead">
+                <th>
+                    <label class="container-checkbox">
+                        <input type="checkbox" value="value1" name="name1" id="checkedAll">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
+                <th>{{awtTrans('الصوره')}}</th>
+                <th>{{awtTrans('التحكم')}}</th>
+            </x-slot>
+            <x-slot name="tableBody">
+                @foreach($rows as $row)
+                    <tr class="delete_row">
+                        <td class="text-center">
+                            <label class="container-checkbox">
+                                <input type="checkbox" class="checkSingle" id="{{$row->id}}">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td><img src="{{$row->image}}" width="50px" height="50px" alt=""></td>
+                        <td class="product-action">
+                            <span class="action-edit text-primary"><a href="{{route('admin.introparteners.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>
+                            <span class="delete-row text-danger" data-url="{{url('admin/introparteners/'.$row->id)}}"><i class="feather icon-trash"></i></span>
+                        </td>
+                    </tr>
+                @endforeach
+            </x-slot>
+        </x-admin.table >
+    {{-- #table --}}
+@endsection
+
+
+@section('js')
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+
+    @include('admin.shared.deleteAll')
+    @include('admin.shared.deleteOne')
+    
+@endsection
