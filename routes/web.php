@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll','introfqs.edit', 'introfqs.create',
                     'introparteners.index','introparteners.store', 'introparteners.update', 'introparteners.delete' ,'introparteners.deleteAll' ,
                     'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll','intromessages.show',
-                    'introsocials.index','introsocials.store', 'introsocials.update', 'introsocials.delete' ,'introsocials.deleteAll',
+                    'introsocials.index','introsocials.store', 'introsocials.update', 'introsocials.delete' ,'introsocials.deleteAll','introsocials.edit','introsocials.create',
                     'introhowworks.index','introhowworks.store', 'introhowworks.update', 'introhowworks.delete' ,'introhowworks.deleteAll',
                 ]
             ]);
@@ -355,11 +355,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'      => '<i class="la la-facebook"></i>',
                 ]);
 
+                
+                # introsocials store
+                Route::get('introsocials/create', [
+                    'uses'  => 'IntroSocialController@create',
+                    'as'    => 'introsocials.create',
+                    'title' => ' صفحة اضافة وسيلة تواصل'
+                ]);
+
                 # introsocials store
                 Route::post('introsocials/store', [
                     'uses'  => 'IntroSocialController@store',
                     'as'    => 'introsocials.store',
                     'title' => ' اضافة وسيلة'
+                ]);
+                # introsocials update
+                Route::get('introsocials/{id}/edit', [
+                    'uses'  => 'IntroSocialController@edit',
+                    'as'    => 'introsocials.edit',
+                    'title' => 'صفحه تحديث وسيلة تواصل'
                 ]);
 
                 # introsocials update

@@ -16,19 +16,31 @@ class IntroSocialController extends Controller
         return view('admin.introsocials.index', compact('rows'));
     }
 
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introsocials.create');
+    }
 
     /***************************  store  **************************/
     public function store(Store $request)
     {
         IntroSocial::create($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.introsocials.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroSocial::findOrFail($id);
+        return view('admin.introsocials.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
         IntroSocial::findOrFail($id)->update($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.introsocials.index')]);
     }
 
     /***************************  delete  **************************/
