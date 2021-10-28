@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'introparteners.index','introparteners.store', 'introparteners.update', 'introparteners.delete' ,'introparteners.deleteAll' ,
                     'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll','intromessages.show',
                     'introsocials.index','introsocials.store', 'introsocials.update', 'introsocials.delete' ,'introsocials.deleteAll','introsocials.edit','introsocials.create',
-                    'introhowworks.index','introhowworks.store', 'introhowworks.update', 'introhowworks.delete' ,'introhowworks.deleteAll',
+                    'introhowworks.index','introhowworks.store', 'introhowworks.update', 'introhowworks.delete' ,'introhowworks.deleteAll','introhowworks.create','introhowworks.edit',
                 ]
             ]);
             
@@ -407,6 +407,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 ]);
 
                 # introhowworks store
+                Route::get('introhowworks/create', [
+                    'uses'  => 'IntroHowWorkController@create',
+                    'as'    => 'introhowworks.create',
+                    'title' => ' صفحة اضافة طريقة عمل'
+                ]);
+
+                
+                # introhowworks update
+                Route::get('introhowworks/{id}/edit', [
+                    'uses'  => 'IntroHowWorkController@edit',
+                    'as'    => 'introhowworks.edit',
+                    'title' => 'صفحه تحديث  طريقة عمل'
+                ]);
+
+                # introhowworks store
                 Route::post('introhowworks/store', [
                     'uses'  => 'IntroHowWorkController@store',
                     'as'    => 'introhowworks.store',
@@ -429,7 +444,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
                 #delete all introhowworks
                 Route::post('delete-all-introhowworks', [
-                    'uses'  => 'IntroHowWorkController@destroy',
+                    'uses'  => 'IntroHowWorkController@destroyAll',
                     'as'    => 'introhowworks.deleteAll',
                     'title' => 'حذف مجموعه من كيف نعمل'
                 ]);

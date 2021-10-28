@@ -16,19 +16,30 @@ class IntroHowWorkController extends Controller
         return view('admin.introhowworks.index', compact('rows'));
     }
 
-
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introhowworks.create');
+    }
     /***************************  store  **************************/
     public function store(Store $request)
     {
         IntroHowWork::create($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]])) ;
-        return response()->json();
+        return response()->json(['url' => route('admin.introhowworks.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroHowWork::findOrFail($id);
+        return view('admin.introhowworks.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
         IntroHowWork::findOrFail($id)->update($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introhowworks.index')]);
     }
 
     /***************************  delete  **************************/
@@ -45,7 +56,7 @@ class IntroHowWorkController extends Controller
         foreach ($requestIds as $id) {
             $ids[] = $id->id;
         }
-        if (IntroHowWork::whereIn('id' , $ids)->delete()) {
+        if (IntroHowWork::whereIn('id' , $ids)->delete($ids)) {
             return response()->json('success');
         } else {
             return response()->json('failed');
