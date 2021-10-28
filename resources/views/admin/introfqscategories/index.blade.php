@@ -1,150 +1,55 @@
 @extends('admin.layout.master')
-<x-admin.breadcrumb singleName='{{awtTrans("سؤال")}}' deletebutton="true" addbutton="true" >
-    <x-slot name="moreButtons">
-    </x-slot> 
- </x-admin.breadcrumb >
-@section('content')
-    <section class="content">
-         {{-- table --}}
-            <x-admin.table >
-                <x-slot name="tableHead">
-                    <th>
-                       <div class="form-checkbox">
-                           <input type="checkbox" value="value1" name="name1" id="checkedAll">
-                           <span class="check"><i class="zmdi zmdi-check zmdi-hc-lg"></i></span>
-                       </div>
-                    </th>
-                    <th>{{awtTrans('العنوان')}}</th>
-                    <th>{{awtTrans('التحكم')}}</th>
-                </x-slot>
-                <x-slot name="tableBody">
-                    @foreach($rows as $row)
-                        <tr class="delete_row_{{$row->id}}">
-                            <td class="text-center">
-                               <div class="form-checkbox">
-                                   <input type="checkbox" class="checkSingle" id="{{$row->id}}">
-                                   <span class="check"><i class="zmdi zmdi-check zmdi-hc-lg"></i></span>
-                               </div>
-                            </td>
-                            <td>{{$row->title}}</td>
-                            <td>
-                                <x-admin.edit-button>
-                                    <x-slot name="data">
-                                            data-id       = '{{$row->id}}'
-                                            data-route    = '{{route('admin.introfqscategories.update' , [$row->id])}}'
-                                            data-title_ar  = '{{$row->getTranslations('title')['ar']}}'
-                                            data-title_en  = '{{$row->getTranslations('title')['en']}}'
-                                    </x-slot>
-                                </x-admin.edit-button>
-                                <x-admin.show-button>
-                                    <x-slot name="data">
-                                            data-title_ar  = '{{$row->getTranslations('title')['ar']}}'
-                                            data-title_en  = '{{$row->getTranslations('title')['en']}}'
-                                    </x-slot>
-                                </x-admin.show-button>
-                                <x-admin.delete route="{{route('admin.introfqscategories.delete' , [$row->id])}}" />
-                            </td>
-                        </tr>
-                    @endforeach
-                </x-slot>
-            </x-admin.table >
-        {{-- #table --}}
-    </section>
 
- <!-- add model -->
-    <x-admin.AddModel route='{{route("admin.introfqscategories.store")}}' singleName='{{awtTrans("سؤال")}}' >
-        <x-slot name="inputs">
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالعربية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_ar" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالانجليزية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_en" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.AddModel >
- <!-- add model -->
-
- <!-- edit model -->
-    <x-admin.edit-model singleName='{{awtTrans("سؤال")}}' >
-        <x-slot name="inputs">
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالعربية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_ar" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالانجليزية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_en" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.edit-model >
- <!-- add model -->
- 
- <!-- show model -->
-    <x-admin.show-model  singleName='{{awtTrans("سؤال")}}' >
-        <x-slot name="inputs">
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالعربية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_ar" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"> 
-                <div class="form-group">
-                    <h5>{{awtTrans('العنوان بالانجليزية')}} 
-                        <span class="required">*</span>
-                    </h5>
-                    <div class="controls">
-                        <input type="text" name="title_en" class="form-control" required data-validation-required-message="{{awtTrans('الحقل مطلوب')}}">
-                    </div>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-admin.show-model >
- <!-- show model -->
-
-{{-- delete all model  --}}
-    <x-admin.delete-all route="{{route('admin.introfqscategories.deleteAll')}}" />
-{{-- #delete all model  --}}
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/data-list-view.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
 @endsection
-<x-admin.scripts >
-    <x-slot name='moreScript'>
-        <x-admin.confirm-delete />
-        <script>
-            
-        </script>
-    </x-slot >
-</x-admin.scripts >
+    
+@section('content')
+    {{-- table --}}
+        <x-admin.table  addbutton="{{route('admin.introfqscategories.create')}}" deletebutton="{{route('admin.introfqscategories.deleteAll')}}">
+            <x-slot name="tableHead">
+                <th>
+                    <label class="container-checkbox">
+                        <input type="checkbox" value="value1" name="name1" id="checkedAll">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
+                <th>{{awtTrans('العنوان')}}</th>
+                <th>{{awtTrans('التحكم')}}</th>
+            </x-slot>
+            <x-slot name="tableBody">
+                @foreach($rows as $row)
+                    <tr class="delete_row">
+                        <td class="text-center">
+                            <label class="container-checkbox">
+                                <input type="checkbox" class="checkSingle" id="{{$row->id}}">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{{$row->title}}</td>
+                        <td class="product-action">
+                            <span class="action-edit text-primary"><a href="{{route('admin.introfqscategories.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>
+                            <span class="delete-row text-danger" data-url="{{url('admin/introfqscategories/'.$row->id)}}"><i class="feather icon-trash"></i></span>
+                        </td>
+                    </tr>
+                @endforeach
+            </x-slot>
+        </x-admin.table >
+    {{-- #table --}}
+@endsection
+
+
+@section('js')
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+
+    @include('admin.shared.deleteAll')
+    @include('admin.shared.deleteOne')
+@endsection

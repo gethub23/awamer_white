@@ -16,19 +16,30 @@ class IntroFqsCategoryController extends Controller
         return view('admin.introfqscategories.index', compact('rows'));
     }
 
-
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introfqscategories.create');
+    }
     /***************************  store  **************************/
     public function store(Store $request)
     {
         IntroFqsCategory::create($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]])) ;
-        return response()->json();
+        return response()->json(['url' => route('admin.introfqscategories.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroFqsCategory::findOrFail($id);
+        return view('admin.introfqscategories.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
     public function update(Store $request, $id)
     {
         IntroFqsCategory::findOrFail($id)->update($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introfqscategories.index')]);
     }
 
     /***************************  delete  **************************/

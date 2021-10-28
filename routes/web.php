@@ -48,9 +48,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => true,
                 'child'     => [
-                    'intro_settings.index','introsliders.index','introsliders.store', 'introsliders.update', 'introsliders.delete' ,'introsliders.deleteAll','introsliders.create',
-                    'introservices.index','introservices.store', 'introservices.update', 'introservices.delete' ,'introservices.deleteAll',
-                    'introfqscategories.index','introfqscategories.store', 'introfqscategories.update', 'introfqscategories.delete' ,'introfqscategories.deleteAll' ,
+                    'intro_settings.index','introsliders.index','introsliders.store', 'introsliders.update', 'introsliders.delete' ,'introsliders.deleteAll','introsliders.create','introsliders.edit',
+                    'introservices.index','introservices.create','introservices.store','introservices.edit', 'introservices.update', 'introservices.delete' ,'introservices.deleteAll',
+                    'introfqscategories.index','introfqscategories.store','introfqscategories.create','introfqscategories.edit', 'introfqscategories.update', 'introfqscategories.delete' ,'introfqscategories.deleteAll' ,
                     'introfqs.index','introfqs.store', 'introfqs.update', 'introfqs.delete' ,'introfqs.deleteAll',
                     'introparteners.index','introparteners.store', 'introparteners.update', 'introparteners.delete' ,'introparteners.deleteAll' ,
                     'intromessages.index', 'intromessages.delete' ,'intromessages.deleteAll',
@@ -127,11 +127,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'      => '<i class="la la-map"></i>',
                 ]);
 
+                # socials store
+                Route::get('introservices/create', [
+                    'uses'  => 'IntroServiceController@create',
+                    'as'    => 'introservices.create',
+                    'title' => ' صفحة اضافة خدمة'
+                ]);
                 # introservices store
                 Route::post('introservices/store', [
                     'uses'  => 'IntroServiceController@store',
                     'as'    => 'introservices.store',
                     'title' => ' اضافة خدمه'
+                ]);
+
+                # socials update
+                Route::get('introservices/{id}/edit', [
+                    'uses'  => 'IntroServiceController@edit',
+                    'as'    => 'introservices.edit',
+                    'title' => 'صفحه تحديث خدمة'
                 ]);
 
                 # introservices update
@@ -163,33 +176,43 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'title'     => 'اقسام الاسئله الشائعة',
                     'icon'      => '<i class="la la-list"></i>',
                 ]);
-
+                # socials store
+                Route::get('introfqscategories/create', [
+                    'uses'  => 'IntroFqsCategoryController@create',
+                    'as'    => 'introfqscategories.create',
+                    'title' => ' صفحة اضافة قسم'
+                ]);
                 # introfqscategories store
                 Route::post('introfqscategories/store', [
                     'uses'  => 'IntroFqsCategoryController@store',
                     'as'    => 'introfqscategories.store',
-                    'title' => ' اضافة سؤال'
+                    'title' => ' اضافة قسم'
                 ]);
-
+                # introfqscategories update
+                Route::get('introfqscategories/{id}/edit', [
+                    'uses'  => 'IntroFqsCategoryController@edit',
+                    'as'    => 'introfqscategories.edit',
+                    'title' => 'صفحه تحديث قسم'
+                ]);
                 # introfqscategories update
                 Route::put('introfqscategories/{id}', [
                     'uses'  => 'IntroFqsCategoryController@update',
                     'as'    => 'introfqscategories.update',
-                    'title' => 'تحديث سؤال'
+                    'title' => 'تحديث قسم'
                 ]);
 
                 # introfqscategories delete
                 Route::delete('introfqscategories/{id}', [
                     'uses'  => 'IntroFqsCategoryController@destroy',
                     'as'    => 'introfqscategories.delete',
-                    'title' => 'حذف سؤال'
+                    'title' => 'حذف قسم'
                 ]);
 
                 #delete all introfqscategories
                 Route::post('delete-all-introfqscategories', [
                     'uses'  => 'IntroFqsCategoryController@destroyAll',
                     'as'    => 'introfqscategories.deleteAll',
-                    'title' => 'حذف مجموعه من اسئله شائعة'
+                    'title' => 'حذف مجموعه من الاقسام '
                 ]);
             /*------------ end Of introfqscategories ----------*/
 

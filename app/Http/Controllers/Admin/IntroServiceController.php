@@ -16,6 +16,13 @@ class IntroServiceController extends Controller
         return view('admin.introservices.index', compact('rows'));
     }
 
+    /***************************  store  **************************/
+    public function create()
+    {
+        return view('admin.introservices.create');
+    }
+
+
 
     /***************************  store  **************************/
     public function store(Store $request)
@@ -24,7 +31,14 @@ class IntroServiceController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introservices.index')]);
+    }
+
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = IntroService::findOrFail($id);
+        return view('admin.introservices.edit' , ['row' => $row]);
     }
 
     /***************************  update   **************************/
@@ -34,7 +48,7 @@ class IntroServiceController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
-        return response()->json();
+        return response()->json(['url' => route('admin.introservices.index')]);
     }
 
     /***************************  delete  **************************/
