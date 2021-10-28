@@ -540,6 +540,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                     'icon'  => '<i class="la la-user"></i>',
 
                 ]);
+
+                # clients store
+                Route::get('clients/create', [
+                    'uses'  => 'ClientController@create',
+                    'as'    => 'clients.create',
+                    'title' => ' صفحة اضافة عميل'
+                ]);
+
+                # clients update
+                Route::get('clients/{id}/edit', [
+                    'uses'  => 'ClientController@edit',
+                    'as'    => 'clients.edit',
+                    'title' => 'صفحه تحديث عميل'
+                ]);
                 #store
                 Route::post('clients/store', [
                     'uses'  => 'ClientController@store',

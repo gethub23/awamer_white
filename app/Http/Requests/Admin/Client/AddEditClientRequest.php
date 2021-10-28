@@ -16,6 +16,7 @@ class AddEditClientRequest extends FormRequest
         if($this->getMethod() === 'PUT'){
             $rules = [
                 'name'                  => 'required|max:191',
+                'block'                 => 'required',
                 'phone'                 => 'required|numeric|unique:users,phone,'.$this->id,
                 'email'                 => 'required|email|max:191|unique:users,email,'.$this->id,
                 'password'              => ['nullable','max:191'],
@@ -25,6 +26,7 @@ class AddEditClientRequest extends FormRequest
         }else{
             $rules = [
                 'name'                  => 'required|max:191',
+                'block'                 => 'required',
                 'phone'                 => 'required|numeric|unique:users,phone,NULL,NULL,deleted_at,NULL',
                 'email'                 => 'required|email|max:191|unique:users,email,NULL,NULL,deleted_at,NULL',
                 'password'              => ['required','max:191'],

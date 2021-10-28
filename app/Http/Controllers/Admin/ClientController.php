@@ -15,23 +15,33 @@ class ClientController extends Controller
     /***************************  get all clients  **************************/
     public function index()
     {
-        $clients = User::latest()->get();
-        return view('admin.clients.index', compact('clients'));
+        $rows = User::latest()->get();
+        return view('admin.clients.index', compact('rows'));
     }
 
+     /***************************  store  **************************/
+     public function create()
+     {
+         return view('admin.clients.create');
+     }
 
     /***************************  store client **************************/
     public function store(AddEditClientRequest $request)
     {
         User::create($request->all());
-        return response()->json();
+        return response()->json(['url' => route('admin.clients.index')]);
     }
-
+    /***************************  store  **************************/
+    public function edit($id)
+    {
+        $row = User::findOrFail($id);
+        return view('admin.clients.edit' , ['row' => $row]);
+    }
     /***************************  update client  **************************/
     public function update(AddEditClientRequest $request, $id)
     {
         $user = User::findOrFail($id)->update($request->validated());
-        return response()->json();
+        return response()->json(['url' => route('admin.clients.index')]);
     }
 
     /***************************  delete client **************************/
