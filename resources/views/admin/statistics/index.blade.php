@@ -1,40 +1,36 @@
 @extends('admin.layout.master')
+
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/data-list-view.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+@endsection
 @section('content')
-    <section id="configuration" style="margin-top: 5px ">
-        <div class="row">
-            <div class="col-6">
-                <div class="card mainCard">
-                    <div class="card-header">
-                        <h4 class="card-title">{{awtTrans('المستخدمين')}}</h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a data-action="close"><i class="ft-x"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-content collapse show">
-                        <div class="card-body card-dashboard">
-
-                            <canvas id="userChart"></canvas>
-
-                        </div>
-                    </div>
+<div class="row match-height">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{awtTrans('الاحصائيات')}}</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+@endsection
 
+@section('js')
 
 @endsection
 
-<x-admin.scripts >
+ {{-- <x-admin.scripts >
     <x-slot name='moreScript'>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        {{-- labels --}}
             <script>
                 const months = [
                         '{{awtTrans('يناير')}}',
@@ -51,9 +47,6 @@
                         '{{awtTrans('ديسمبر')}}',
                     ];
             </script>
-        {{-- labels --}}
-
-        {{-- drow chart function --}}
         <script>
            function drow (div_id , data) {
                 const config = {
@@ -67,9 +60,7 @@
                 );
             } 
         </script>
-        {{-- drow chart function --}}
         
-        {{-- user chart --}}
             <script>
                 const userData = {
                     labels: months,
@@ -87,6 +78,5 @@
                 };
                 drow ('userChart' , userData)
             </script>
-        {{-- user chart --}}
     </x-slot >
-</x-admin.scripts >
+</x-admin.scripts > --}}

@@ -1,53 +1,86 @@
 @extends('admin.layout.master')
-<x-admin.breadcrumb singleName='ss' addbutton='fasle' deletebutton="false" >
-    <x-slot name="moreButtons">
-        </x-slot> 
- </x-admin.breadcrumb >
-@section('content')
-    <section class="content">
-        <div class="card page-body">
-            <form action="{{route('admin.roles.update',$role->id)}}" method="post">
-                @method('put')
-                @csrf
-                <div class="container mt-2">
-                    <div style="display: flex; flex-direction: row-reverse;">
-                        <p style="margin-right: 10px;">{{awtTrans('تحديد الكل')}}</p>
-                        <input type="checkbox" id="checkedAll">
-                    </div>
-                </div>
-                <div class="container mt-2">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>{{awtTrans('الاسم بالعربيه')}}</label>
-                                <input type="text" name="name_ar" class="form-control" value="{{$role->name_ar}}" placeholder="Enter ..." required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>{{awtTrans('الاسم بالانجليزيه')}}</label>
-                                <input type="text" name="name_en" class="form-control" value="{{$role->name_en}}" placeholder="Enter ..." required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container mt-2">
-                    <div class="row">
-                        {!! $html !!}
-                    </div>
-                </div>
-                <div class="m-5">
-                    <input type="submit" value="{{awtTrans('تعديل')}}" class="btn btn-success form-control" >
-                </div>
-            </form>
-        </div>
-    </section>
+@section('css')
+    <style>
+        .permissionCard{
+        border: 0;
+        margin-bottom: 13px;
+        }
 
-    
+        .role-title{
+        background: #5d54d4;
+        padding: 12px;
+        border-radius: 7px;
+        /* margin-bottom: 10px; */
+        }
+
+        .list-unstyled{
+        padding: 10px;
+        height: 300px;
+            /* scroll-behavior: smooth; */
+            overflow: auto;
+        }
+
+        .selectP{
+        margin-right: 10px;
+            margin-top: 11px;
+        }
+</style>
+@endsection
+@section('content')
+<section id="multiple-column-form">
+    <div class="row match-height">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{awtTrans('اضافه صلاحية ')}}</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form action="{{route('admin.roles.update',$role->id)}}" method="post">
+                            @method('put')
+                            @csrf
+                            <div class="container mt-2">
+                                <div style="display: flex; flex-direction: row-reverse;">
+                                    <p style="margin-right: 10px;">{{awtTrans('تحديد الكل')}}</p>
+                                    <input type="checkbox" id="checkedAll">
+                                </div>
+                            </div>
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>{{awtTrans('الاسم بالعربيه')}}</label>
+                                            <input type="text" name="name_ar" class="form-control" value="{{$role->name_ar}}" placeholder="Enter ..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>{{awtTrans('الاسم بالانجليزيه')}}</label>
+                                            <input type="text" name="name_en" class="form-control" value="{{$role->name_en}}" placeholder="Enter ..." required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container mt-2">
+                                <div class="row">
+                                    {!! $html !!}
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center mt-3">
+                                <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('تعديل')}}</button>
+                                <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection
 
-@section('script')
+@section('js')
     <script>
         $(function () {
             $('.roles-parent').change(function () {

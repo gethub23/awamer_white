@@ -10,7 +10,6 @@
     </footer>
     <!-- END: Footer-->
 
-
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('admin/app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
@@ -29,42 +28,8 @@
     <!-- BEGIN: Page JS-->
     {{-- <script src="{{asset('admin/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script> --}}
     <!-- END: Page JS-->
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-      </script>
-@yield('js')
-<script>
-  $( document ).ajaxSuccess(function( event, request, settings ,response ) {
-      if (response.type == 'notAuth') {
-          toastr.error(response.msg)
-      }
-  });
-</script>
-
-@if(Session::has('success'))
-<script>
-    toastr.success('{{ Session::get('success') }}');
-</script>
-
-@elseif(Session::has('danger'))
-<script>
-    toastr.error('{{ Session::get('danger') }}');
-</script>
-@endif
-
-@if (count($errors) > 0)
-<script>
-@foreach(array_reverse($errors->all()) as $error)
-    toastr.error('{{$error}}');
-@endforeach
-</script>
-@endif
-
-{{-- #ajax header --}}
-  <x-admin.alert />
+    
+    @yield('js')
+    <x-admin.alert />
 </body>
 </html>

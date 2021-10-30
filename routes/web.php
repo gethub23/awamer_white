@@ -698,7 +698,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => true,
                 'child'     => [
-                    // 'statistics.index',
+                    'statistics.index',
                     'seos.index','seos.store', 'seos.update', 'seos.delete' , 'seos.deleteAll' , 
                 ]
             ]);

@@ -1,192 +1,207 @@
 @extends('admin.layout.master')
-<x-admin.breadcrumb singleName='عميل' addbutton='false' deletebutton="false" >
-    <x-slot name="moreButtons">
-        {{-- <button class="btn btn-purple  btn-sm mr-1 box-shadow-2"><i class="ft-bell white"></i>  ارسال اشعار</button> --}}
-     </x-slot> 
- </x-admin.breadcrumb >
+
 @section('content')
+  
+<div class="content-body">
+  <!-- account setting page start -->
+  <section id="page-account-settings">
+      <div class="row">
+          <!-- left menu section -->
+          <div class="col-md-3 mb-2 mb-md-0">
+              <ul class="nav nav-pills flex-column mt-md-0 mt-1">
 
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75 active" id="account-pill-main" data-toggle="pill" href="#account-vertical-main" aria-expanded="true">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('إعدادات التطبيق')}}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-terms" data-toggle="pill" href="#account-vertical-terms" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('الشروط والاحكام')}}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-about" data-toggle="pill" href="#account-vertical-about" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('عن التطبيق')}}
+                      </a>
+                  </li>
 
-    <section class="content settings">
-        <div class="card page-body">
-            <div class="card card-primary card-tabs m-2">
-                <div class="card-header p-0 pt-1 border-bottom-0">
-                  <ul class="nav nav-tabs text-md" id="custom-tabs-two-tab" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#main-tab" role="tab" aria-controls="to-main" aria-selected="true">{{awtTrans('إعدادات التطبيق')}}</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link"  data-toggle="pill" href="#terms-tab" role="tab" aria-controls="to-terms" aria-selected="false">{{awtTrans('الشروط والاحكام')}}</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link"  data-toggle="pill" href="#about-tab" role="tab" aria-controls="to-about" aria-selected="false">{{awtTrans('من نحن')}}</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content" id="custom-tabs-two-tabContent">
+              </ul>
+          </div>
+          <!-- right content section -->
+          <div class="col-md-9">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="card-body">
+                          <div class="tab-content">
 
-                    <!---------------- Main ------------------>
-                    <div class="tab-pane fade show active" id="main-tab" role="tabpanel" aria-labelledby="to-main" >
-
-                      <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
-                          @method('put')
-                          @csrf
-
-                          <div class="row">
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>{{awtTrans('اسم التطبيق بالعربي')}}</label>
-                                  <input type="text" name="name_ar" class="form-control" value="{{$data['name_ar']}}" required>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>{{awtTrans('اسم التطبيق بالانجليزية')}}</label>
-                                      <input type="text" name="name_en" class="form-control" value="{{$data['name_en']}}"  required>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>{{awtTrans('البريد الالكتروني')}}</label>
-                                  <input type="email" name="email" class="form-control" value="{{$data['email']}}"  required>
-                                  </div>
-                              </div>
-                              <div class="col-sm-6">
-                                  <div class="form-group">
-                                      <label>{{awtTrans('رقم الهاتف')}}</label>
-                                      <input type="text" name="phone" class="form-control" value="{{$data['phone']}}" required>
-                                  </div>
-                              </div>
-                              <div class="col-sm-12">
-                                  <div class="form-group">
-                                      <label>{{awtTrans('رقم الواتس')}}</label>
-                                      <input type="text" name="whatsapp" class="form-control" value="{{$data['whatsapp']}}" required>
-                                  </div>
+                              <div role="tabpanel" class="tab-pane active" id="account-vertical-main" aria-labelledby="account-pill-main" aria-expanded="true">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                  @method('put')
+                                  @csrf
+                                <div class="row">
+                                  <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('اسم التطبيق بالعربي')}}</label>
+                                                <input type="text" class="form-control" name="name_ar" id="account-name" placeholder="{{awtTrans('اسم التطبيق بالعربي')}}" value="{{$data['name_ar']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('اسم التطبيق بالعربي')}}</label>
+                                                <input type="text" class="form-control" name="name_en" id="account-name" placeholder="{{awtTrans('اسم التطبيق بالعربي')}}" value="{{$data['name_en']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('البريد الالكتروني')}}</label>
+                                                <input type="text" class="form-control" name="email" id="account-name" placeholder="{{awtTrans('البريد الالكتروني')}}" value="{{$data['email']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('رقم الهاتف')}}</label>
+                                                <input type="text" class="form-control" name="phone" id="account-name" placeholder="{{awtTrans('رقم الهاتف')}}" value="{{$data['phone']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('رقم الواتس اب')}}</label>
+                                                <input type="text" class="form-control" name="whatsapp" id="account-name" placeholder="{{awtTrans('رقم الواتس اب')}}" value="{{$data['whatsapp']}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <div class="row">
+                                
+                                        <div class="imgMontg col-2 text-center">
+                                            <div class="dropBox">
+                                                <div class="textCenter d-flex flex-lg-column">
+                                                    <div class="imagesUploadBlock">
+                                                        <label class="uploadImg">
+                                                            <span><i class="feather icon-image"></i></span>
+                                                            <input type="file" accept="image/*" name="logo" class="imageUploader">
+                                                        </label>
+                                                        <div class="uploadedBlock">
+                                                            <img src="{{asset('/storage/images/settings/logo.png')}}">
+                                                            <button class="close"><i class="feather icon-trash-2"></i></button>
+                                                        </div>
+                                                      </div>
+                                                      <span>{{awtTrans('صورة لوجو الموقع')}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="imgMontg col-2 text-center">
+                                            <div class="dropBox">
+                                                <div class="textCenter d-flex flex-lg-column">
+                                                    <div class="imagesUploadBlock">
+                                                        <label class="uploadImg">
+                                                            <span><i class="feather icon-image"></i></span>
+                                                            <input type="file" accept="image/*" name="default_user" class="imageUploader">
+                                                        </label>
+                                                        <div class="uploadedBlock">
+                                                            <img src="{{asset('/storage/images/users/default.png')}}">
+                                                            <button class="close"><i class="feather icon-trash-2"></i></button>
+                                                        </div>
+                                                      </div>
+                                                      <span>{{awtTrans('صورة المستخدم الافتراضية')}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center mt-3">
+                                        <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                        <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                    </div>
+                                </div>
+                                </form>
                               </div>
                               
-                              <div class="col-sm-3">
-                                <div class="">
-                                      <label>{{awtTrans('صوره اللوجو')}}</label>
-                                      <div class="dropBox">
-                                          <div class="textCenter">
-                                              <div class="imagesUploadBlock">
-                                                  <label class="uploadImg">
-                                                      <span><i class="la la-image"></i></span>
-                                                      <input type="file" accept="image/*" name="logo" class="imageUploader">
-                                                  </label>
-                                                  <div class="uploadedBlock">
-                                                    <img src="{{asset('/storage/images/settings/logo.png')}}">
-                                                    <button class="close">
-                                                      <i class="la la-times"></i>
-                                                    </button>
-                                                  </div>
-                                              </div>
-                                          </div>
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-terms" aria-labelledby="account-pill-terms" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('الشروط والاحكام بالعربية')}}</label>
+                                                    <textarea class="form-control" name="terms_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_ar']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('الشروط والاحكام  بالانجليزية')}}</label>
+                                                    <textarea class="form-control" name="terms_en" id="" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_en']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
                                       </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div class="">
-                                      <label>{{awtTrans('صوره المستخدم الافتراضيه')}}</label>
-                                      <div class="dropBox">
-                                          <div class="textCenter">
-                                              <div class="imagesUploadBlock">
-                                                  <label class="uploadImg">
-                                                      <span><i class="la la-image"></i></span>
-                                                      <input type="file" accept="image/*" name="default_user" class="imageUploader">
-                                                  </label>
-                                                  <div class="uploadedBlock">
-                                                    <img src="{{asset('/storage/images/users/default.png')}}">
-                                                    <button class="close">
-                                                      <i class="la la-times"></i>
-                                                    </button>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+                                    </div>
+                                </form>
                               </div>
 
-                              <div class="col-sm-12 mt-2 text-center">
-                                <div class="form-group"><button type="submit" class="btn btn-primary saveFormBtn">{{awtTrans('حفظ')}}</button></div>
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-about" aria-labelledby="account-pill-about" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('عن التطبيق بالعربية')}}</label>
+                                                    <textarea class="form-control" name="about_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالعربية')}}">{{$data['about_ar']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('عن التطبيق بالانجليزية')}}</label>
+                                                    <textarea class="form-control" name="about_en" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالانجليزية')}}">{{$data['about_en']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                      </div>
+                                    </div>
+                                </form>
                               </div>
-                    
+
                           </div>
-                      </form>
-                    </div>
-
-                    <!---------------- Terms ------------------>
-                    <div class="tab-pane fade" id="terms-tab" role="tabpanel" aria-labelledby="to-terms">
-
-                      <form accept="{{route('admin.settings.update')}}" method="post">
-                        @method('put')
-                        @csrf
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                              <div class="form-group">
-                                <label>{{awtTrans('الشروط والاحكام بالعربية')}}</label>
-                                <textarea name="terms_ar" class="form-control" rows="10">{{$data['terms_ar']}}</textarea>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                  <label>{{awtTrans('الشروط والاحكام بالانجليزية')}}</label>
-                                  <textarea name="terms_en" class="form-control" rows="10">{{$data['terms_en']}}</textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 mt-2 text-center">
-                              <div class="form-group"><button type="submit" class="btn btn-primary saveFormBtn">{{awtTrans('حفظ')}}</button></div>
-                            </div>
-                        </div>
-
-                      </form>
-                    </div>
-
-                    <!---------------- About ------------------>
-                    <div class="tab-pane fade" id="about-tab" role="tabpanel" aria-labelledby="to-about">
-                      <form accept="{{route('admin.settings.update')}}" method="post">
-                        @method('put')
-                        @csrf
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                              <div class="form-group">
-                                <label>{{awtTrans('من نحن بالعربية')}}</label>
-                                <textarea name="about_ar" class="form-control" rows="10">{{$data['about_ar']}}</textarea>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                  <label>{{awtTrans('من نحن بالانجليزية')}}</label>
-                                  <textarea name="about_en" class="form-control" rows="10">{{$data['about_en']}}</textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 mt-2 text-center">
-                              <div class="form-group"><button type="submit" class="btn btn-primary saveFormBtn">{{awtTrans('حفظ')}}</button></div>
-                            </div>
-                        </div>
-                      </form>
-                    </div>
-
-
+                      </div>
                   </div>
-                </div>
               </div>
-        </div>
-    </section>
+          </div>
+      </div>
+  </section>
+  <!-- account setting page end -->
+
+</div>
+
+@endsection
+@section('js')
+  @include('admin.shared.addImage')
 @endsection
 
-
-<x-admin.scripts >
-    <x-slot name='moreScript'>
-        <script>
-            
-        </script>
-    </x-slot >
-</x-admin.scripts >

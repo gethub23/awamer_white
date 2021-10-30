@@ -18,5 +18,20 @@
     </script>
 @endif
 
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 
+
+<script>
+    $( document ).ajaxSuccess(function( event, request, settings ,response ) {
+        if (response.type == 'notAuth') {
+            toastr.error(response.msg)
+        }
+    });
+</script>
 
