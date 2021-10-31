@@ -20,16 +20,16 @@ class SettingController extends Controller
     public function update(Request $request){
 
         foreach ( $request->all() as $key => $val )
-            if (in_array($key , ['logo' , 'fav_icon' , 'user_default'])) {
+            if (in_array($key , ['logo' , 'fav_icon' , 'user_default' , 'intro_loader' , 'intro_logo'  ,'about_image_2' , 'about_image_1'])) {
                 $img           = Image::make($val);
                 $name          = $key .'.png';
 
-                if ($key == 'logo' || $key == 'fav_icon') {
-                    $thumbsPath    = 'storage/images/settings';
-                } else if($key == 'default_user'){
+                if($key == 'default_user'){
                     $thumbsPath    = 'storage/images/users';
                 }else if ($key == 'no_data') {
                     $thumbsPath    = 'storage/images/';
+                }else{
+                    $thumbsPath    = 'storage/images/settings';
                 }
                 
                 $img->save($thumbsPath . '/' . $name);

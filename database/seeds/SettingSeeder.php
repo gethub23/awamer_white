@@ -49,9 +49,9 @@ class SettingSeeder extends Seeder
                 [ 'key' => 'parteners_text_en'              , 'value' => 'By building an intuitive product that simulates and facilitates the implementation of public service, the simple answer has been to provide users with three things'    ],
                 [ 'key' => 'contact_text_ar'                , 'value' => 'من خلال بناء منتج بديهي يحاكي ويسهل تنفيذ الخدمة العامة ، كان الجواب البسيط هو تزويد المستخدمين بثلاثة أشياء'],
                 [ 'key' => 'contact_text_en'                , 'value' => 'By building an intuitive product that simulates and facilitates the implementation of public service, the simple answer has been to provide users with three things'    ],
-                [ 'key' => 'color'                          , 'value' => '#e0a416'    ],
-                [ 'key' => 'buttons_color'                  , 'value' => '#b6881f'    ],
-                [ 'key' => 'hover_color'                    , 'value' => '#f6eedb'    ],
+                [ 'key' => 'color'                          , 'value' => '#10163a'    ],
+                [ 'key' => 'buttons_color'                  , 'value' => '#7367F0'    ],
+                [ 'key' => 'hover_color'                    , 'value' => '#262c49'    ],
             ];
 			SiteSetting ::insert( $data );
     }
