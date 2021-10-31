@@ -60,6 +60,8 @@
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
     
-    @include('admin.shared.submitAddForm')
+    {{-- submit add form script --}}
+        @include('admin.shared.submitAddForm')
+    {{-- submit add form script --}}
     
 @endsection

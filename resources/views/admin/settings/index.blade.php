@@ -219,6 +219,8 @@
 
 @endsection
 @section('js')
-  @include('admin.shared.addImage')
+  {{-- show selected image script --}}
+    @include('admin.shared.addImage')
+  {{-- show selected image script --}}
 @endsection
 

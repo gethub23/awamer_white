@@ -120,7 +120,12 @@
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
     
-    @include('admin.shared.addImage')
-    @include('admin.shared.submitEditForm')
+    {{-- show selected image script --}}
+        @include('admin.shared.addImage')
+    {{-- show selected image script --}}
+
+    {{-- submit edit form script --}}
+        @include('admin.shared.submitEditForm')
+    {{-- submit edit form script --}}
     
 @endsection

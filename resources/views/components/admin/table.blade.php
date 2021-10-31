@@ -4,7 +4,7 @@
     <section id="data-list-view" class="data-list-view-header">
         <div class="table_buttons">
             @isset($addbutton)
-                <button type="button" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light" ><a style="color: white !important " href="{{$addbutton}}"><i class="feather icon-plus"></i> {{awtTrans('اضافة')}}</a> </button>
+                <a href="{{$addbutton}}" class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light" ><i class="feather icon-plus"></i> {{awtTrans('اضافة')}}</a>
             @endisset
             @isset($deletebutton)
                     <button type="button" data-route="{{$deletebutton}}" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light delete_all_button"><i class="feather icon-trash"></i> {{awtTrans('حذف المحدد')}}</button>

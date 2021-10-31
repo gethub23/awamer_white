@@ -105,7 +105,8 @@
     <script src="{{asset('admin/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/forms/select/form-select2.js')}}"></script>
     
-    @include('admin.shared.addImage')
-    @include('admin.shared.submitAddForm')
+    {{-- submit add form script --}}
+        @include('admin.shared.submitAddForm')
+    {{-- submit add form script --}}
     
 @endsection

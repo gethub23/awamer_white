@@ -69,6 +69,7 @@
     {{-- notify users model --}}
         <x-admin.NotifyAll route="{{route('admin.clients.notify')}}" />
     {{-- notify users model --}}
+    
 @endsection
 
 
@@ -78,6 +79,7 @@
     <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+
     {{-- delete all script --}}
         @include('admin.shared.deleteAll')
     {{-- delete all script --}}

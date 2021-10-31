@@ -44,8 +44,13 @@
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 
-    @include('admin.shared.deleteAll')
-    @include('admin.shared.deleteOne')
+    {{-- delete all script --}}
+        @include('admin.shared.deleteAll')
+    {{-- delete all script --}}
+
+    {{-- delete one user script --}}
+        @include('admin.shared.deleteOne')
+    {{-- delete one user script --}}
 @endsection
 
 
