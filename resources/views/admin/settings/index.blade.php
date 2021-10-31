@@ -109,6 +109,23 @@
                                                     <div class="imagesUploadBlock">
                                                         <label class="uploadImg">
                                                             <span><i class="feather icon-image"></i></span>
+                                                            <input type="file" accept="image/*" name="fav_icon" class="imageUploader">
+                                                        </label>
+                                                        <div class="uploadedBlock">
+                                                            <img src="{{asset('/storage/images/settings/fav_icon.png')}}">
+                                                            <button class="close"><i class="feather icon-trash-2"></i></button>
+                                                        </div>
+                                                      </div>
+                                                      <span>{{awtTrans('صورة ال fav icon')}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="imgMontg col-2 text-center">
+                                            <div class="dropBox">
+                                                <div class="textCenter d-flex flex-lg-column">
+                                                    <div class="imagesUploadBlock">
+                                                        <label class="uploadImg">
+                                                            <span><i class="feather icon-image"></i></span>
                                                             <input type="file" accept="image/*" name="default_user" class="imageUploader">
                                                         </label>
                                                         <div class="uploadedBlock">

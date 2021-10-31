@@ -20,18 +20,19 @@ class SettingController extends Controller
     public function update(Request $request){
 
         foreach ( $request->all() as $key => $val )
-            if ($key == 'logo') {
+            if (in_array($key , ['logo' , 'fav_icon' , 'user_default'])) {
                 $img           = Image::make($val);
                 $name          = $key .'.png';
-                $thumbsPath    = 'storage/images/settings';
+
+                if ($key == 'logo' || $key == 'fav_icon') {
+                    $thumbsPath    = 'storage/images/settings';
+                } else if($key == 'default_user'){
+                    $thumbsPath    = 'storage/images/users';
+                }else if ($key == 'no_data') {
+                    $thumbsPath    = 'storage/images/';
+                }
+                
                 $img->save($thumbsPath . '/' . $name);
-                SiteSetting::where( 'key', $key ) -> update( [ 'value' => $name ] );
-            }else if($key == 'default_user'){
-                $img           = Image::make($val);
-                $name          = 'default.png';
-                $thumbsPath    = 'storage/images/users';
-                $img->save($thumbsPath . '/' . $name);
-                SiteSetting::where( 'key', $key ) -> update( [ 'value' => $name ] );
             }else if($val){
                 SiteSetting::where( 'key', $key ) -> update( [ 'value' => $val ] );
             }

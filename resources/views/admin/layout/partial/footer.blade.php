@@ -26,9 +26,13 @@
 
     <script src="{{asset('admin/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <!-- BEGIN: Page JS-->
-    {{-- <script src="{{asset('admin/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script> --}}
-    <!-- END: Page JS-->
-    
+    <script>
+        // $(document).ready( function() {
+        //     $('.data-list-view').dataTable( {
+        //         "iDisplayLength": 30
+        //     } );
+        // } )    
+    </script>    
     @yield('js')
     <x-admin.alert />
 </body>

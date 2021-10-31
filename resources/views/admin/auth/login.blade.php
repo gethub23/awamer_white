@@ -11,8 +11,8 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>{{__('site.login')}}</title>
-    <link rel="apple-touch-icon" href="{{asset('storage/images/settings/logo.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/images/settings/logo.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('storage/images/settings/fav_icon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/images/settings/fav_icon.png')}}">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/vendors-rtl.min.css')}}">
@@ -49,7 +49,7 @@
                     <div class="card bg-authentication rounded-0 mb-0">
                         <div class="row m-0">
                             <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                                <img src="{{asset('storage/images/settings/logo.png')}}" alt="branding logo">
+                                <img class="w-100" src="{{asset('storage/images/settings/logo.png')}}" alt="branding logo">
                             </div>
                             <div class="col-lg-6 col-12 p-0">
                                 <div class="card rounded-0 mb-0 px-2">

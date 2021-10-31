@@ -153,6 +153,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     background: white;
     height: 100%;
     display: flex;
+	top: 0px;
+	left: 0px;
     justify-content: center;
     align-items: center;
 }

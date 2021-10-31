@@ -17,6 +17,8 @@ class SettingService {
            'about_ar'                   =>$app_info['about_ar'],
            'about_en'                   =>$app_info['about_en'],
            'logo'                       =>$app_info['logo'],
+           'fav_icon'                   =>$app_info['fav_icon'],
+           'no_data_icon'               =>$app_info['no_data_icon'],
            'default_user'               =>$app_info['default_user'],
            'intro_logo'                 =>asset('storage/images/settings/'. $app_info['intro_logo']),
            'intro_loader'               =>asset('storage/images/settings/'. $app_info['intro_loader']),

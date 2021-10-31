@@ -10,8 +10,8 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>@yield('title',isset(\Request::route()->getAction()['title']) ? awtTrans(\Request::route()->getAction()['title']) : '')</title>
-    <link rel="apple-touch-icon" href="{{asset('admin/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/app-assets/images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon" href="{{asset('storage/images/settings/fav_icon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/images/settings/fav_icon.png')}}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- BEGIN: Vendor CSS-->
@@ -50,9 +50,10 @@
 
 <!-- BEGIN: Body-->
 
-<div class="loader">
-    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
+
+<body style="font-family: 'Cairo', sans-serif !important;" id="content_body" class="position-relative vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="loader">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-</div>
-<body style="font-family: 'Cairo', sans-serif !important;" id="content_body" class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">

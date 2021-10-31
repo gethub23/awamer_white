@@ -23,6 +23,8 @@ class SettingSeeder extends Seeder
                 [ 'key' => 'about_ar'                       , 'value' => 'من نحن'               ],
                 [ 'key' => 'about_en'                       , 'value' => 'about'                ],
                 [ 'key' => 'logo'                           , 'value' => 'logo.png'             ],
+                [ 'key' => 'fav_icon'                       , 'value' => 'no_data.png'             ],
+                [ 'key' => 'no_data_icon'                   , 'value' => 'fav.png'             ],
                 [ 'key' => 'default_user'                   , 'value' => 'default.png'          ],
                 [ 'key' => 'intro_email'                    , 'value' => 'email@gmail.com'      ],
                 [ 'key' => 'intro_phone'                    , 'value' => '+966555184424'        ],
