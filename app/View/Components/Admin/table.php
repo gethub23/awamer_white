@@ -8,15 +8,17 @@ class table extends Component
 {
     public $addbutton ; 
     public $deletebutton ; 
+    public $extrabuttons ; 
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($addbutton = null , $deletebutton = null)
+    public function __construct($addbutton = null , $extrabuttons = null , $deletebutton = null)
     {
-        $this->addbutton = $addbutton ;
+        $this->addbutton    = $addbutton ;
+        $this->extrabuttons = $extrabuttons ;
         $this->deletebutton = $deletebutton ;
     }
 

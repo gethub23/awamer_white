@@ -13,14 +13,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         
-        for ($i=0; $i < 100 ; $i++) { 
+        // for ($i=0; $i < 100 ; $i++) { 
             User::create([
                 'name'      => 'fekry',
-                'email'     => rand(1,100000000) .'m1@a.s',
+                'email'     => 'aa926626@gmail.com',
                 'phone'     => rand(100000000,9000000000) ,
                 'password'  => 123456,
                 'active'    => rand(0,1),
             ]);
-        }
+        // }
     }
 }

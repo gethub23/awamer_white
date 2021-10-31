@@ -13,12 +13,10 @@ class NotifyAll extends Component
      * @param $type
      */
     public $route ;
-    public $singleName ;
 
-    public function __construct($route , $singleName)
+    public function __construct($route)
     {
         $this->route      = $route ;
-        $this->singleName = $singleName ;
     }
 
     /**

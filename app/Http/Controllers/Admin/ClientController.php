@@ -66,7 +66,7 @@ class ClientController extends Controller
             $clients = User::findOrFail($request->id);
         }
         dispatch(new NotifyUser($clients, $request , $request->type));
-        return redirect()->back()->with('success', 'تم ارسال الاشعار بنجاح');
+        return response()->json();
     }
     
 

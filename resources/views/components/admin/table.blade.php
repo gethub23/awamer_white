@@ -9,6 +9,9 @@
             @isset($deletebutton)
                     <button type="button" data-route="{{$deletebutton}}" class="btn bg-gradient-danger mr-1 mb-1 waves-effect waves-light delete_all_button"><i class="feather icon-trash"></i> {{awtTrans('حذف المحدد')}}</button>
             @endisset
+            @isset($extrabuttons)
+                {{$extrabuttonsdiv}}
+            @endif
             <button type="button" class="reload btn bg-gradient-warning mr-1 mb-1 waves-effect waves-light"><i class="feather icon-refresh-cw"></i> {{awtTrans('تحديث')}}</button>
         </div>
         <!-- DataTable starts -->

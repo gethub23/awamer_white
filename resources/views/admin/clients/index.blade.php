@@ -11,7 +11,11 @@
     
 @section('content')
     {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.clients.create')}}" deletebutton="{{route('admin.clients.deleteAll')}}">
+        <x-admin.table  addbutton="{{route('admin.clients.create')}}" deletebutton="{{route('admin.clients.deleteAll')}}" extrabuttons="true" >
+            <x-slot name="extrabuttonsdiv">
+                <a type="button" data-toggle="modal" data-target="#notify" class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light notify" data-id="all" ><i class="feather icon-bell"></i> {{awtTrans('ارسال اشعار')}}</a> 
+                <a type="button" data-toggle="modal" data-target="#mail" class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light mail" data-id="all" ><i class="feather icon-mail"></i> {{awtTrans('ارسال ايميل')}}</a> 
+            </x-slot>
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -52,6 +56,8 @@
                         </td>
                         <td class="product-action">
                             <span class="action-edit text-primary"><a href="{{route('admin.clients.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>
+                            <span data-toggle="modal" data-target="#notify" class="text-info notify" data-id="{{$row->id}}" data-url="{{url('admins/clients/notify')}}"><i class="feather icon-bell"></i></span>
+                            <span data-toggle="modal" data-target="#mail" class="text-info mail" data-id="{{$row->id}}" data-url="{{url('admins/clients/notify')}}"><i class="feather icon-mail"></i></span>
                             <span class="delete-row text-danger" data-url="{{url('admin/clients/'.$row->id)}}"><i class="feather icon-trash"></i></span>
                         </td>
                     </tr>
@@ -59,6 +65,10 @@
             </x-slot>
         </x-admin.table >
     {{-- #table --}}
+
+    {{-- notify users model --}}
+        <x-admin.NotifyAll route="{{route('admin.clients.notify')}}" />
+    {{-- notify users model --}}
 @endsection
 
 
@@ -68,7 +78,16 @@
     <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
+    {{-- delete all script --}}
+        @include('admin.shared.deleteAll')
+    {{-- delete all script --}}
 
-    @include('admin.shared.deleteAll')
-    @include('admin.shared.deleteOne')
+    {{-- delete one user script --}}
+        @include('admin.shared.deleteOne')
+    {{-- delete one user script --}}
+
+    {{-- notify one user or all user script --}}
+        @include('admin.shared.notify')
+    {{-- notify one user or all user script --}}
+
 @endsection
