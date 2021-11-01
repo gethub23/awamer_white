@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use App\Models\IntroFqs;
 use Illuminate\Http\Request;
 use App\Models\IntroFqsCategory;
@@ -31,6 +32,7 @@ class IntroFqsController extends Controller
                 'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
                 'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
             ])) ;
+        Report::addToLog('  اضافه سؤال شائع الخاص بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introfqs.index')]);
     }
 
@@ -49,6 +51,7 @@ class IntroFqsController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ])) ;
+        Report::addToLog('  تعديل سؤال شائع الخاص بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introfqs.index')]);
     }
 
@@ -56,6 +59,7 @@ class IntroFqsController extends Controller
     public function destroy($id)
     {
         IntroFqs::findOrFail($id)->delete();
+        Report::addToLog('  حذف سؤال شائع الخاص بالموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -67,6 +71,7 @@ class IntroFqsController extends Controller
             $ids[] = $id->id;
         }
         if (IntroFqs::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف العديد من الاسئلة الشائعة الخاصة بالموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

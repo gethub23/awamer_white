@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Social;
+use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\ISocial;
@@ -10,6 +11,8 @@ use App\Http\Requests\Admin\Socials\Store;
 
 class SocialController extends Controller
 {
+    use Report ;
+
     /***************************  get all   **************************/
     public function index()
     {
@@ -28,6 +31,7 @@ class SocialController extends Controller
     public function store(Store $request)
     {
         Social::create($request->validated());
+        Report::addToLog('  اضافه وسيلة تواصل') ;
         return response()->json(['url' => route('admin.socials.index')]);
     }
 
@@ -42,6 +46,7 @@ class SocialController extends Controller
     public function update(Store $request, $id)
     {
         Social::findOrFail($id)->update($request->validated());
+        Report::addToLog('  تعديل وسيلة تواصل') ;
         return response()->json(['url' => route('admin.socials.index')]);
     }
 
@@ -49,6 +54,7 @@ class SocialController extends Controller
     public function destroy($id)
     {
         Social::findOrFail($id)->delete();
+        Report::addToLog('  حذف وسيلة تواصل') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -60,6 +66,7 @@ class SocialController extends Controller
             $ids[] = $id->id;
         }
         if (Social::whereIn('id' , $ids)->delete($ids)) {
+            Report::addToLog('  حذف العديد من وسائل التواصل') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

@@ -26,6 +26,7 @@ class ComplaintController extends Controller
     public function destroy($id)
     {
         $row = Complaint::findOrFail($id)->delete();
+        Report::addToLog('  حذف تقرير') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -37,6 +38,7 @@ class ComplaintController extends Controller
             $ids[] = $id->id;
         }
         if (Complaint::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف العديد من الشكاوي والمقترحات') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

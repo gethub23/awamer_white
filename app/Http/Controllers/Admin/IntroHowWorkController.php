@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use App\Models\IntroHowWork;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,7 @@ class IntroHowWorkController extends Controller
     public function store(Store $request)
     {
         IntroHowWork::create($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]])) ;
+        Report::addToLog('  اضافه طريقة عمل لقسم كيفيه عمل الموقع التعريفي') ;
         return response()->json(['url' => route('admin.introhowworks.index')]);
     }
 
@@ -39,6 +41,7 @@ class IntroHowWorkController extends Controller
     public function update(Store $request, $id)
     {
         IntroHowWork::findOrFail($id)->update($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]]));
+        Report::addToLog('  تعديل طريقة عمل لقسم كيفيه عمل الموقع التعريفي') ;
         return response()->json(['url' => route('admin.introhowworks.index')]);
     }
 
@@ -46,6 +49,7 @@ class IntroHowWorkController extends Controller
     public function destroy($id)
     {
         IntroHowWork::findOrFail($id)->delete();
+        Report::addToLog('  حذف طريقة عمل لقسم كيفيه عمل الموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -57,6 +61,7 @@ class IntroHowWorkController extends Controller
             $ids[] = $id->id;
         }
         if (IntroHowWork::whereIn('id' , $ids)->delete($ids)) {
+            Report::addToLog('  حذف العديد من طرق العمل لقسم كيفيه عمل الموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

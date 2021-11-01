@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Seo;
+use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Seo\Create;
@@ -29,6 +30,7 @@ class SeoController extends Controller
             'meta_description'  => ['ar' => $request->meta_description_ar , 'en' => $request->meta_description_en] ,
             'meta_keywords'     => ['ar' => $request->meta_keywords_ar , 'en' => $request->meta_keywords_en]
         ]));
+        Report::addToLog('اضافه seo') ;
         return response()->json(['url' => route('admin.seos.index')]);
     }
 
@@ -46,13 +48,15 @@ class SeoController extends Controller
             'meta_description'  => ['ar' => $request->meta_description_ar , 'en' => $request->meta_description_en] ,
             'meta_keywords'     => ['ar' => $request->meta_keywords_ar , 'en' => $request->meta_keywords_en]
         ]));
+        Report::addToLog('تعديل seo') ;
         return response()->json(['url' => route('admin.seos.index')]);
     }
 
     /***************************  delete admin  **************************/
     public function destroy($id)
     {
-        $admin = Seo::findOrFail($id)->delete(); 
+        $admin = Seo::findOrFail($id)->delete();
+        Report::addToLog('حذف seo') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -65,6 +69,7 @@ class SeoController extends Controller
             $ids[] = $id->id;
         }
         if (Seo::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('حذف مجموعه من ال seo') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

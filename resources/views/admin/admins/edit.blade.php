@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             <label for="first-name-column">{{awtTrans('كلمة السر')}}</label>
                                             <div class="controls">
-                                                <input type="password" name="password" class="form-control"  required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <input type="password" name="password" class="form-control">
                                             </div>
                                         </div>
                                     </div>

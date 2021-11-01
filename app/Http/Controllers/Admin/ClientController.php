@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Traits\Report;
 use App\Jobs\BlockUser;
 use App\Jobs\NotifyUser;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Client\AddEditClientRequest;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -29,6 +30,7 @@ class ClientController extends Controller
     public function store(AddEditClientRequest $request)
     {
         User::create($request->all());
+        Report::addToLog('  اضافه مستخدم') ;
         return response()->json(['url' => route('admin.clients.index')]);
     }
     /***************************  store  **************************/
@@ -41,6 +43,7 @@ class ClientController extends Controller
     public function update(AddEditClientRequest $request, $id)
     {
         $user = User::findOrFail($id)->update($request->validated());
+        Report::addToLog('  تعديل مستخدم') ;
         return response()->json(['url' => route('admin.clients.index')]);
     }
 
@@ -48,6 +51,7 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id)->delete(); 
+        Report::addToLog('  حذف مستخدم') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -78,6 +82,7 @@ class ClientController extends Controller
             $ids[] = $id->id;
         }
         if (User::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف العديد من المستخدمين') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

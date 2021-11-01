@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use App\Models\IntroSlider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,7 @@ class IntroSliderController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
+        Report::addToLog('اضافة صورة لقسم البنرات الخاص بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introsliders.index')]);
     }
 
@@ -46,6 +48,7 @@ class IntroSliderController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
+        Report::addToLog('تعديل صورة في قسم البنرات الخاص بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introsliders.index')]);
     }
 
@@ -53,6 +56,7 @@ class IntroSliderController extends Controller
     public function destroy($id)
     {
         IntroSlider::findOrFail($id)->delete();
+        Report::addToLog('حذف صورة من قسم البنرات الخاص بالموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -64,6 +68,7 @@ class IntroSliderController extends Controller
             $ids[] = $id->id;
         }
         if (IntroSlider::whereIn('id' , $ids)->delete($ids)) {
+            Report::addToLog('حذف مجموعه من الصور في قسم البنرات الخاص بالموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

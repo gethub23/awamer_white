@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Models\IntroFqsCategory;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,7 @@ class IntroFqsCategoryController extends Controller
     public function store(Store $request)
     {
         IntroFqsCategory::create($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]])) ;
+        Report::addToLog('  اضافه قسم للاسئلة الشائعه الخاصه بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introfqscategories.index')]);
     }
 
@@ -39,6 +41,7 @@ class IntroFqsCategoryController extends Controller
     public function update(Store $request, $id)
     {
         IntroFqsCategory::findOrFail($id)->update($request->validated() + (['title' => ['ar' => $request->title_ar , 'en' => $request->title_en]]));
+        Report::addToLog('  تعديل قسم للاسئلة الشائعه الخاصه بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introfqscategories.index')]);
     }
 
@@ -46,6 +49,7 @@ class IntroFqsCategoryController extends Controller
     public function destroy($id)
     {
         IntroFqsCategory::findOrFail($id)->delete();
+        Report::addToLog('  حذف قسم للاسئلة الشائعه الخاصه بالموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -57,6 +61,7 @@ class IntroFqsCategoryController extends Controller
             $ids[] = $id->id;
         }
         if (IntroFqsCategory::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف العديد من الاقسام للاسئلة الشائعه الخاصه بالموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use App\Traits\Roles;
+use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Role\Create;
@@ -38,7 +39,7 @@ class RoleController extends Controller
             $permissions[]['permission'] = $permission;
 
         $role->permissions()->createMany($permissions);
-
+        Report::addToLog('  اضافه صلاحية') ;
         return redirect(route('admin.roles.index'))->with('success', 'تم الاضافه بنجاح');
     }
 
@@ -62,6 +63,7 @@ class RoleController extends Controller
             $permissions[]['permission'] = $permission;
 
         $role->permissions()->createMany($permissions);
+        Report::addToLog('  تعديل صلاحية') ;
 
         return redirect(route('admin.roles.index'))->with('success', 'تم التعديل بنجاح');
     }
@@ -70,6 +72,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = Role::findOrFail($id)->delete();
+        Report::addToLog('  حذف صلاحية') ;
         return response()->json(['id' =>$id]);
     }
 }

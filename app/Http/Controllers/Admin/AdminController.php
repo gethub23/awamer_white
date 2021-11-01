@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use App\Models\Admin;
+use App\Traits\Report;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Admin\Create;
 use App\Http\Requests\Admin\Admin\Update;
-use Illuminate\Http\Request;
 
 
 class AdminController extends Controller
@@ -29,6 +30,7 @@ class AdminController extends Controller
     public function store(Create $request)
     {
         Admin::create($request->all());
+        Report::addToLog('  اضافه مدير') ;
         return response()->json(['url' => route('admin.admins.index')]);
     }
 
@@ -46,13 +48,15 @@ class AdminController extends Controller
     {
         $admin = Admin::findOrFail($id);
         $admin->update($request->validated());
+        Report::addToLog('  تعديل مدير') ;
         return response()->json(['url' => route('admin.admins.index')]);
     }
 
     /***************************  delete admin  **************************/
     public function destroy($id)
     {
-        $admin = Admin::findOrFail($id)->delete(); 
+        $admin = Admin::findOrFail($id)->delete();
+        Report::addToLog('  حذف مدير') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -65,6 +69,7 @@ class AdminController extends Controller
             $ids[] = $id->id;
         }
         if (Admin::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف العديد من المديرين') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

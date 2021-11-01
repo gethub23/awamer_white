@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use Illuminate\Http\Request;
 use App\Models\IntroMessages;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,7 @@ class IntroMessagesController extends Controller
     public function destroy($id)
     {
         IntroMessages::findOrFail($id)->delete();
+        Report::addToLog('حذف رسالة خاصه من الرسائل المرسلة للموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -37,6 +39,7 @@ class IntroMessagesController extends Controller
             $ids[] = $id->id;
         }
         if (IntroMessages::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('حذف العديد من الرسائل الخاصه من الرسائل المرسلة للموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

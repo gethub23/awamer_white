@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-12">
+            <div class="col-md-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
                         <h4 class="card-title">{{__('site.users')}}</h4>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-12">
+            <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
                         <h4>{{__('site.users')}}</h4>

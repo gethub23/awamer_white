@@ -20,7 +20,7 @@ class Update extends FormRequest
             'name'      => 'required|max:191',
             'phone'     => "required|numeric|unique:users,phone,".$this->id,
             'email'     => "required|email|max:191|unique:users,email,".$this->id,
-            'password'  => 'required|max:191',
+            'password'  => 'nullable|max:191',
             'avatar'    => 'nullable|image',
             'role_id'   => 'required|exists:roles,id',
             'active'    => 'nullable|in:1,0',

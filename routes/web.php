@@ -855,6 +855,38 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
         /*------------ end Of complaints ----------*/
 
+        /*------------ start Of reports----------*/
+            Route::get('reports', [
+                'uses'      => 'ReportController@index',
+                'as'        => 'reports',
+                'icon'      => '<i class="feather icon-home"></i>',
+                'title'     => 'التقارير',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['reports.delete' ,'reports.deleteAll' ,'reports.show']
+            ]);
+            
+            # reports show
+            Route::get('reports/{id}', [
+                'uses'  => 'ReportController@show',
+                'as'    => 'reports.show',
+                'title' => 'عرض تقرير'
+            ]);
+            # reports delete
+            Route::delete('reports/{id}', [
+                'uses'  => 'ReportController@destroy',
+                'as'    => 'reports.delete',
+                'title' => 'حذف تقرير'
+            ]);
+
+            #delete all reports
+            Route::post('delete-all-reports', [
+                'uses'  => 'ReportController@destroyAll',
+                'as'    => 'reports.deleteAll',
+                'title' => 'حذف مجموعه من التقارير'
+            ]);
+        /*------------ end Of dashboard ----------*/
+
         #new_routes_here
     });
 

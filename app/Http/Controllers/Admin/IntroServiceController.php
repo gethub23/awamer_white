@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\Report;
 use App\Models\IntroService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class IntroServiceController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
+        Report::addToLog('  اضافه خدمة الي قسم خدماتنا بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introservices.index')]);
     }
 
@@ -48,6 +50,7 @@ class IntroServiceController extends Controller
             'title' => ['ar' => $request->title_ar , 'en' => $request->title_en] , 
             'description' => ['ar' => $request->description_ar , 'en' => $request->description_en]
         ]));
+        Report::addToLog('  تعديل خدمة في قسم خدماتنا بالموقع التعريفي') ;
         return response()->json(['url' => route('admin.introservices.index')]);
     }
 
@@ -55,6 +58,7 @@ class IntroServiceController extends Controller
     public function destroy($id)
     {
         IntroService::findOrFail($id)->delete();
+        Report::addToLog('  حذف خدمة من قسم خدماتنا بالموقع التعريفي') ;
         return response()->json(['id' =>$id]);
     }
 
@@ -66,6 +70,7 @@ class IntroServiceController extends Controller
             $ids[] = $id->id;
         }
         if (IntroService::whereIn('id' , $ids)->delete()) {
+            Report::addToLog('  حذف مجموعه من الخدمات من قسم خدماتنا بالموقع التعريفي') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

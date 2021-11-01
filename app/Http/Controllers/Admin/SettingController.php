@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Image ;
+use App\Traits\Report;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use App\Services\SettingService;
 use App\Http\Controllers\Controller;
-use Image ;
+
 class SettingController extends Controller
 {
     /***************************  get all settings  **************************/
@@ -36,7 +38,7 @@ class SettingController extends Controller
             }else if($val){
                 SiteSetting::where( 'key', $key ) -> update( [ 'value' => $val ] );
             }
-
+        Report::addToLog('تعديل الاعدادت') ;
         return back()->with('success','تم الحفظ');
     }
 
