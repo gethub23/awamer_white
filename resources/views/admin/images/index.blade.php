@@ -10,7 +10,7 @@
 
 @section('content')
     {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.cities.create')}}" deletebutton="{{route('admin.cities.deleteAll')}}">
+        <x-admin.table  addbutton="{{route('admin.images.create')}}" deletebutton="{{route('admin.images.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -18,8 +18,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
-                <th>{{awtTrans('الاسم')}}</th>
-                <th>{{awtTrans('الدولة')}}</th>
+                <th>{{awtTrans('الصوره')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </x-slot>
             <x-slot name="tableBody">
@@ -31,11 +30,10 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
-                        <td>{{$row->name}}</td>
-                        <td>{{$row->country->name}}</td>
+                        <td><img src="{{$row->image}}" width="50px" height="50px" alt=""></td>
                         <td class="product-action">
-                            <span class="action-edit text-primary"><a href="{{route('admin.cities.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>
-                            <span class="delete-row text-danger" data-url="{{url('admin/cities/'.$row->id)}}"><i class="feather icon-trash"></i></span>
+                            <span class="action-edit text-primary"><a href="{{route('admin.images.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>
+                            <span class="delete-row text-danger" data-url="{{url('admin/images/'.$row->id)}}"><i class="feather icon-trash"></i></span>
                         </td>
                     </tr>
                 @endforeach

@@ -21,94 +21,38 @@
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="imgMontg col-12 text-center">
-                                            <div class="dropBox">
-                                                <div class="textCenter">
-                                                    <div class="imagesUploadBlock">
-                                                        <label class="uploadImg">
-                                                            <span><i class="feather icon-image"></i></span>
-                                                            <input type="file" accept="image/*" name="avatar" class="imageUploader">
-                                                        </label>
-                                                    </div>
-                                                </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{awtTrans('الاسم بالعربية')}}</label>
+                                            <div class="controls">
+                                                <input type="text" name="name_ar" class="form-control" placeholder="{{awtTrans('اكتب الاسم بالعربية')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">{{awtTrans('الاسم بالانجليزية')}}</label>
+                                            <div class="controls">
+                                                <input type="text" name="name_en" class="form-control" placeholder="{{awtTrans('اكتب الاسم بالانجليزية')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الاسم')}}</label>
-                                            <div class="controls">
-                                                <input type="text" name="name" class="form-control" placeholder="{{awtTrans('اكتب الاسم')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('رقم الهاتف')}}</label>
-                                            <div class="controls">
-                                                <input type="number" name="phone" class="form-control" placeholder="{{awtTrans('اكتب رقم الهاتف')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('البريد الالكتروني')}}</label>
-                                            <div class="controls">
-                                                <input type="email" name="email" class="form-control" placeholder="{{awtTrans('اكتب البريد الالكتروني')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('كلمة السر')}}</label>
-                                            <div class="controls">
-                                                <input type="password" name="password" class="form-control"  required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="account-name">{{awtTrans('عن التطبيق بالعربية')}}</label>
-                                                <textarea class="form-control" name="intro_about_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالعربية')}}"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="account-name">{{awtTrans('عن التطبيق بالانجليزية')}}</label>
-                                                <textarea class="form-control" name="intro_about_en" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالانجليزية')}}"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الصلاحية')}}</label>
+                                            <label for="first-name-column">{{awtTrans('الدولة')}}</label>
                                             <div class="controls">
-                                                <select name="block" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر حالة الحظر')}}</option>
-                                                    <option value="1">{{awtTrans('محظور')}}</option>
-                                                    <option value="0">{{awtTrans('غير محظور')}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الصلاحية')}}</label>
-                                            <div class="controls">
-                                                <select name="role_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر الصلاحية')}}</option>
-                                                    @foreach ($roles as $role)
-                                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                                <select name="country_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                    <option value>{{awtTrans('اختر الدولة')}}</option>
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{$country->id}}">{{$country->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
 
 
 

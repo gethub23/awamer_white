@@ -19,6 +19,30 @@ class ClientController extends Controller
         $rows = User::latest()->get();
         return view('admin.clients.index', compact('rows'));
     }
+    /***************************  get active clients  **************************/
+    public function active()
+    {
+        $rows = User::where(['active' => 1])->get();
+        return view('admin.clients.index', compact('rows'));
+    }
+    /***************************  get not active clients  **************************/
+    public function notActive()
+    {
+        $rows = User::where(['active' => 0])->get();
+        return view('admin.clients.index', compact('rows'));
+    }
+    /***************************  get active clients  **************************/
+    public function block()
+    {
+        $rows = User::where(['block' => 1])->get();
+        return view('admin.clients.index', compact('rows'));
+    }
+    /***************************  get active clients  **************************/
+    public function notBlock()
+    {
+        $rows = User::where(['block' => 0])->get();
+        return view('admin.clients.index', compact('rows'));
+    }
 
      /***************************  store  **************************/
      public function create()

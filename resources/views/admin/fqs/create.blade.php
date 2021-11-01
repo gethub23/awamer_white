@@ -13,49 +13,50 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">{{awtTrans('تعديل مدينة ')}}</h4>
+                    <h4 class="card-title">{{awtTrans('اضافه سؤال ')}}</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form  method="POST" action="{{route('admin.cities.update' , ['id' => $row->id])}}" class="store form-horizontal" novalidate>
+                        <form  method="POST" action="{{route('admin.fqs.store')}}" class="store form-horizontal" novalidate>
                             @csrf
-                            @method('PUT')
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
+                                    
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الاسم بالعربية')}}</label>
                                             <div class="controls">
-                                                <input type="text" name="name_ar" value="{{$row->getTranslations('name')['ar']}}" class="form-control" placeholder="{{awtTrans('اكتب الاسم بالعربية')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <label for="account-name">{{awtTrans('السؤال بالعربية')}}</label>
+                                                <textarea class="form-control" name="question_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('السؤال بالعربية')}}"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الاسم بالانجليزية')}}</label>
                                             <div class="controls">
-                                                <input type="text" name="name_en" value="{{$row->getTranslations('name')['en']}}" class="form-control" placeholder="{{awtTrans('اكتب الاسم بالانجليزية')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <label for="account-name">{{awtTrans('السؤال بالانجليزية')}}</label>
+                                                <textarea class="form-control" name="question_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('السؤال بالانجليزية')}}"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('الاجابة بالعربية')}}</label>
+                                                <textarea class="form-control" name="answer_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('الاجابة بالعربية')}}"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label for="account-name">{{awtTrans('الاجابة بالانجليزية')}}</label>
+                                                <textarea class="form-control" name="answer_en" id="" cols="30" rows="10" placeholder="{{awtTrans('الاجابة بالانجليزية')}}"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الدولة')}}</label>
-                                            <div class="controls">
-                                                <select name="country_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر الدولة')}}</option>
-                                                    @foreach ($countries as $country)
-                                                        <option {{$country->id == $row->country_id ? 'selected' : ''}} value="{{$country->id}}">{{$country->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="col-12 d-flex justify-content-center mt-3">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('تعديل')}}</button>
+                                        <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('اضافة')}}</button>
                                         <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
                                     </div>
                                 </div>
@@ -79,8 +80,8 @@
         @include('admin.shared.addImage')
     {{-- show selected image script --}}
 
-    {{-- submit edit form script --}}
-        @include('admin.shared.submitEditForm')
-    {{-- submit edit form script --}}
+    {{-- submit add form script --}}
+        @include('admin.shared.submitAddForm')
+    {{-- submit add form script --}}
     
 @endsection

@@ -451,7 +451,63 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             /*------------ end Of introhowworks ----------*/
             
         /*------------ end Of intro site ----------*/
-        
+
+        /************ Admins ************/
+            #index
+            Route::get('admins', [
+                'uses'  => 'AdminController@index',
+                'as'    => 'admins.index',
+                'title' => 'المشرفين',
+                'icon'  => '<i class="feather icon-users"></i>',
+                'type'      => 'parent',
+                'child'     => [
+                    'admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
+                    ]
+            ]);
+
+            # admins store
+            Route::get('admins/create', [
+                'uses'  => 'AdminController@create',
+                'as'    => 'admins.create',
+                'title' => ' صفحة اضافة مشرف'
+            ]);
+
+            #store
+            Route::post('admins/store', [
+                'uses'  => 'AdminController@store',
+                'as'    => 'admins.store',
+                'title' => 'اضافة مشرف'
+            ]);
+
+            # admins update
+            Route::get('admins/{id}/edit', [
+                'uses'  => 'AdminController@edit',
+                'as'    => 'admins.edit',
+                'title' => 'صفحه تحديث مشرف'
+            ]);
+            #update
+            Route::put('admins/{id}', [
+                'uses'  => 'AdminController@update',
+                'as'    => 'admins.update',
+                'title' => 'تعديل مشرف'
+            ]);
+
+            #delete
+            Route::delete('admins/{id}', [
+                'uses'  => 'AdminController@destroy',
+                'as'    => 'admins.delete',
+                'title' => 'حذف مشرف'
+            ]);
+
+            #delete
+            Route::post('delete-all-admins', [
+                'uses'  => 'AdminController@destroyAll',
+                'as'    => 'admins.deleteAll',
+                'title' => 'حذف مجموعه من المشرفين'
+            ]);
+
+        /************ #Admins ************/
+
         /*------------ start Of users Controller ----------*/
 
             Route::get('users', [
@@ -460,83 +516,49 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title'     => 'المستخدمين',
                 'type'      => 'parent',
                 'sub_route' => true,
-                'child'     => ['admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
-                                'clients.index', 'clients.store', 'clients.update', 'clients.delete' ,'clients.notify' , 'clients.deleteAll' , 'clients.create','clients.edit',]
+                'child'     => ['clients.index','clients.active','clients.notActive', 'clients.notBlocked','clients.blocked', 'clients.store', 'clients.update', 'clients.delete' ,'clients.notify' , 'clients.deleteAll' , 'clients.create','clients.edit',]
             ]);
 
-            /************ Admins ************/
-                #show
-                Route::get('admins/{id}/edit', [
-                    'uses'  => 'AdminController@edit',
-                    'as'    => 'admins.edit',
-                    'title' => 'عرض الملف الشخصي'
-                ]);
-
-                #update profile
-                Route::put('admins/update-profile/{id}', [
-                    'uses'  => 'AdminController@updateProfile',
-                    'as'    => 'admins.update_profile',
-                    'title' =>  'تعديل الملف الشخصي'
-                ]);
-
-                #index
-                Route::get('admins', [
-                    'uses'  => 'AdminController@index',
-                    'as'    => 'admins.index',
-                    'title' => 'المشرفين',
-                    'icon'  => '<i class="la la-user-secret"></i>',
-
-                ]);
-
-                # admins store
-                Route::get('admins/create', [
-                    'uses'  => 'AdminController@create',
-                    'as'    => 'admins.create',
-                    'title' => ' صفحة اضافة مشرف'
-                ]);
-
-                #store
-                Route::post('admins/store', [
-                    'uses'  => 'AdminController@store',
-                    'as'    => 'admins.store',
-                    'title' => 'اضافة مشرف'
-                ]);
- 
-                # admins update
-                Route::get('admins/{id}/edit', [
-                    'uses'  => 'AdminController@edit',
-                    'as'    => 'admins.edit',
-                    'title' => 'صفحه تحديث مشرف'
-                ]);
-                #update
-                Route::put('admins/{id}', [
-                    'uses'  => 'AdminController@update',
-                    'as'    => 'admins.update',
-                    'title' => 'تعديل مشرف'
-                ]);
-
-                #delete
-                Route::delete('admins/{id}', [
-                    'uses'  => 'AdminController@destroy',
-                    'as'    => 'admins.delete',
-                    'title' => 'حذف مشرف'
-                ]);
-
-                #delete
-                Route::post('delete-all-admins', [
-                    'uses'  => 'AdminController@destroyAll',
-                    'as'    => 'admins.deleteAll',
-                    'title' => 'حذف مجموعه من المشرفين'
-                ]);
-
-            /************ #Admins ************/
+          
 
             /************ Clients ************/
                 #index
                 Route::get('clients', [
                     'uses'  => 'ClientController@index',
                     'as'    => 'clients.index',
-                    'title' => 'العملاء',
+                    'title' => 'كل المستخدمين',
+                    'icon'  => '<i class="la la-user"></i>',
+
+                ]);
+                #index
+                Route::get('clients/active', [
+                    'uses'  => 'ClientController@active',
+                    'as'    => 'clients.active',
+                    'title' => 'المستخدمين النشطين',
+                    'icon'  => '<i class="la la-user"></i>',
+
+                ]);
+                #index
+                Route::get('clients/not-active', [
+                    'uses'  => 'ClientController@notActive',
+                    'as'    => 'clients.notActive',
+                    'title' => 'المستخدمين الغير نشطين',
+                    'icon'  => '<i class="la la-user"></i>',
+
+                ]);
+                #index
+                Route::get('clients/block', [
+                    'uses'  => 'ClientController@block',
+                    'as'    => 'clients.blocked',
+                    'title' => 'المستخدمين المحظورين',
+                    'icon'  => '<i class="la la-user"></i>',
+
+                ]);
+                #index
+                Route::get('clients/not-block', [
+                    'uses'  => 'ClientController@notBlock',
+                    'as'    => 'clients.notBlocked',
+                    'title' => 'المستخدمين الغير المحظورين',
                     'icon'  => '<i class="la la-user"></i>',
 
                 ]);
@@ -591,176 +613,162 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             /************ #Clients ************/
         /*------------ end Of users Controller ----------*/
 
-        /*------------ start Of Settings && permissions ----------*/
-            Route::get('permissions-Settings', [
-                'as'        => 'Settings.permissions',
-                'icon'      => '<i class="feather icon-eye"></i>',
-                'title'     => 'الاعدادات والصلاحيات',
+        /*------------ start Of Settings----------*/
+            Route::get('settings', [
+                'uses'      => 'SettingController@index',
+                'as'        => 'settings.index',
+                'title'     => 'الاعدادات',
+                'icon'      => '<i class="feather icon-settings"></i>',
                 'type'      => 'parent',
-                'sub_route' => true,
                 'child'     => [
                     'settings.index','settings.update','settings.message.all','settings.message.one','settings.send_email' ,
+                ]
+            ]);
+
+            #update
+            Route::put('settings', [
+                'uses' => 'SettingController@update',
+                'as' => 'settings.update',
+                'title' => 'تحديث الاعدادات'
+            ]);
+
+            #message all
+            Route::post('settings/{type}/message-all', [
+                'uses'  => 'SettingController@messageAll',
+                'as'    => 'settings.message.all',
+                'title' => 'مراسلة الجميع'
+            ])->where('type','email|sms|notification');
+
+            #message one
+            Route::post('settings/{type}/message-one', [
+                'uses'  => 'SettingController@messageOne',
+                'as'    => 'settings.message.one',
+                'title' => 'مراسلة مستخدم'
+            ])->where('type','email|sms|notification');
+
+            #send email
+            Route::post('settings/send-email', [
+                'uses'  => 'SettingController@sendEmail',
+                'as'    => 'settings.send_email',
+                'title' => 'ارسال ايميل'
+            ]);
+        /*------------ end Of Settings ----------*/
+
+        /*------------ start Of Roles----------*/
+            Route::get('roles', [
+                'uses'      => 'RoleController@index',
+                'as'        => 'roles.index',
+                'title'     => 'قائمة الصلاحيات',
+                'icon'      => '<i class="feather icon-eye"></i>',
+                'type'      => 'parent',
+                'child'     => [
                     'roles.index','roles.create', 'roles.store', 'roles.edit', 'roles.update', 'roles.delete' , 
                 ]
             ]);
 
-            
-            /*------------ start Of Roles----------*/
-                Route::get('roles', [
-                    'uses'      => 'RoleController@index',
-                    'as'        => 'roles.index',
-                    'title'     => 'قائمة الصلاحيات',
-                    'icon'      => '<i class="la la-eye"></i>',
-                ]);
+            #add role page
+            Route::get('roles/create', [
+                'uses'  => 'RoleController@create',
+                'as'    => 'roles.create',
+                'title' => 'اضافة صلاحيه',
 
-                #add role page
-                Route::get('roles/create', [
-                    'uses'  => 'RoleController@create',
-                    'as'    => 'roles.create',
-                    'title' => 'اضافة صلاحيه',
+            ]);
 
-                ]);
+            #store role
+            Route::post('roles/store', [
+                'uses' => 'RoleController@store',
+                'as' => 'roles.store',
+                'title' => 'تمكين اضافة صلاحيه'
+            ]);
 
-                #store role
-                Route::post('roles/store', [
-                    'uses' => 'RoleController@store',
-                    'as' => 'roles.store',
-                    'title' => 'تمكين اضافة صلاحيه'
-                ]);
+            #edit role page
+            Route::get('roles/{id}/edit', [
+                'uses' => 'RoleController@edit',
+                'as' => 'roles.edit',
+                'title' => 'تعديل صلاحيه'
+            ]);
 
-                #edit role page
-                Route::get('roles/{id}/edit', [
-                    'uses' => 'RoleController@edit',
-                    'as' => 'roles.edit',
-                    'title' => 'تعديل صلاحيه'
-                ]);
+            #update role
+            Route::put('roles/{id}', [
+                'uses' => 'RoleController@update',
+                'as' => 'roles.update',
+                'title' => 'تمكين تعديل صلاحيه'
+            ]);
 
-                #update role
-                Route::put('roles/{id}', [
-                    'uses' => 'RoleController@update',
-                    'as' => 'roles.update',
-                    'title' => 'تمكين تعديل صلاحيه'
-                ]);
+            #delete role
+            Route::delete('roles/{id}', [
+                'uses' => 'RoleController@destroy',
+                'as' => 'roles.delete',
+                'title' => 'حذف صلاحيه'
+            ]);
+        /*------------ end Of Roles----------*/
 
-                #delete role
-                Route::delete('roles/{id}', [
-                    'uses' => 'RoleController@destroy',
-                    'as' => 'roles.delete',
-                    'title' => 'حذف صلاحيه'
-                ]);
-            /*------------ end Of Roles----------*/
-
-
-            /*------------ start Of Settings----------*/
-                Route::get('settings', [
-                    'uses'      => 'SettingController@index',
-                    'as'        => 'settings.index',
-                    'title'     => 'الاعدادات',
-                    'icon'      => '<i class="ft-settings icon-left"></i>',
-                ]);
-
-                #update
-                Route::put('settings', [
-                    'uses' => 'SettingController@update',
-                    'as' => 'settings.update',
-                    'title' => 'تحديث الاعدادات'
-                ]);
-
-                #message all
-                Route::post('settings/{type}/message-all', [
-                    'uses'  => 'SettingController@messageAll',
-                    'as'    => 'settings.message.all',
-                    'title' => 'مراسلة الجميع'
-                ])->where('type','email|sms|notification');
-
-                #message one
-                Route::post('settings/{type}/message-one', [
-                    'uses'  => 'SettingController@messageOne',
-                    'as'    => 'settings.message.one',
-                    'title' => 'مراسلة مستخدم'
-                ])->where('type','email|sms|notification');
-
-                #send email
-                Route::post('settings/send-email', [
-                    'uses'  => 'SettingController@sendEmail',
-                    'as'    => 'settings.send_email',
-                    'title' => 'ارسال ايميل'
-                ]);
-            /*------------ end Of Settings ----------*/
-
-        /*------------ end Of Settings && permissions ----------*/
-
-        /*------------ start Of statistics && seo ----------*/
-            Route::get('seo-statistics', [
-                'as'        => 'statistics.seo',
-                'icon'      => '<i class="feather icon-list"></i>',
-                'title'     => 'السيو والاحصائيات',
+        /*------------ start Of statistics ----------*/
+            Route::get('statistics', [
+                'uses'      => 'StatisticsController@index',
+                'as'        => 'statistics.index',
+                'title'     => 'الاحصائيات',
+                'icon'      => '<i class="feather icon-bar-chart"></i>',
                 'type'      => 'parent',
-                'sub_route' => true,
                 'child'     => [
                     'statistics.index',
+                ]
+            ]);
+        /*------------ end Of statistics ----------*/
+
+        /*------------ start Of seos ----------*/
+            Route::get('seos', [
+                'uses'      => 'SeoController@index',
+                'as'        => 'seos.index',
+                'title'     => 'سيو',
+                'icon'      => '<i class="feather icon-list"></i>',
+                'type'      => 'parent',
+                'child'     => [
                     'seos.index','seos.store', 'seos.update', 'seos.delete' , 'seos.deleteAll' , 
                 ]
             ]);
-            /*------------ start Of statistics ----------*/
-                Route::get('statistics', [
-                    'uses'      => 'StatisticsController@index',
-                    'as'        => 'statistics.index',
-                    'title'     => 'الاحصائيات',
-                    'icon'      => '<i class="la la-bar-chart-o"></i>',
-                ]);
-            /*------------ end Of statistics ----------*/
 
-            /*------------ start Of seos ----------*/
-                Route::get('seos', [
-                    'uses'      => 'SeoController@index',
-                    'as'        => 'seos.index',
-                    'title'     => 'سيو',
-                    'icon'      => '<i class="la la-google"></i>',
-                ]);
+            # seos store
+            Route::get('seos/create', [
+                'uses'  => 'SeoController@create',
+                'as'    => 'seos.create','clients.edit',
+                'title' => ' صفحة اضافة سيو'
+            ]);
 
-                # seos store
-                Route::get('seos/create', [
-                    'uses'  => 'SeoController@create',
-                    'as'    => 'seos.create','clients.edit',
-                    'title' => ' صفحة اضافة سيو'
-                ]);
+            # seos update
+            Route::get('seos/{id}/edit', [
+                'uses'  => 'SeoController@edit',
+                'as'    => 'seos.edit',
+                'title' => 'صفحه تحديث سيو'
+            ]);
 
-                # seos update
-                Route::get('seos/{id}/edit', [
-                    'uses'  => 'SeoController@edit',
-                    'as'    => 'seos.edit',
-                    'title' => 'صفحه تحديث سيو'
-                ]);
+            #store
+            Route::post('seos/store', [
+                'uses'  => 'SeoController@store',
+                'as'    => 'seos.store',
+                'title' => ' اضافة سيو'
+            ]);
 
-                #store
-                Route::post('seos/store', [
-                    'uses'  => 'SeoController@store',
-                    'as'    => 'seos.store',
-                    'title' => ' اضافة سيو'
-                ]);
+            #update
+            Route::put('seos/{id}', [
+                'uses'  => 'SeoController@update',
+                'as'    => 'seos.update',
+                'title' => 'تحديث سيو'
+            ]);
 
-                #update
-                Route::put('seos/{id}', [
-                    'uses'  => 'SeoController@update',
-                    'as'    => 'seos.update',
-                    'title' => 'تحديث سيو'
-                ]);
-
-                #deletّe
-                Route::delete('seos/{id}', [
-                    'uses'  => 'SeoController@destroy',
-                    'as'    => 'seos.delete',
-                    'title' => 'حذف سيو'
-                ]);
-                #delete
-                Route::post('delete-all-seos', [
-                    'uses'  => 'SeoController@destroyAll',
-                    'as'    => 'seos.deleteAll',
-                    'title' => 'حذف مجموعه من السيو'
-                ]);
-            /*------------ end Of seos ----------*/
-        /*------------ end Of statistics && seo ----------*/
+            #deletّe
+            Route::delete('seos/{id}', [
+                'uses'  => 'SeoController@destroy',
+                'as'    => 'seos.delete',
+                'title' => 'حذف سيو'
+            ]);
+            #delete
+            Route::post('delete-all-seos', [
+                'uses'  => 'SeoController@destroyAll',
+                'as'    => 'seos.deleteAll',
+                'title' => 'حذف مجموعه من السيو'
+            ]);
+        /*------------ end Of seos ----------*/
 
         /*------------ start Of socials ----------*/
             Route::get('socials', [
@@ -887,61 +895,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
         /*------------ end Of dashboard ----------*/
 
-        
-        /*------------ start Of cities ----------*/
-            Route::get('cities', [
-                'uses'      => 'CityController@index',
-                'as'        => 'cities.index',
-                'title'     => 'المدن',
-                'icon'      => '<i class="la la-image"></i>',
-                'type'      => 'parent',
-                'sub_route' => false,
-                'child'     => ['cities.create', 'cities.store','cities.edit', 'cities.update', 'cities.delete'  ,'cities.deleteAll' ,]
-            ]);
-
-            # cities store
-            Route::get('cities/create', [
-                'uses'  => 'CityController@create',
-                'as'    => 'cities.create',
-                'title' => ' صفحة اضافة مدينة'
-            ]);
-            
-
-            # cities store
-            Route::post('cities/store', [
-                'uses'  => 'CityController@store',
-                'as'    => 'cities.store',
-                'title' => ' اضافة مدينة'
-            ]);
-
-            # cities update
-            Route::get('cities/{id}/edit', [
-                'uses'  => 'CityController@edit',
-                'as'    => 'cities.edit',
-                'title' => 'صفحه تحديث مدينة'
-            ]);
-
-            # cities update
-            Route::put('cities/{id}', [
-                'uses'  => 'CityController@update',
-                'as'    => 'cities.update',
-                'title' => 'تحديث مدينة'
-            ]);
-
-            # cities delete
-            Route::delete('cities/{id}', [
-                'uses'  => 'CityController@destroy',
-                'as'    => 'cities.delete',
-                'title' => 'حذف مدينة'
-            ]);
-            #delete all cities
-            Route::post('delete-all-cities', [
-                'uses'  => 'CityController@destroy',
-                'as'    => 'cities.deleteAll',
-                'title' => 'حذف مجموعه من المدن'
-            ]);
-        /*------------ end Of cities ----------*/
-        
         /*------------ start Of countries ----------*/
             Route::get('countries', [
                 'uses'      => 'CountryController@index',
@@ -995,7 +948,227 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من البلاد'
             ]);
         /*------------ end Of countries ----------*/
+
+        /*------------ start Of cities ----------*/
+            Route::get('cities', [
+                'uses'      => 'CityController@index',
+                'as'        => 'cities.index',
+                'title'     => 'المدن',
+                'icon'      => '<i class="feather icon-flag"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['cities.create', 'cities.store','cities.edit', 'cities.update', 'cities.delete'  ,'cities.deleteAll' ,]
+            ]);
+
+            # cities store
+            Route::get('cities/create', [
+                'uses'  => 'CityController@create',
+                'as'    => 'cities.create',
+                'title' => ' صفحة اضافة مدينة'
+            ]);
+            
+
+            # cities store
+            Route::post('cities/store', [
+                'uses'  => 'CityController@store',
+                'as'    => 'cities.store',
+                'title' => ' اضافة مدينة'
+            ]);
+
+            # cities update
+            Route::get('cities/{id}/edit', [
+                'uses'  => 'CityController@edit',
+                'as'    => 'cities.edit',
+                'title' => 'صفحه تحديث مدينة'
+            ]);
+
+            # cities update
+            Route::put('cities/{id}', [
+                'uses'  => 'CityController@update',
+                'as'    => 'cities.update',
+                'title' => 'تحديث مدينة'
+            ]);
+
+            # cities delete
+            Route::delete('cities/{id}', [
+                'uses'  => 'CityController@destroy',
+                'as'    => 'cities.delete',
+                'title' => 'حذف مدينة'
+            ]);
+            #delete all cities
+            Route::post('delete-all-cities', [
+                'uses'  => 'CityController@destroyAll',
+                'as'    => 'cities.deleteAll',
+                'title' => 'حذف مجموعه من المدن'
+            ]);
+        /*------------ end Of cities ----------*/
+        
+        
+        /*------------ start Of fqs ----------*/
+            Route::get('fqs', [
+                'uses'      => 'FqsController@index',
+                'as'        => 'fqs.index',
+                'title'     => 'الاسئلة الشائعة',
+                'icon'      => '<i class="feather icon-alert-circle"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['fqs.create', 'fqs.store','fqs.edit', 'fqs.update', 'fqs.delete'  ,'fqs.deleteAll' ,]
+            ]);
+
+            # fqs store
+            Route::get('fqs/create', [
+                'uses'  => 'FqsController@create',
+                'as'    => 'fqs.create',
+                'title' => ' صفحة اضافة سؤال'
+            ]);
+            
+
+            # fqs store
+            Route::post('fqs/store', [
+                'uses'  => 'FqsController@store',
+                'as'    => 'fqs.store',
+                'title' => ' اضافة سؤال'
+            ]);
+
+            # fqs update
+            Route::get('fqs/{id}/edit', [
+                'uses'  => 'FqsController@edit',
+                'as'    => 'fqs.edit',
+                'title' => 'صفحه تحديث سؤال'
+            ]);
+
+            # fqs update
+            Route::put('fqs/{id}', [
+                'uses'  => 'FqsController@update',
+                'as'    => 'fqs.update',
+                'title' => 'تحديث سؤال'
+            ]);
+
+            # fqs delete
+            Route::delete('fqs/{id}', [
+                'uses'  => 'FqsController@destroy',
+                'as'    => 'fqs.delete',
+                'title' => 'حذف سؤال'
+            ]);
+            #delete all fqs
+            Route::post('delete-all-fqs', [
+                'uses'  => 'FqsController@destroyAll',
+                'as'    => 'fqs.deleteAll',
+                'title' => 'حذف مجموعه من الاسئلة الشائعة'
+            ]);
+        /*------------ end Of fqs ----------*/
+        
+        /*------------ start Of intros ----------*/
+            Route::get('intros', [
+                'uses'      => 'IntroController@index',
+                'as'        => 'intros.index',
+                'title'     => 'الصفحات التعريفية',
+                'icon'      => '<i class="feather icon-image"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['intros.create', 'intros.store','intros.edit', 'intros.update', 'intros.delete'  ,'intros.deleteAll' ,]
+            ]);
+
+            # intros store
+            Route::get('intros/create', [
+                'uses'  => 'IntroController@create',
+                'as'    => 'intros.create',
+                'title' => ' صفحة اضافة صفحة تعريفية'
+            ]);
+            
+
+            # intros store
+            Route::post('intros/store', [
+                'uses'  => 'IntroController@store',
+                'as'    => 'intros.store',
+                'title' => ' اضافة صفحة تعريفية'
+            ]);
+
+            # intros update
+            Route::get('intros/{id}/edit', [
+                'uses'  => 'IntroController@edit',
+                'as'    => 'intros.edit',
+                'title' => 'صفحه تحديث صفحة تعريفية'
+            ]);
+
+            # intros update
+            Route::put('intros/{id}', [
+                'uses'  => 'IntroController@update',
+                'as'    => 'intros.update',
+                'title' => 'تحديث صفحة تعريفية'
+            ]);
+
+            # intros delete
+            Route::delete('intros/{id}', [
+                'uses'  => 'IntroController@destroy',
+                'as'    => 'intros.delete',
+                'title' => 'حذف صفحة تعريفية'
+            ]);
+            #delete all intros
+            Route::post('delete-all-intros', [
+                'uses'  => 'IntroController@destroyAll',
+                'as'    => 'intros.deleteAll',
+                'title' => 'حذف مجموعه من الصفحات التعريفية'
+            ]);
+        /*------------ end Of intros ----------*/
+        
+        /*------------ start Of images ----------*/
+            Route::get('images', [
+                'uses'      => 'ImageController@index',
+                'as'        => 'images.index',
+                'title'     => 'البنرات الاعلانية',
+                'icon'      => '<i class="feather icon-image"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['images.create', 'images.store','images.edit', 'images.update', 'images.delete'  ,'images.deleteAll' ,]
+            ]);
+
+            # images store
+            Route::get('images/create', [
+                'uses'  => 'ImageController@create',
+                'as'    => 'images.create',
+                'title' => ' صفحة اضافة بانر اعلاني'
+            ]);
+            
+
+            # images store
+            Route::post('images/store', [
+                'uses'  => 'ImageController@store',
+                'as'    => 'images.store',
+                'title' => ' اضافة بانر اعلاني'
+            ]);
+
+            # images update
+            Route::get('images/{id}/edit', [
+                'uses'  => 'ImageController@edit',
+                'as'    => 'images.edit',
+                'title' => 'صفحه تحديث بانر اعلاني'
+            ]);
+
+            # images update
+            Route::put('images/{id}', [
+                'uses'  => 'ImageController@update',
+                'as'    => 'images.update',
+                'title' => 'تحديث بانر اعلاني'
+            ]);
+
+            # images delete
+            Route::delete('images/{id}', [
+                'uses'  => 'ImageController@destroy',
+                'as'    => 'images.delete',
+                'title' => 'حذف بانر اعلاني'
+            ]);
+            #delete all images
+            Route::post('delete-all-images', [
+                'uses'  => 'ImageController@destroyAll',
+                'as'    => 'images.deleteAll',
+                'title' => 'حذف مجموعه من البنرات الاعلانية'
+            ]);
+        /*------------ end Of images ----------*/
         #new_routes_here
+                     
+                     
+                     
                      
                      
                      

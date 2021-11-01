@@ -13,11 +13,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">{{awtTrans('تعديل نسخة ')}}</h4>
+                    <h4 class="card-title">{{awtTrans('تعديل صفحة_تعريفية ')}}</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form  method="POST" action="{{route('admin.copys.update' , ['id' => $row->id])}}" class="store form-horizontal" novalidate>
+                        <form  method="POST" action="{{route('admin.intros.update' , ['id' => $row->id])}}" class="store form-horizontal" novalidate>
                             @csrf
                             @method('PUT')
                             <div class="form-body">
@@ -29,10 +29,10 @@
                                                     <div class="imagesUploadBlock">
                                                         <label class="uploadImg">
                                                             <span><i class="feather icon-image"></i></span>
-                                                            <input type="file" accept="image/*" name="avatar" class="imageUploader">
+                                                            <input type="file" accept="image/*" name="image" class="imageUploader">
                                                         </label>
                                                         <div class="uploadedBlock">
-                                                            <img src="{{$row->avatar}}">
+                                                            <img src="{{$row->image}}">
                                                             <button class="close"><i class="la la-times"></i></button>
                                                         </div>
                                                     </div>
@@ -58,60 +58,40 @@
                                         </div>
                                     </div> --}}
                                     
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الاسم')}}</label>
                                             <div class="controls">
-                                                <input type="text" name="name" value="{{$row->name}}" class="form-control" placeholder="{{awtTrans('اكتب الاسم')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <label for="account-name">{{awtTrans('العنوان  بالعربية')}}</label>
+                                                <textarea class="form-control" name="title_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('العنوان بالعربية')}}">{{$row->getTranslations('title')['en']}}</textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('رقم الهاتف')}}</label>
                                             <div class="controls">
-                                                <input type="number" name="phone" value="{{$row->phone}}" class="form-control" placeholder="{{awtTrans('اكتب رقم الهاتف')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <label for="account-name">{{awtTrans('العنوان  بالانجليزية')}}</label>
+                                                <textarea class="form-control" name="title_en" id="" cols="30" rows="10" placeholder="{{awtTrans('العنوان بالانجليزية')}}">{{$row->getTranslations('title')['ar']}}</textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('البريد الالكتروني')}}</label>
                                             <div class="controls">
-                                                <input type="email" name="email" value="{{$row->email}}" class="form-control" placeholder="{{awtTrans('اكتب البريد الالكتروني')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                <label for="account-name">{{awtTrans('الوصف  بالعربية')}}</label>
+                                                <textarea class="form-control" name="description_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('الوصف بالعربية')}}">{{$row->getTranslations('description')['ar']}}</textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('كلمة السر')}}</label>
-                                            <div class="controls">
-                                                <input type="password" name="password" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <div class="controls">
-                                                <label for="account-name">{{awtTrans('الوصف')}}</label>
-                                                <textarea class="form-control" name="title" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالانجليزية')}}">{{$row->title}}</textarea>
+                                                <label for="account-name">{{awtTrans('الوصف  بالانجليزية')}}</label>
+                                                <textarea class="form-control" name="description_en" id="" cols="30" rows="10" placeholder="{{awtTrans('الوصف بالانجليزية')}}">{{$row->getTranslations('description')['en']}}</textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الصلاحية')}}</label>
-                                            <div class="controls">
-                                                <select name="role_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر الصلاحية')}}</option>
-                                                    @foreach ($roles as $role)
-                                                        <option {{$role->id == $row->role_id ? 'selected' : ''}} value="{{$role->id}}">{{$role->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('تعديل')}}</button>
                                         <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>

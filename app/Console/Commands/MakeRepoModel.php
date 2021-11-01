@@ -51,62 +51,37 @@ class MakeRepoModel extends Command
                 file_put_contents('app/Models/'.$model.'.php', preg_replace("/copys/", $folderNmae, file_get_contents('app/Models/'.$model.'.php')));
             // #create model with mogration and model content
 
-            // create Repository 
-                File::copy('app/Repositories/Eloquent/CopyRepository.php',base_path('app/Repositories/Eloquent/'.$model.'Repository.php'));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/CopyRepository/", $model.'Repository', file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/ICopy/", 'I'.$model , file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/Copy/", $model , file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-            // #create Repository 
             
-            // create interface 
-                File::copy('app/Repositories/Interfaces/ICopy.php',base_path('app/Repositories/Interfaces/I'.$model.'.php'));
-                file_put_contents('app/Repositories/Interfaces/I'.$model.'.php', preg_replace("/ICopy/", 'I'.$model , file_get_contents('app/Repositories/Interfaces/I'.$model.'.php')));
-            // #create interface 
-
-            // connect interface and repository
-                file_put_contents(
-                    'app/Providers/RepositoryServiceProvider.php'
-                    , preg_replace(
-                        "/#connect_here/"
-                        ,'$this->app->bind(I'.$model.'::class  , '.$model.'Repository::class   );
-        #connect_here' , 
-                        file_get_contents('app/Providers/RepositoryServiceProvider.php')
-                    )
-                );
-
-                file_put_contents(
-                    'app/Providers/RepositoryServiceProvider.php'
-                    , preg_replace(
-                        "/#clases_Definition_here/"
-                        ,'use App\Repositories\Interfaces\I'.$model.';
-use App\Repositories\Eloquent\\'.$model.'Repository;
-#clases_Definition_here' , 
-                        file_get_contents('app/Providers/RepositoryServiceProvider.php')
-                    )
-                );
-            #connect interface and repository
 
             // create observer (optional) 
-                if ($this->option('ob')) {
-                    Artisan::call('make:observer', ['name' => $model.'Observer']);
-                    File::copy('app/Observers/CopyObserver.php',base_path('app/Observers/'.$model.'Observer.php'));
-                    file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/CopyObserver/", $model.'Observer', file_get_contents('app/Observers/'.$model.'Observer.php')));
-                    file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/Copy/", $model , file_get_contents('app/Observers/'.$model.'Observer.php')));
-                    file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/coyps/", $folderNmae , file_get_contents('app/Observers/'.$model.'Observer.php')));
-                }
-            // #create observer (optional) 
+            if ($this->option('ob')) {
+                Artisan::call('make:observer', ['name' => $model.'Observer']);
+                File::copy('app/Observers/CopyObserver.php',base_path('app/Observers/'.$model.'Observer.php'));
+                file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/CopyObserver/", $model.'Observer', file_get_contents('app/Observers/'.$model.'Observer.php')));
+                file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/Copy/", $model , file_get_contents('app/Observers/'.$model.'Observer.php')));
+                file_put_contents('app/Observers/'.$model.'Observer.php', preg_replace("/coyps/", $folderNmae , file_get_contents('app/Observers/'.$model.'Observer.php')));
+            }
+        // #create observer (optional) 
 
-            // create seeder (optional) 
-                if ($this->option('seed')) {
-                    Artisan::call('make:seeder', ['name' => $model.'TableSeeder']);
-                }
-            // #create seeder (optional) 
-            
-            // create request (optional) 
-                if ($this->option('resource')) {
-                    Artisan::call('make:resource', ['name' => 'Api/' . $model .'Resource']);
-                }
-            // #create request (optional) 
+        // create seeder (optional) 
+            if ($this->option('seed')) {
+                Artisan::call('make:seeder', ['name' => $model.'TableSeeder']);
+            }
+        // #create seeder (optional) 
+        
+        // create request (optional) 
+            if ($this->option('request')) {
+                Artisan::call('make:request', ['name' => 'Admin/' . $folderNmae .'/Store']);
+                File::copy('app/Http/Requests/Admin/copy.php',base_path('app/Http/Requests/Admin/' . $folderNmae .'/Store.php'));
+                file_put_contents('app/Http/Requests/Admin/' . $folderNmae .'/Store.php', preg_replace("/Copy/", $folderNmae , file_get_contents('app/Http/Requests/Admin/' . $folderNmae .'/Store.php')));
+            }
+        // #create request (optional) 
+        
+        // create request (optional) 
+            if ($this->option('resource')) {
+                Artisan::call('make:resource', ['name' => 'Api/' . $model .'Resource']);
+            }
+        // #create request (optional) 
 
             // call back  
             $this->info('New Repository , Interface , Model , DataBase Migrate , optional commands [ database seeder , resource , observer]  are created successfully ! ');

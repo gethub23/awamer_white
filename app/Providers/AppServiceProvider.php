@@ -4,10 +4,13 @@ namespace App\Providers;
 
 use App\Models\User;
 
+use App\Models\Image;
+use App\Models\Intro;
 use App\Models\Social;
 use App\Models\IntroSlider;
 use App\Models\IntroHowWork;
 use App\Observers\UserObserver;
+use App\Observers\ImageObserver;
 use App\Observers\IntroObserver;
 use App\Observers\SocialObserver;
 use App\Observers\IntroSliderObserver;
@@ -34,9 +37,10 @@ class AppServiceProvider extends ServiceProvider
     {
         User           ::observe(UserObserver::class);
         Social         ::observe(SocialObserver::class);
-        // Intro          ::observe(IntroObserver::class);
+        Intro          ::observe(IntroObserver::class);
         IntroHowWork   ::observe(IntroHowWorkObserver::class);
         IntroSlider    ::observe(IntroSliderObserver::class);
+        Image          ::observe(ImageObserver::class);
          view()->composer('*', function ($view) 
             {
                 

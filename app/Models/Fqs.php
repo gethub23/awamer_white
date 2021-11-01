@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Country extends Model
+class Fqs extends Model
 {
     use HasTranslations; 
     /**
@@ -13,22 +13,12 @@ class Country extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','key'];
+    protected $fillable = ['question','answer'];
     
-    public $translatable = ['name'];
+    public $translatable = ['question','answer'];
 
     protected function asJson($value)
     {
         return json_encode($value, JSON_UNESCAPED_UNICODE);
-    }
-
-    /**
-     * Get all of the cities for the Country
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function cities()
-    {
-        return $this->hasMany(City::class, 'city_id', 'id');
     }
 }

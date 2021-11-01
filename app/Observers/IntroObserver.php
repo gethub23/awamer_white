@@ -32,7 +32,7 @@ class IntroObserver
      public function updating (Intro $Intro)
    {
       if (request()->has('image')) {
-            if ($Intro->getRawOriginal('image') != 'default.png'){
+            if ($Intro->getRawOriginal('image') != '1.png' && $Intro->getRawOriginal('image') != '2.png'){
                File::delete(public_path('/storage/images/intros/' . $Intro->getRawOriginal('image')));
             }
        }
@@ -50,7 +50,7 @@ class IntroObserver
     */
    public function deleted(Intro $Intro)
    {
-       if ($Intro->image != 'default.png'){
+       if ($Intro->getRawOriginal('image') != '1.png' && $Intro->getRawOriginal('image') != '2.png'){
            File::delete(public_path('/storage/images/intros/' . $Intro->getRawOriginal('image')));
        }
        

@@ -2,38 +2,33 @@
 
 namespace App\Models;
 
-use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class City extends Model
 {
-    use UploadTrait;
     use HasTranslations; 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title','description' ,'image'];
+    protected $fillable = ['name','country_id'];
     
-    public $translatable = ['title','description'];
+    public $translatable = ['name'];
 
     protected function asJson($value)
     {
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }
-    public function getImageAttribute($value)
-    {
-        return asset('/storage/images/cities/'.$value);
-    }
 
-    public function setImageAttribute($value)
+    /**
+     * Get the country that owns the City
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function country()
     {
-        if ($value != null)
-        {
-            $this->attributes['image'] = $this->uploadAllTyps($value, 'cities');
-        }
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
-
 }
