@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         
-        for ($i=0; $i < 100 ; $i++) { 
+        for ($i=0; $i < 2 ; $i++) { 
             User::create([
                 'name'      => 'fekry',
                 'email'     => 'aa926626'.rand(1111,333333).'@gmail.com',

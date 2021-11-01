@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Traits\Responses;
+use App\Models\UserUpdate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\IUser;
 use App\Http\Resources\Api\UserResource;
 use App\Http\Resources\Api\NotificationsResource;
 use App\Http\Requests\Api\User\EditProfileRequest;
@@ -17,13 +17,6 @@ class UserController extends Controller
 {
     use     Responses;
 
-    private $Repo;
-
-    public function __construct(IUser $Repo)
-    {
-        $this->Repo          =   $Repo;
-    }
-
     // profile data 
     public function profile(){
         $this->response('success','',new UserResource(auth()->user()));
@@ -32,22 +25,46 @@ class UserController extends Controller
     // change phone request with send activation code
     public function updatePhoneRequest(updatePhoneRequest $request)
     {
-        $code =   $this->Repo->updatePhoneRequest($request->validated());
+        $update = UserUpdate::updateOrCreate([
+            'user_id'       => auth()->id(),
+            'type'          => 'phone',
+        ],[
+            'code'          => 1111,
+            'phone'         => $request->phone,
+        ]); 
+
         return $this->response('success' , trans('apis.send_activated'));
     }
 
     // check actiovation code and change phone 
     public function checkUpdatePhoneCode(checkUpdatePhoneCodeRequest $request)
     {
-        $this->Repo->checkUpdatePhoneCode($request->code);
+        $update = UserUpdate::where([
+            'user_id'    => auth()->id() ,
+            'code'       => $request->code,
+            'type'       => 'phone',
+        ])->first();
+
+        if (!$update){
+            $this->response('fail' , __('site.code_wrong'));
+        }
+
+        auth()->user()->update(['phone' => $update->phone ]);
+        $update->delete();
+
+        $this->response('success' , __('apis.phone_changed'),  new UserResource(auth()->user()));
     }
     // edit password for auth user
     public function EditPassword(EditPasswordRequest $request)
     {
-        $this->Repo->editPassword($request->validated());
+        if (!\Hash::check($request['old_password'], auth()->user()->password))
+            $this->response('fail',trans('auth.incorrect_pass'));
+            
+        auth()->user()->update(['password' => $request['password'] ]);
+        $this->response('success',trans('auth.password_changed'));
     }
 
-    // change notify status
+    // CHANGE NOTIFY STATUS
     public function changeNotifyStatue()
     {
         $user = auth()->user() ; 
@@ -55,7 +72,7 @@ class UserController extends Controller
         $msg = $user->is_notify ? __('apis.openNotify') : __('apis.closeNotify') ;
         $this->response('success', $msg, ['status' => $user->is_notify]);
     }
-    // notifications 
+    // NOTIFICATIONS 
     public function notifications()
     {
         auth()->user()->unreadNotifications->markAsRead();
@@ -73,9 +90,9 @@ class UserController extends Controller
         $this->response( 'success' , '' , __('site.notify_deleted'));
     }
 
-    // update profile 
+    // UPDATE PROFILE 
     public function updateProfile(EditProfileRequest $request){
         auth()->user()->update($request->validated());
-        $this->response('succesdd' ,__('apis.updated'),new UserResource(auth()->user()) );
+        $this->response('success' ,__('apis.updated'),new UserResource(auth()->user()) );
     }
 }

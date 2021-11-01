@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\Complaint;
 use App\Traits\Responses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,17 +13,9 @@ class ComplaintController extends Controller
 {
     use     Responses;
 
-    private $complaint;
-
-    public function __construct(IComplaint $complaint)
-    {
-        $this->complaint  = $complaint;
-    }
-
-
     public function StoreComplaint(StoreComplaintRequest $Request)
     {
-        $this->complaint->store($Request->validated() + (['user_id' => auth()->id()])) ; 
+        Complaint::create($Request->validated() + (['user_id' => auth()->id()])) ; 
         $this->response('success' , __('apis.complaint_send'));
     }
 }
