@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IntroSocialTableSeeder::class);
         $this->call(SocialTableSeeder::class);
         $this->call(ComplaintTableSeeder::class);
+        $this->call(CountryTableSeeder::class);
     }
 }

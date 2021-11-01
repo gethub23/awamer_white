@@ -887,7 +887,118 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
         /*------------ end Of dashboard ----------*/
 
+        
+        /*------------ start Of cities ----------*/
+            Route::get('cities', [
+                'uses'      => 'CityController@index',
+                'as'        => 'cities.index',
+                'title'     => 'المدن',
+                'icon'      => '<i class="la la-image"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['cities.create', 'cities.store','cities.edit', 'cities.update', 'cities.delete'  ,'cities.deleteAll' ,]
+            ]);
+
+            # cities store
+            Route::get('cities/create', [
+                'uses'  => 'CityController@create',
+                'as'    => 'cities.create',
+                'title' => ' صفحة اضافة مدينة'
+            ]);
+            
+
+            # cities store
+            Route::post('cities/store', [
+                'uses'  => 'CityController@store',
+                'as'    => 'cities.store',
+                'title' => ' اضافة مدينة'
+            ]);
+
+            # cities update
+            Route::get('cities/{id}/edit', [
+                'uses'  => 'CityController@edit',
+                'as'    => 'cities.edit',
+                'title' => 'صفحه تحديث مدينة'
+            ]);
+
+            # cities update
+            Route::put('cities/{id}', [
+                'uses'  => 'CityController@update',
+                'as'    => 'cities.update',
+                'title' => 'تحديث مدينة'
+            ]);
+
+            # cities delete
+            Route::delete('cities/{id}', [
+                'uses'  => 'CityController@destroy',
+                'as'    => 'cities.delete',
+                'title' => 'حذف مدينة'
+            ]);
+            #delete all cities
+            Route::post('delete-all-cities', [
+                'uses'  => 'CityController@destroy',
+                'as'    => 'cities.deleteAll',
+                'title' => 'حذف مجموعه من المدن'
+            ]);
+        /*------------ end Of cities ----------*/
+        
+        /*------------ start Of countries ----------*/
+            Route::get('countries', [
+                'uses'      => 'CountryController@index',
+                'as'        => 'countries.index',
+                'title'     => 'البلاد',
+                'icon'      => '<i class="feather icon-flag"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['countries.create', 'countries.store','countries.edit', 'countries.update', 'countries.delete'  ,'countries.deleteAll' ,]
+            ]);
+
+            # countries store
+            Route::get('countries/create', [
+                'uses'  => 'CountryController@create',
+                'as'    => 'countries.create',
+                'title' => ' صفحة اضافة بلد'
+            ]);
+            
+
+            # countries store
+            Route::post('countries/store', [
+                'uses'  => 'CountryController@store',
+                'as'    => 'countries.store',
+                'title' => ' اضافة بلد'
+            ]);
+
+            # countries update
+            Route::get('countries/{id}/edit', [
+                'uses'  => 'CountryController@edit',
+                'as'    => 'countries.edit',
+                'title' => 'صفحه تحديث بلد'
+            ]);
+
+            # countries update
+            Route::put('countries/{id}', [
+                'uses'  => 'CountryController@update',
+                'as'    => 'countries.update',
+                'title' => 'تحديث بلد'
+            ]);
+
+            # countries delete
+            Route::delete('countries/{id}', [
+                'uses'  => 'CountryController@destroy',
+                'as'    => 'countries.delete',
+                'title' => 'حذف بلد'
+            ]);
+            #delete all countries
+            Route::post('delete-all-countries', [
+                'uses'  => 'CountryController@destroyAll',
+                'as'    => 'countries.deleteAll',
+                'title' => 'حذف مجموعه من البلاد'
+            ]);
+        /*------------ end Of countries ----------*/
         #new_routes_here
+                     
+                     
+                     
     });
 
 });

@@ -49,7 +49,6 @@ class MakeFull extends Command
             
             // #create model with mogration and model content 
                 Artisan::call('make:model',['name' => 'Models/'.$model,'-m' => true]);
-                // Artisan::call('make:model',['name' => 'Models/'.$model]);
                 File::copy('app/Models/copy.php',base_path('app/Models/'.$model.'.php'));
                 file_put_contents('app/Models/'.$model.'.php', preg_replace("/Copy/", $model, file_get_contents('app/Models/'.$model.'.php')));
                 file_put_contents('app/Models/'.$model.'.php', preg_replace("/copys/", $folderNmae, file_get_contents('app/Models/'.$model.'.php')));
@@ -60,68 +59,71 @@ class MakeFull extends Command
                 File::copy('app/Http/Controllers/Admin/CopyController.php',base_path('app/Http/Controllers/Admin/'.$model.'Controller.php'));
                 file_put_contents('app/Http/Controllers/Admin/'.$model.'Controller.php', preg_replace("/Copy/", $model, file_get_contents('app/Http/Controllers/Admin/'.$model.'Controller.php')));
                 file_put_contents('app/Http/Controllers/Admin/'.$model.'Controller.php', preg_replace("/copys/", $folderNmae, file_get_contents('app/Http/Controllers/Admin/'.$model.'Controller.php')));
+                file_put_contents('app/Http/Controllers/Admin/'.$model.'Controller.php', preg_replace("/arsinglesame/", $arSingleName , file_get_contents('app/Http/Controllers/Admin/'.$model.'Controller.php')));
+                file_put_contents('app/Http/Controllers/Admin/'.$model.'Controller.php', preg_replace("/arpluraleName/", $arpluraleName , file_get_contents('app/Http/Controllers/Admin/'.$model.'Controller.php')));
             // #create Controller 
 
-            // // create folder and blade file 
+            // // create folder and blade file
+                // make directory folder 
                 File::makeDirectory('resources/views/admin/'.$folderNmae);
-                File::copy('resources/views/admin/layout/partial/copy.blade.php',base_path('resources/views/admin/'.$folderNmae.'/index.blade.php'));
-               
+                // create index page //
+                    File::copy('resources/views/admin/shared/copys/index.blade.php',base_path('resources/views/admin/'.$folderNmae.'/index.blade.php'));
+                    file_put_contents(
+                        'resources/views/admin/'.$folderNmae.'/index.blade.php'
+                        , preg_replace(
+                            "/copys/"
+                            ,$folderNmae , 
+                            file_get_contents('resources/views/admin/'.$folderNmae.'/index.blade.php')
+                        )
+                    );
+                // # create index page //
 
-                File::copy('resources/views/admin/layout/partial/copy.blade.php',base_path('resources/views/admin/'.$folderNmae.'/index.blade.php'));
-                file_put_contents(
-                    'resources/views/admin/'.$folderNmae.'/index.blade.php'
-                    , preg_replace(
-                        "/copys/"
-                        ,$folderNmae , 
-                        file_get_contents('resources/views/admin/'.$folderNmae.'/index.blade.php')
-                    )
-                );
-           
-               
-                file_put_contents(
-                    'resources/views/admin/'.$folderNmae.'/index.blade.php'
-                    , preg_replace(
-                        "/نسخة/"
-                        ,$arSingleName , 
-                        file_get_contents('resources/views/admin/'.$folderNmae.'/index.blade.php')
-                    )
-                );
+                // create create form page //
+                    File::copy('resources/views/admin/shared/copys/create.blade.php',base_path('resources/views/admin/'.$folderNmae.'/create.blade.php'));
+
+                    file_put_contents(
+                        'resources/views/admin/'.$folderNmae.'/create.blade.php'
+                        , preg_replace(
+                            "/copys/"
+                            ,$folderNmae , 
+                            file_get_contents('resources/views/admin/'.$folderNmae.'/create.blade.php')
+                        )
+                    );
+
+                    file_put_contents(
+                        'resources/views/admin/'.$folderNmae.'/create.blade.php'
+                        , preg_replace(
+                            "/نسخة/"
+                            ,$arSingleName , 
+                            file_get_contents('resources/views/admin/'.$folderNmae.'/create.blade.php')
+                        )
+                    );
+                // #create create form page //
+
+                // create edit form page //
+                    File::copy('resources/views/admin/shared/copys/edit.blade.php',base_path('resources/views/admin/'.$folderNmae.'/edit.blade.php'));
+
+                    file_put_contents(
+                        'resources/views/admin/'.$folderNmae.'/edit.blade.php'
+                        , preg_replace(
+                            "/copys/"
+                            ,$folderNmae , 
+                            file_get_contents('resources/views/admin/'.$folderNmae.'/edit.blade.php')
+                        )
+                    );
+
+                    file_put_contents(
+                        'resources/views/admin/'.$folderNmae.'/edit.blade.php'
+                        , preg_replace(
+                            "/نسخة/"
+                            ,$arSingleName , 
+                            file_get_contents('resources/views/admin/'.$folderNmae.'/edit.blade.php')
+                        )
+                    );
+                // create edit form page //
+
             // // #create folder and blade file 
 
-            // create Repository 
-                File::copy('app/Repositories/Eloquent/CopyRepository.php',base_path('app/Repositories/Eloquent/'.$model.'Repository.php'));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/CopyRepository/", $model.'Repository', file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/ICopy/", 'I'.$model , file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-                file_put_contents('app/Repositories/Eloquent/'.$model.'Repository.php', preg_replace("/Copy/", $model , file_get_contents('app/Repositories/Eloquent/'.$model.'Repository.php')));
-            // #create Repository 
-            
-            // create interface 
-                File::copy('app/Repositories/Interfaces/ICopy.php',base_path('app/Repositories/Interfaces/I'.$model.'.php'));
-                file_put_contents('app/Repositories/Interfaces/I'.$model.'.php', preg_replace("/ICopy/", 'I'.$model , file_get_contents('app/Repositories/Interfaces/I'.$model.'.php')));
-            // #create interface 
-
-            // connect interface and repository
-                file_put_contents(
-                    'app/Providers/RepositoryServiceProvider.php'
-                    , preg_replace(
-                        "/#connect_here/"
-                        ,'$this->app->bind(I'.$model.'::class  , '.$model.'Repository::class   );
-        #connect_here' , 
-                        file_get_contents('app/Providers/RepositoryServiceProvider.php')
-                    )
-                );
-
-                file_put_contents(
-                    'app/Providers/RepositoryServiceProvider.php'
-                    , preg_replace(
-                        "/#clases_Definition_here/"
-                        ,'use App\Repositories\Interfaces\I'.$model.';
-use App\Repositories\Eloquent\\'.$model.'Repository;
-#clases_Definition_here' , 
-                        file_get_contents('app/Providers/RepositoryServiceProvider.php')
-                    )
-                );
-            #connect interface and repository
 
             // create web routes  
                 file_put_contents('routes/web.php',
@@ -133,17 +135,32 @@ use App\Repositories\Eloquent\\'.$model.'Repository;
                 'uses'      => '".$model."Controller@index',
                 'as'        => '".$folderNmae.".index',
                 'title'     => '".$arpluraleName."',
-                'icon'      => '<i class=\"la la-image\"></i>',
+                'icon'      => '<i class=\"feather icon-image\"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => [ '".$folderNmae.".store', '".$folderNmae.".update', '".$folderNmae.".delete'  ,'".$folderNmae.".deleteAll' ,]
+                'child'     => ['".$folderNmae.".create', '".$folderNmae.".store','".$folderNmae.".edit', '".$folderNmae.".update', '".$folderNmae.".delete'  ,'".$folderNmae.".deleteAll' ,]
             ]);
+
+            # ".$folderNmae." store
+            Route::get('".$folderNmae."/create', [
+                'uses'  => '".$model."Controller@create',
+                'as'    => '".$folderNmae.".create',
+                'title' => ' صفحة اضافة ".$arSingleName."'
+            ]);
+            
 
             # ".$folderNmae." store
             Route::post('".$folderNmae."/store', [
                 'uses'  => '".$model."Controller@store',
                 'as'    => '".$folderNmae.".store',
                 'title' => ' اضافة ".$arSingleName."'
+            ]);
+
+            # ".$folderNmae." update
+            Route::get('".$folderNmae."/{id}/edit', [
+                'uses'  => '".$model."Controller@edit',
+                'as'    => '".$folderNmae.".edit',
+                'title' => 'صفحه تحديث ".$arSingleName."'
             ]);
 
             # ".$folderNmae." update
@@ -161,7 +178,7 @@ use App\Repositories\Eloquent\\'.$model.'Repository;
             ]);
             #delete all ".$folderNmae."
             Route::post('delete-all-".$folderNmae."', [
-                'uses'  => '".$model."Controller@destroy',
+                'uses'  => '".$model."Controller@destroyAll',
                 'as'    => '".$folderNmae.".deleteAll',
                 'title' => 'حذف مجموعه من ".$arpluraleName."'
             ]);

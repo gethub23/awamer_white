@@ -19,7 +19,7 @@ trait UploadTrait
             $thumbsPath             = 'storage/images/' . $directory;
             $name                   = time().'_'. rand(1111,9999).'.'. $file->getClientOriginalExtension();
 
-            if ($resize1 == null){
+            if ($resize1 != null){
                 $img->resize($resize1, $resize2, function ($constraint) {
                     $constraint->aspectRatio();
                 });
@@ -40,7 +40,6 @@ trait UploadTrait
                 $thumbsPath = 'storage/images/' . $directory;
             }
             $img->save($thumbsPath . '/' . $name);
-
             return (string) $name;
         }
 
