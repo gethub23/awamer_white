@@ -33,7 +33,7 @@ class SocialObserver
      public function updating (Social $Social)
    {
       if (request()->has('icon')) {
-            if ($Social->getRawOriginal('icon') != 'default.png'){
+            if ($Social->getRawOriginal('icon') != 'facebook.png' && $Social->getRawOriginal('icon') != 'twitter.png' && $Social->getRawOriginal('icon') != 'Instagram.png'){
                File::delete(public_path('/storage/images/socials/' . $Social->getRawOriginal('icon')));
             }
        }
@@ -51,7 +51,7 @@ class SocialObserver
     */
    public function deleted(Social $Social)
    {
-       if ($Social->icon != 'default.png'){
+       if ($Social->getRawOriginal('icon') != 'facebook.png' && $Social->getRawOriginal('icon') != 'twitter.png' && $Social->getRawOriginal('icon') != 'Instagram.png'){
            File::delete(public_path('/storage/images/socials/' . $Social->getRawOriginal('icon')));
        }
        

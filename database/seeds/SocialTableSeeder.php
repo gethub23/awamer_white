@@ -22,5 +22,10 @@ class SocialTableSeeder extends Seeder
             'icon'              => 'Instagram.png',
             'link'              => 'https://www.instgram.com',
         ]);
+        DB::table('socials')->insert([
+            'name'              => 'twitter',
+            'icon'              => 'twitter.png',
+            'link'              => 'https://www.twitter.com',
+        ]);
     }
 }
