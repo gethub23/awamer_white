@@ -1165,7 +1165,33 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من البنرات الاعلانية'
             ]);
         /*------------ end Of images ----------*/
+        
+        /*------------ start Of sms ----------*/
+            Route::get('sms', [
+                'uses'      => 'SMSController@index',
+                'as'        => 'sms.index',
+                'title'     => 'باقات الرسائل',
+                'icon'      => '<i class="feather icon-smartphone"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['sms.update','sms.change',]
+            ]);
+            # sms change 
+            Route::post('sms-change', [
+                'uses'  => 'SMSController@change',
+                'as'    => 'sms.change',
+                'title' => 'تحديث نوع باقه الرسائل'
+            ]);
+            # sms update
+            Route::put('sms/{id}', [
+                'uses'  => 'SMSController@update',
+                'as'    => 'sms.update',
+                'title' => 'تحديث باقه رسائل'
+            ]);
+
+        /*------------ end Of sms ----------*/
         #new_routes_here
+                     
                      
                      
                      

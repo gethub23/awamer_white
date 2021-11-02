@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FqsTableSeeder::class);
         $this->call(IntroTableSeeder::class);
         $this->call(ImageTableSeeder::class);
+        $this->call(SmsTableSeeder::class);
     }
 }

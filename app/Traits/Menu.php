@@ -17,17 +17,17 @@ trait  menu
                 'name' => awtTrans('المستخدمين'),
                 'count' => \App\Models\User::count(),
                 'icon' => 'icon-users',
-                'url' => url('admin/admins'),
+                'url' => url('admin/users'),
             ],  [
                 'name' => awtTrans('وسائل التواصل'),
                 'count' => \App\Models\Social::count(),
                 'icon' => 'icon-thumbs-up',
-                'url' => url('admin/admins'),
+                'url' => url('admin/socials'),
             ],  [
                 'name' => awtTrans('الشكاوي والمقترحات'),
                 'count' => \App\Models\Complaint::count(),
                 'icon' => 'icon-list',
-                'url' => url('admin/admins'),
+                'url' => url('admin/complaints'),
             ],  [
                 'name' => awtTrans('الصلاحيات'),
                 'count' => \App\Models\Role::count(),
