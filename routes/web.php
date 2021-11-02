@@ -461,7 +461,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'icon'  => '<i class="feather icon-users"></i>',
                 'type'      => 'parent',
                 'child'     => [
-                    'admins.update_profile','admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
+                    'admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
                     ]
             ]);
 
