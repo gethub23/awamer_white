@@ -23,8 +23,8 @@
                             <i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
                         @endif
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            <a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-eg"></i> عربي</a>
-                            <a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a>
+                            <a class="dropdown-item" href="{{url('admin/lang/ar')}}" data-language="en"><i class="flag-icon flag-icon-eg"></i> عربي</a>
+                            <a class="dropdown-item" href="{{url('admin/lang/en')}}" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a>
                         </div>
                     </li>
                     <li class="nav-item d-none d-lg-block">
