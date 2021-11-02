@@ -1,6 +1,26 @@
 @extends('admin.layout.master')
 @section('content')
         <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card bg-analytics text-white">
+                    <div class="card-content">
+                        <div class="card-body text-center">
+                            <img src="{{asset('admin/app-assets/images/elements/decore-left.png')}}" class="img-left" alt="card-img-left">
+                            <img src="{{asset('admin/app-assets/images/elements/decore-right.png')}}" class="img-right" alt="card-img-right">
+                            <div class="text-center">
+                                <h1 class="mb-2 text-white">{{awtTrans('مرحبا بك  ')}} {{auth('admin')->user()->name}}</h1>
+                                <p class="m-auto w-75">{{  date('d-m-Y', strtotime(\Carbon\Carbon::now())) }} </p>
+                                <p class="m-auto w-75">{{  date('h:i A', strtotime(\Carbon\Carbon::now())) }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="طقس" data-label_2="الرياض" data-theme="sky" >الطقس</a>
+            </div>
+        </div>
+        <div class="row">
             @foreach($menus as $key => $menu)
                 @php $color = $colores[array_rand($colores)] @endphp
                 <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
@@ -145,5 +165,8 @@
             radialBarFunction2(['#7367F0', '#FF9F43'] , [ '#8F80F9', '#FFC085'] , [ (Number('{{$activeUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}'))) , (Number('{{$notActiveUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}')))] , ['Finished', 'Pending'])
         ).render();
 
+    </script>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
 @endsection

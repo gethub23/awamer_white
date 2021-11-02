@@ -496,6 +496,7 @@ return [
 "اكتب كلمة السر "=>"Type the password",
 "تمت تنشيط الباقة بنجاح"=>"The package has been successfully activated",
 "تمت تحديث الباقة بنجاح"=>"The package was successfully updated",
+"مرحبا بك  "=>"welcome",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 
