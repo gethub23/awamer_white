@@ -24,6 +24,7 @@ class SettingSeeder extends Seeder
                 [ 'key' => 'about_en'                       , 'value' => 'about'                ],
                 [ 'key' => 'logo'                           , 'value' => 'logo.png'             ],
                 [ 'key' => 'fav_icon'                       , 'value' => 'no_data.png'             ],
+                [ 'key' => 'login_background'               , 'value' => 'login_background.png'             ],
                 [ 'key' => 'no_data_icon'                   , 'value' => 'fav.png'             ],
                 [ 'key' => 'default_user'                   , 'value' => 'default.png'          ],
                 [ 'key' => 'intro_email'                    , 'value' => 'email@gmail.com'      ],

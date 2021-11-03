@@ -22,7 +22,7 @@ class SettingController extends Controller
     public function update(Request $request){
 
         foreach ( $request->all() as $key => $val )
-            if (in_array($key , ['logo' , 'fav_icon' , 'user_default' , 'intro_loader' , 'intro_logo'  ,'about_image_2' , 'about_image_1'])) {
+            if (in_array($key , ['logo' , 'fav_icon' , 'user_default' , 'intro_loader' , 'intro_logo'  ,'about_image_2' , 'about_image_1' , 'login_background'])) {
                 $img           = Image::make($val);
                 $name          = $key .'.png';
 
