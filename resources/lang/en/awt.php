@@ -497,6 +497,9 @@ return [
 "تمت تنشيط الباقة بنجاح"=>"The package has been successfully activated",
 "تمت تحديث الباقة بنجاح"=>"The package was successfully updated",
 "مرحبا بك  "=>"welcome",
+"404 - الصفحة غير موجودة"=>"404 - The page does not exist",
+"الرجوع للرئيسية"=>"Back to the main",
+"صورة خلفية صفحة تسجيل الدخول"=>"Background image",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 
