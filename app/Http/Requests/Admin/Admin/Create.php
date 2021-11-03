@@ -26,7 +26,7 @@ class Create extends FormRequest
         return [
             'name'      => 'required|max:191',
             'phone'     => 'required|numeric|unique:users,phone',
-            'email'     => 'required|email|max:191|unique:users,email',
+            'email'     => 'required|email|max:191|unique:admins,email',
             'password'  => 'required|max:191',
              'avatar'   => 'nullable|image',
             'role_id'   => 'required|exists:roles,id',

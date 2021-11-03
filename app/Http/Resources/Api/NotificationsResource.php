@@ -18,7 +18,7 @@ class NotificationsResource extends JsonResource
         return [
             'id'                =>    (string)    $this['id'],
             'title'             =>    (string)    $data["title_".lang()]   ,
-            'body'              =>    (string)    $data["message_" .lang()]   ,
+            'body'              =>    (string)    $data["message_" . lang()]   ,
             'type'              =>    (string)    $data['type'],
             'data'              =>    $data ,
             'time'              =>    date('d M Y h:s A', strtotime($this->created_at)) 

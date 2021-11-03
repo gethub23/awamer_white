@@ -21,9 +21,10 @@ class HomeController extends Controller
         $activeUsers    = User::where(['active' => true])->count() ; 
         $notActiveUsers = User::where(['active' => false])->count() ; 
         $menus          = $this->home() ;
+        $introSiteCards = $this->introSiteCards() ;
         $colores        = ['info' , 'danger' , 'warning' , 'success' , 'primary'];
         
-        return view('admin.dashboard.index' , compact('menus' ,'colores' , 'activeUsers' , 'notActiveUsers'  ,'countryArray' , 'cityArray' ));
+        return view('admin.dashboard.index' , compact('menus' ,'colores' , 'activeUsers' , 'notActiveUsers'  ,'countryArray' , 'cityArray' , 'introSiteCards' ));
     }
 
 

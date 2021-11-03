@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IntroTableSeeder::class);
         $this->call(ImageTableSeeder::class);
         $this->call(SmsTableSeeder::class);
+        // $this->call(TestTableSeeder::class);
     }
 }

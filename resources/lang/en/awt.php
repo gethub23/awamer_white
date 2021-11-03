@@ -500,6 +500,16 @@ return [
 "404 - الصفحة غير موجودة"=>"404 - The page does not exist",
 "الرجوع للرئيسية"=>"Back to the main",
 "صورة خلفية صفحة تسجيل الدخول"=>"Background image",
+"المستخدمين "=>"Users",
+"المستخدمين الغير محظورين"=>"Unplanned users",
+"المستخدمين  المحظورين"=>"Prohibited users",
+"سكشن خدماتنا"=>"Service Suite",
+"اقسام الاسئلة الشائعه"=>"Questions Questions",
+" الاسئلة الشائعه"=>"common questions",
+"احصائيات الموقع التعريفي"=>"Induction Statistics",
+"الدول والمدن"=>"States and cities",
+"المستخديمن"=>"Used",
+"قسم كيف نعمل"=>"How do we work?",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 

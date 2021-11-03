@@ -1190,7 +1190,62 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
 
         /*------------ end Of sms ----------*/
+        
+        /*------------ start Of tests ----------*/
+            Route::get('tests', [
+                'uses'      => 'TestController@index',
+                'as'        => 'tests.index',
+                'title'     => 'التيست',
+                'icon'      => '<i class="feather icon-image"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['tests.create', 'tests.store','tests.edit', 'tests.update', 'tests.delete'  ,'tests.deleteAll' ,]
+            ]);
+
+            # tests store
+            Route::get('tests/create', [
+                'uses'  => 'TestController@create',
+                'as'    => 'tests.create',
+                'title' => ' صفحة اضافة تيست'
+            ]);
+            
+
+            # tests store
+            Route::post('tests/store', [
+                'uses'  => 'TestController@store',
+                'as'    => 'tests.store',
+                'title' => ' اضافة تيست'
+            ]);
+
+            # tests update
+            Route::get('tests/{id}/edit', [
+                'uses'  => 'TestController@edit',
+                'as'    => 'tests.edit',
+                'title' => 'صفحه تحديث تيست'
+            ]);
+
+            # tests update
+            Route::put('tests/{id}', [
+                'uses'  => 'TestController@update',
+                'as'    => 'tests.update',
+                'title' => 'تحديث تيست'
+            ]);
+
+            # tests delete
+            Route::delete('tests/{id}', [
+                'uses'  => 'TestController@destroy',
+                'as'    => 'tests.delete',
+                'title' => 'حذف تيست'
+            ]);
+            #delete all tests
+            Route::post('delete-all-tests', [
+                'uses'  => 'TestController@destroyAll',
+                'as'    => 'tests.deleteAll',
+                'title' => 'حذف مجموعه من التيست'
+            ]);
+        /*------------ end Of tests ----------*/
         #new_routes_here
+                     
                      
                      
                      

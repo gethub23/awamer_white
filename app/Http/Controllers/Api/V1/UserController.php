@@ -68,7 +68,7 @@ class UserController extends Controller
     public function changeNotifyStatue()
     {
         $user = auth()->user() ; 
-        $user->update(['is_notify' => $user->is_notify == 1 ? 0 : 1 ]);
+        $user->update(['is_notify' => !$user->is_notify  ]);
         $msg = $user->is_notify ? __('apis.openNotify') : __('apis.closeNotify') ;
         $this->response('success', $msg, ['status' => $user->is_notify]);
     }

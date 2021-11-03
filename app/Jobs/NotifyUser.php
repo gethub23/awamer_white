@@ -35,7 +35,7 @@ class NotifyUser implements ShouldQueue
             'message_en'    => $request->message,
             'type'          => 'admin_notify' ,
         ];
-        $this->type = $type;
+        $this->type  = $type;
         $this->users = $users;
     }
 

@@ -41,6 +41,29 @@
             @endforeach
         </div>
         <div class="row">
+
+            <h3 class="col-12 d-flex  mb-2">{{awtTrans('احصائيات الموقع التعريفي')}}</h3>
+
+            @foreach($introSiteCards as $key => $menu)
+                @php $color = $colores[array_rand($colores)] @endphp
+                <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="card text-center">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="avatar bg-rgba-{{$color}} p-50 m-0 mb-1">
+                                    <div class="avatar-content">
+                                        <i class="feather {!! $menu['icon'] !!} text-{!! $color !!} font-medium-5"></i>
+                                    </div>
+                                </div>
+                                <h2 class="text-bold-700">{{$menu['count']}}</h2>
+                                <p class="mb-0 line-ellipsis" style="color: #6e6a6a">{{$menu['name']}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+        <div class="row">
             <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
@@ -209,9 +232,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            
-        </div>
+
+        
         
         
 @endsection

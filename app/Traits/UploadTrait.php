@@ -8,7 +8,7 @@ trait UploadTrait
 {
 
 
-    public function uploadAllTyps($file , $directory = 'unknown' , $resize1 = null , $resize2 = null  )
+    public function uploadAllTyps($file , $directory = 'unknown' , $resize1 = 250 , $resize2 = 250  )
     {
         if (!File::isDirectory('storage/images/' . $directory)) {
             File::makeDirectory('storage/images/' . $directory , 0777, true, true);
