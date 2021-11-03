@@ -23,6 +23,7 @@ class CityTableSeeder extends Seeder
             City::create([
                 'name'          =>  ['ar' => $city->name_ar , 'en' => $city->name_en ],
                 'country_id'    =>  1,
+                'created_at'    => \Carbon\Carbon::now()->subMonth(rand(0,8)),
             ]);
         }
     }

@@ -142,6 +142,75 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-end">
+                        <h4 class="card-title">{{awtTrans('الدول والمدن')}}</h4>
+                        <p class="font-medium-5 mb-0"><i class="feather icon-settings text-muted cursor-pointer"></i></p>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body pb-0">
+                            <div id="revenue-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-end">
+                        <h4>{{awtTrans('المستخدمين')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body pt-0">
+                            <div id="session-chart" class="mb-1"></div>
+                            <div class="chart-info d-flex justify-content-between mb-1">
+                                <div class="series-info d-flex align-items-center">
+                                    <i class="feather icon-monitor font-medium-2 text-primary"></i>
+                                    <span class="text-bold-600 mx-50">{{__('site.active_users')}}</span>
+                                </div>
+                                <div class="series-result">
+                                    <span>{{($activeUsers * 100) / ($activeUsers + $notActiveUsers)}}%</span>
+                                </div>
+                            </div>
+                            <div class="chart-info d-flex justify-content-between mb-1">
+                                <div class="series-info d-flex align-items-center">
+                                    <i class="feather icon-tablet font-medium-2 text-warning"></i>
+                                    <span class="text-bold-600 mx-50">{{__('site.not_active_users')}}</span>
+                                </div>
+                                <div class="series-result">
+                                    <span>{{($notActiveUsers * 100) / ($activeUsers + $notActiveUsers)}}%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-end">
+                        <h4 class="mb-0">{{awtTrans('المستخديمن')}}</h4>
+                        <p class="font-medium-5 mb-0"><i class="feather icon-help-circle text-muted cursor-pointer"></i></p>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body px-0 pb-0">
+                            <div id="goal-overview-chart" class="mt-75"></div>
+                            <div class="row text-center mx-0">
+                                <div class="col-6 border-top border-right d-flex align-items-between flex-column py-1">
+                                    <p class="mb-50">{{awtTrans('العملاء النشطين')}}</p>
+                                    <p class="font-large-1 text-bold-700">{{($activeUsers * 100) / ($activeUsers + $notActiveUsers)}} %</p>
+                                </div>
+                                <div class="col-6 border-top d-flex align-items-between flex-column py-1">
+                                    <p class="mb-50">{{awtTrans('العملاء الغير نشطين')}}</p>
+                                    <p class="font-large-1 text-bold-700">{{($notActiveUsers * 100) / ($activeUsers + $notActiveUsers)}} %</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
         </div>
         
         
@@ -149,6 +218,7 @@
 @section('js')
     <script src="{{asset('admin/charts_functions.js')}}"></script>
     <script>
+
         new ApexCharts(
             document.querySelector("#support-tracker-chart"),
             radialBarFunction(['#EA5455'] , ['#7367F0'] , ['Active Users'] , ['{{($activeUsers * 100) / ($activeUsers + $notActiveUsers)}}'])
@@ -163,6 +233,102 @@
         var productChart = new ApexCharts(
             document.querySelector("#product-order-chart"),
             radialBarFunction2(['#7367F0', '#FF9F43'] , [ '#8F80F9', '#FFC085'] , [ (Number('{{$activeUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}'))) , (Number('{{$notActiveUsers}}') * 100 / (Number('{{$activeUsers}}') + Number('{{$notActiveUsers}}')))] , ['Finished', 'Pending'])
+        ).render();
+
+        var sessionChart = new ApexCharts(
+            document.querySelector("#session-chart"),
+            donutFunction([Number('{{($activeUsers * 100) / ($activeUsers + $notActiveUsers)}}') , Number('{{($notActiveUsers * 100) / ($activeUsers + $notActiveUsers)}}')] , ['Active Users', 'Not Active Users'] , ['#7367F0', '#FF9F43'] , ['#A9A2F6', '#ffc085'])
+        ).render();
+
+        var goalChart = new ApexCharts(
+            document.querySelector("#goal-overview-chart"),
+            radialBarFunction3([Number('{{($activeUsers * 100) / ($activeUsers + $notActiveUsers)}}') ,Number('{{($notActiveUsers * 100) / ($activeUsers + $notActiveUsers)}}')])
+        ).render();
+
+
+        var revenueChartoptions = {
+            chart: {
+            height: 270,
+            toolbar: { show: false },
+            type: 'line',
+            },
+            stroke: {
+            curve: 'smooth',
+            dashArray: [0, 8],
+            width: [4, 2],
+            },
+            grid: {
+            borderColor: '#e7e7e7',
+            },
+            legend: {
+            show: false,
+            },
+            colors: ['#f29292', '#b9c3cd'],
+
+            fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                inverseColors: false,
+                gradientToColors: ['#7367F0', '#b9c3cd'],
+                shadeIntensity: 1,
+                type: 'horizontal',
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100, 100, 100]
+            },
+            },
+            markers: {
+            size: 0,
+            hover: {
+                size: 5
+            }
+            },
+            xaxis: {
+            labels: {
+                style: {
+                colors: '#b9c3cd',
+                }
+            },
+            axisTicks: {
+                show: false,
+            },
+            categories: ['1', '2', '3', '4', '5', '6', '7', '8' ,'9','10','11','12'],
+            axisBorder: {
+                show: false,
+            },
+            tickPlacement: 'on',
+            },
+            yaxis: {
+            tickAmount: 5,
+            labels: {
+                style: {
+                color: '#b9c3cd',
+                },
+                formatter: function (val) {
+                return val > 999 ? (val / 1000).toFixed(1) + 'k' : val;
+                }
+            }
+            },
+            tooltip: {
+            x: { show: false }
+            },
+            series: [{
+            name: "{{awtTrans('البلاد')}}",
+            data: @json($countryArray)
+            }
+            ,
+            {
+            name: "{{awtTrans('المدن')}}",
+            data: @json($cityArray)
+            }
+            ],
+
+        }
+
+        var revenueChart = new ApexCharts(
+            document.querySelector("#revenue-chart"),
+            revenueChartoptions
         ).render();
 
     </script>

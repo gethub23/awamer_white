@@ -104,6 +104,7 @@ function radialBarFunction(colors , colors2 , lables ,series){
 
     return supportChartoptions ;
 }
+
 function radialBarFunction2(colors , gradientToColors , series , labels){
 var productChartoptions = {
     chart: {
@@ -162,4 +163,97 @@ var productChartoptions = {
 
   }
   return productChartoptions ;
+}
+
+
+function donutFunction(series , labels , colors ,colors2){
+   var sessionChartoptions = {
+    chart: {
+      type: 'donut',
+      height: 325,
+      toolbar: {
+        show: false
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    series: series,
+    legend: { show: false },
+    comparedResult: [2, -3, 8],
+    labels: labels,
+    stroke: { width: 0 },
+    colors: colors,
+    fill: {
+      type: 'gradient',
+      gradient: {
+        gradientToColors: colors2
+      }
+    }
+  }
+
+  return sessionChartoptions
+}
+
+function radialBarFunction3(series){
+    var goalChartoptions = {
+      chart: {
+      height: 250,
+      type: 'radialBar',
+      sparkline: {
+          enabled: true,
+      },
+      dropShadow: {
+          enabled: true,
+          blur: 3,
+          left: 1,
+          top: 1,
+          opacity: 0.1
+      },
+      },
+      colors: ['#28C76F'],
+      plotOptions: {
+      radialBar: {
+          size: 110,
+          startAngle: -150,
+          endAngle: 150,
+          hollow: {
+          size: '77%',
+          },
+          track: {
+          background: '#b9c3cd',
+          strokeWidth: '50%',
+          },
+          dataLabels: {
+          name: {
+              show: false
+          },
+          value: {
+              offsetY: 18,
+              color: '#99a2ac',
+              fontSize: '4rem'
+          }
+          }
+      }
+      },
+      fill: {
+      type: 'gradient',
+      gradient: {
+          shade: 'dark',
+          type: 'horizontal',
+          shadeIntensity: 0.5,
+          gradientToColors: ['#00b5b5'],
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100]
+      },
+      },
+      series: series,
+      stroke: {
+      lineCap: 'round'
+      },
+
+  }
+  return goalChartoptions ;
 }
