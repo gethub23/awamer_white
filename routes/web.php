@@ -1244,7 +1244,62 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من الاقسام'
             ]);
         /*------------ end Of categories ----------*/
+        
+        /*------------ start Of coupons ----------*/
+            Route::get('coupons', [
+                'uses'      => 'CouponController@index',
+                'as'        => 'coupons.index',
+                'title'     => 'كوبونات الخصم',
+                'icon'      => '<i class="feather icon-image"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,]
+            ]);
+
+            # coupons store
+            Route::get('coupons/create', [
+                'uses'  => 'CouponController@create',
+                'as'    => 'coupons.create',
+                'title' => ' صفحة اضافة كوبون خصم'
+            ]);
+            
+
+            # coupons store
+            Route::post('coupons/store', [
+                'uses'  => 'CouponController@store',
+                'as'    => 'coupons.store',
+                'title' => ' اضافة كوبون خصم'
+            ]);
+
+            # coupons update
+            Route::get('coupons/{id}/edit', [
+                'uses'  => 'CouponController@edit',
+                'as'    => 'coupons.edit',
+                'title' => 'صفحه تحديث كوبون خصم'
+            ]);
+
+            # coupons update
+            Route::put('coupons/{id}', [
+                'uses'  => 'CouponController@update',
+                'as'    => 'coupons.update',
+                'title' => 'تحديث كوبون خصم'
+            ]);
+
+            # coupons delete
+            Route::delete('coupons/{id}', [
+                'uses'  => 'CouponController@destroy',
+                'as'    => 'coupons.delete',
+                'title' => 'حذف كوبون خصم'
+            ]);
+            #delete all coupons
+            Route::post('delete-all-coupons', [
+                'uses'  => 'CouponController@destroyAll',
+                'as'    => 'coupons.deleteAll',
+                'title' => 'حذف مجموعه من كوبونات الخصم'
+            ]);
+        /*------------ end Of coupons ----------*/
         #new_routes_here
+                     
                      
                      
                      
