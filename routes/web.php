@@ -1253,7 +1253,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'icon'      => '<i class="feather icon-image"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,]
+                'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,'coupons.renew',]
             ]);
 
             # coupons store
@@ -1283,6 +1283,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'  => 'CouponController@update',
                 'as'    => 'coupons.update',
                 'title' => 'تحديث كوبون خصم'
+            ]);
+
+            # renew coupon
+            Route::post('coupons/renew', [
+                'uses'  => 'CouponController@renew',
+                'as'    => 'coupons.renew',
+                'title' => 'تحديث حالة كوبون خصم'
             ]);
 
             # coupons delete

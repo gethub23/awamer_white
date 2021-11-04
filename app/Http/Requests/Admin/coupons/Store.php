@@ -15,7 +15,7 @@ class store extends FormRequest
     {
         if($this->getMethod() === 'PUT'){
             $rules = [
-                'identity'              => 'required|unique:coupons,identity',
+                'identity'              => 'required|unique:coupons,identity,'.$this->id,
                 'usage'                 => 'required|numeric',
                 'discount'              => 'required|numeric',
                 'max_discount'          => 'required|numeric',
