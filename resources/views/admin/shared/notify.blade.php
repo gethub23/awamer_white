@@ -21,12 +21,12 @@
                 processData: false,
                 contentType: false,
                 beforeSend: function(){
-                    $(".submit_button").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').attr('disable',true)
+                    $(".send-notify-button").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').attr('disable',true)
                 },
                 success: function(response){
                     $(".text-danger").remove()
                     $('.store input').removeClass('border-danger')
-                    $(".submit_button").html("{{awtTrans('ارسال')}}").attr('disable',false)
+                    $(".send-notify-button").html("{{awtTrans('ارسال')}}").attr('disable',false)
                     Swal.fire({
                                 position: 'top-start',
                                 type: 'success',
@@ -41,7 +41,7 @@
                     }, 1000);
                 },
                 error: function (xhr) {
-                    $(".submit_button").html("{{awtTrans('ارسال')}}").attr('disable',false)
+                    $(".send-notify-button").html("{{awtTrans('ارسال')}}").attr('disable',false)
                     $(".text-danger").remove()
                     $('.store input').removeClass('border-danger')
 

@@ -11,16 +11,43 @@
                     @csrf
                     <input type="hidden" name="id" class="notify_id">
                     <input type="hidden" name="notify" class="notify">
-                    <div class="col-md-12 col-12">
-                        <div class="form-group">
-                            <label for="first-name-column">{{awtTrans('النص الكتابي للأشعار')}}</label>
-                            <div class="controls">
-                                <textarea name="message" class="form-control" cols="30" rows="10"></textarea>
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <div class="form-group">
+                                <label for="first-name-column">{{awtTrans('عنوان الاشعار بالعربية')}}</label>
+                                <div class="controls">
+                                    <input type="text" name="title_ar" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-6">
+                            <div class="form-group">
+                                <label for="first-name-column">{{awtTrans('عنوان الاشعار بالانجليزية')}}</label>
+                                <div class="controls">
+                                    <input type="text" name="title_en" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-12">
+                            <div class="form-group">
+                                <label for="first-name-column">{{awtTrans('الرسالة بالعربية')}}</label>
+                                <div class="controls">
+                                    <textarea name="message_ar" class="form-control" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-12">
+                            <div class="form-group">
+                                <label for="first-name-column">{{awtTrans('الرسالة بالانجليزية')}}</label>
+                                <div class="controls">
+                                    <textarea name="message_en" class="form-control" cols="30" rows="10"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >{{awtTrans('ارسال')}}</button>
+                        <button type="submit" class="btn btn-primary send-notify-button" >{{awtTrans('ارسال')}}</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">{{awtTrans('الفاء')}}</button>
                     </div>
                 </form>
@@ -50,7 +77,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >{{awtTrans('ارسال')}}</button>
+                        <button type="submit" class="btn btn-primary send-notify-button" >{{awtTrans('ارسال')}}</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">{{awtTrans('الفاء')}}</button>
                     </div>
                 </form>

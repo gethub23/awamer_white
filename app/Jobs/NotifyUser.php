@@ -29,10 +29,10 @@ class NotifyUser implements ShouldQueue
             'sender'        => auth('admin')->id(),
             'sender_name'   => auth('admin')->user()->name,
             'sender_avatar' => auth('admin')->user()->avatar,
-            'title_ar'      => 'تنبيه اداري',
-            'title_en'      => 'Administrative Notify',
-            'message_ar'    => $request->message,
-            'message_en'    => $request->message,
+            'title_ar'      => $request->title_ar ,
+            'title_en'      => $request->title_en ,
+            'message_ar'    => $request->message_ar,
+            'message_en'    => $request->message_en,
             'type'          => 'admin_notify' ,
         ];
         $this->type  = $type;

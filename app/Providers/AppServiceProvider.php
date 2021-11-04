@@ -7,12 +7,14 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Intro;
 use App\Models\Social;
+use App\Models\Category;
 use App\Models\IntroSlider;
 use App\Models\IntroHowWork;
 use App\Observers\UserObserver;
 use App\Observers\ImageObserver;
 use App\Observers\IntroObserver;
 use App\Observers\SocialObserver;
+use App\Observers\CategoryObserver;
 use App\Observers\IntroSliderObserver;
 use App\Observers\IntroHowWorkObserver;
 use Illuminate\Support\ServiceProvider;
@@ -41,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
         IntroHowWork   ::observe(IntroHowWorkObserver::class);
         IntroSlider    ::observe(IntroSliderObserver::class);
         Image          ::observe(ImageObserver::class);
+        Category       ::observe(CategoryObserver::class);
          view()->composer('*', function ($view) 
             {
                 

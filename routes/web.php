@@ -1191,60 +1191,61 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
         /*------------ end Of sms ----------*/
         
-        /*------------ start Of tests ----------*/
-            Route::get('tests', [
-                'uses'      => 'TestController@index',
-                'as'        => 'tests.index',
-                'title'     => 'التيست',
+        /*------------ start Of categories ----------*/
+            Route::get('categories-show/{id?}', [
+                'uses'      => 'CategoryController@index',
+                'as'        => 'categories.index',
+                'title'     => 'الاقسام',
                 'icon'      => '<i class="feather icon-image"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => ['tests.create', 'tests.store','tests.edit', 'tests.update', 'tests.delete'  ,'tests.deleteAll' ,]
+                'child'     => ['categories.create', 'categories.store','categories.edit', 'categories.update', 'categories.delete'  ,'categories.deleteAll' ,]
             ]);
 
-            # tests store
-            Route::get('tests/create', [
-                'uses'  => 'TestController@create',
-                'as'    => 'tests.create',
-                'title' => ' صفحة اضافة تيست'
+            # categories store
+            Route::get('categories/create/{id?}', [
+                'uses'  => 'CategoryController@create',
+                'as'    => 'categories.create',
+                'title' => ' صفحة اضافة قسم'
             ]);
             
 
-            # tests store
-            Route::post('tests/store', [
-                'uses'  => 'TestController@store',
-                'as'    => 'tests.store',
-                'title' => ' اضافة تيست'
+            # categories store
+            Route::post('categories/store', [
+                'uses'  => 'CategoryController@store',
+                'as'    => 'categories.store',
+                'title' => ' اضافة قسم'
             ]);
 
-            # tests update
-            Route::get('tests/{id}/edit', [
-                'uses'  => 'TestController@edit',
-                'as'    => 'tests.edit',
-                'title' => 'صفحه تحديث تيست'
+            # categories update
+            Route::get('categories/{id}/edit', [
+                'uses'  => 'CategoryController@edit',
+                'as'    => 'categories.edit',
+                'title' => 'صفحه تحديث قسم'
             ]);
 
-            # tests update
-            Route::put('tests/{id}', [
-                'uses'  => 'TestController@update',
-                'as'    => 'tests.update',
-                'title' => 'تحديث تيست'
+            # categories update
+            Route::put('categories/{id}', [
+                'uses'  => 'CategoryController@update',
+                'as'    => 'categories.update',
+                'title' => 'تحديث قسم'
             ]);
 
-            # tests delete
-            Route::delete('tests/{id}', [
-                'uses'  => 'TestController@destroy',
-                'as'    => 'tests.delete',
-                'title' => 'حذف تيست'
+            # categories delete
+            Route::delete('categories/{id}', [
+                'uses'  => 'CategoryController@destroy',
+                'as'    => 'categories.delete',
+                'title' => 'حذف قسم'
             ]);
-            #delete all tests
-            Route::post('delete-all-tests', [
-                'uses'  => 'TestController@destroyAll',
-                'as'    => 'tests.deleteAll',
-                'title' => 'حذف مجموعه من التيست'
+            #delete all categories
+            Route::post('delete-all-categories', [
+                'uses'  => 'CategoryController@destroyAll',
+                'as'    => 'categories.deleteAll',
+                'title' => 'حذف مجموعه من الاقسام'
             ]);
-        /*------------ end Of tests ----------*/
+        /*------------ end Of categories ----------*/
         #new_routes_here
+                     
                      
                      
                      
