@@ -1,0 +1,504 @@
+/*================================================================================
+	Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+body {
+	font-family: 'Cairo', sans-serif !important;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+	border: 1px solid transparent;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #222223;
+}
+
+div.dt-button-collection {
+	right: auto !important;
+}
+
+ol.breadcrumb li {
+	font-size: 18px;
+}
+
+table#DataTables_Table_0 thead tr th {
+	text-align: center;
+}
+
+table#DataTables_Table_0 tbody tr td {
+	text-align: center;
+}
+
+table#DataTables_Table_0 tbody tr td img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+
+.imagesUploadBlock {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	margin: 20px 0;
+}
+
+.uploadImg {
+	display: inline-block;
+	width: 140px;
+	height: 140px;
+	line-height: 110px;
+	text-align: center;
+	position: relative;
+	border-radius: 15px;
+	margin: 5px;
+	border: 3px dotted #e4e4e4;
+}
+
+.uploadImg:before {
+	content: '';
+	position: absolute;
+	width: 140px;
+	height: 140px;
+	border-radius: 15px;
+	right: 0;
+}
+
+.uploadImg span {
+	position: absolute;
+	right: 0;
+	left: 0;
+	margin: auto;
+	z-index: 9;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 22px;
+}
+
+.uploadImg span i {
+	color: #e4e4e4
+}
+
+.uploadImg i {
+	font-size: 20px;
+	color: #e4e4e4;
+}
+
+.uploadImg input {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+	display: none
+}
+
+.uploadedBlock {
+	bottom: 0;
+	position: absolute;
+	right: 0;
+	left: 0;
+	margin: auto;
+	top: 0;
+	z-index: 9;
+}
+
+.uploadedBlock img {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border-radius: 15px;
+}
+
+.uploadedBlock .close {
+	position: absolute;
+	top: 0;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.33) !important;
+	font-size: 18px;
+	border-radius: 15px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	opacity: 1;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.uploadedBlock .close i {
+	color: #292929;
+	font-size: 24px;
+}
+
+.imgMontg {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 25px;
+}
+
+.dropBox .textCenter {
+	text-align: center;
+	display: inline-block;
+}
+
+.dropBox .uploadImg {
+	width: 105px;
+	height: 105px;
+	border: 3px dotted #464545;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dropBox .uploadImg span i {
+	color: #464545;
+}
+
+.dropBox .uploadedBlock {
+	width: 95px;
+	height: 95px;
+}
+
+.dropBox .imagesUploadBlock {
+	margin: 10px 0;
+}
+
+.imgMontg .clickAdd {
+	width: 111px;
+	height: 111px;
+	padding: 0;
+	background: transparent;
+	color: #518dfc;
+	font-size: 25px;
+	margin: 18px 8px;
+	display: inline-block;
+	border: 3px dotted #518dfc;
+	border-radius: 15px;
+}
+
+.loader {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 99999;
+}
+
+.loader-blue-grey.folding-cube div:before {
+	background-color: #ff7e39 !important;
+}
+
+.loadPage {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.badge.badge-border {
+	border-width: 1px !important;
+}
+
+.role-title label {
+	margin: 0;
+}
+
+.role-title {
+	background-color: #ebebeb;
+	padding: 10px;
+}
+
+.list-unstyled {
+	border: 1px solid #DDD;
+	border-top: 0;
+	padding: 10px;
+	margin: 0 !important;
+}
+
+/* .add-loader {
+	display: none;
+} */
+
+.authSection{
+	padding: 100px 0;
+	background: #000;
+}
+
+.authSection .authCard{
+	margin: 0;
+	width: 50%;
+	background: #31313169;
+}
+.authSection .authCard .card-header{
+	background: transparent;
+}
+.authSection .authCard .logoImg{
+	width: 250px;
+}
+.authSection .authCard .label{
+	color: #fff;
+	margin-bottom: 20px;
+}
+.authSection .authCard .controls input{
+	background: #00000070;
+	border: 0;
+	height: 45px;
+	color: #929191;
+}
+
+.authSection .authCard .form-group.issue .help-block, .authSection .authCard .form-group.issue .help-inline {
+	margin-top: 10px;
+}
+
+.authSection .authCard button {
+	border-color: #f19433 !important;
+	background-color: #b56c20 !important;
+	margin: 45px 0 20px;
+}
+
+nav.navbar-dark {
+	background: #000;
+}
+
+.homeCard{
+	background-color: #0f0f0f;
+	color: #fff;
+	box-shadow: 0 1px 15px 1px rgba(189 ,135 ,77 , 0.30);
+}
+.homeCard h3{
+	color: #fff;
+}
+
+.main-menu .main-menu-content {
+	overflow-y: auto;
+	max-height: calc(100vh - 175px);
+}
+li.breadcrumb-item a , .breadcrumb-item+.breadcrumb-item::before{
+	color: #fff;
+}
+.breadcrumb-item.active {
+	color: #f19433;
+}
+
+.mainCard .card-header {
+	background-color: #0f0f0f;
+}
+
+.mainCard .card-header .heading-elements a, .mainCard .card-header .heading-elements-toggle a ,
+.mainCard .card-header .card-title {
+	color: #fff;
+}
+
+.mainCard div.dt-buttons a {
+	border-radius: 5px !important;
+	margin: 0 5px;
+	background: #656565;
+	border-color: #545454;
+}
+
+.mainCard thead {
+	background: #313131;
+	color: #fff;
+}
+
+.pagination .page-link {
+	margin: 0 2px;
+	border-radius: 5px !important;
+}
+
+.page-item.active .page-link {
+	background-color: #f19433;
+	border-color: #000000;
+}
+.table th, .table td {
+	vertical-align: middle;
+}
+
+table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable td:last-child {
+	border-right-width: 1px;
+}
+
+.badge.border-primary.primary.badge-border.edit {
+	border-color: #134cda !important;
+	color: #134cda !important;
+}
+
+.badge.border-primary.primary.badge-border.showButton {
+	border-color: #7f5ee0 !important;
+	color: #7f5ee0 !important;
+}
+
+.modal .modal-header {
+	padding: 20px 25px;
+}
+.modal .modal-header , .modal .modal-content{
+	background: #292929;
+}
+.modal .modal-title {
+	color: #fff;
+}
+.modal .form-body{
+	background: #fff;
+}
+
+.modal .modal-body {
+	padding: 2rem;
+	background: #fff;
+}
+
+.modal form .form-group h5 {
+	margin-bottom: 15px;
+	color: #2d2d2d;
+}
+.modal form .form-control {
+	border: 1px solid #8c8c8c;
+	color: #505050;
+	height: 45px;
+}
+.modal .modal-footer {
+	background: #fff;
+}
+
+.modal .modal-footer .btn-primary , .saveFormBtn {
+	border-color: #e48a2c !important;
+	background-color: #e48a2c !important;
+	min-width: 100px;
+}
+
+.modal .modal-footer .btn-primary:hover , .modal .modal-footer .btn-primary:focus, .modal .modal-footer .btn-primary:active ,
+.saveFormBtn:hover  , .saveFormBtn:focus , .saveFormBtn:active {
+	border-color: #292929 !important;
+	background-color: #292929 !important;
+}
+
+.modal .modal-footer button.btn.btn-default {
+	background: #929292;
+	color: #fff;
+	min-width: 100px;
+}
+
+.modal .modal-footer .btn-danger {
+	border-color: #f00 !important;
+	background-color: #f00 !important;
+	min-width: 100px;
+}
+
+.form-group.issue .help-block, .form-group.issue .help-inline , .modal .text-danger {
+	color: #f00 !important;
+}
+
+.content-header-right.col-md-6.col-12 {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.permissionCard .role-title {
+	background: #313131;
+}
+.permissionCard .role-title form label{
+	color: #fff !important;
+}
+
+.checkedAllCard .selectP{
+	margin-bottom: 0;
+	color: #313131;
+}
+
+.checkedAllCard form .form-control {
+	border: 1px solid #8c8c8c;
+	color: #505050;
+	height: 45px;
+}
+.login_lang{
+	display: flex;
+	flex-direction: row-reverse;
+	padding: 12px;
+	background: black;
+}
+.login_lang a{
+	color: #fff;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.login_lang a:hover{
+	color: #e48a2c;
+}
+
+.nav.nav-tabs .nav-item .nav-link.active {
+	background-color: #313131;
+	color: #fff;
+}
+.nav-tabs .nav-link {
+	color: #313131;
+}
+
+form label {
+	color: #2d2d2d;
+	width: 100%;
+}
+form .form-control {
+	border: 1px solid #8c8c8c;
+	color: #505050;
+	height: 45px;
+}
+.card {
+	margin-bottom: 5px;
+}
+
+.modal form textarea.form-control {
+	resize: none;
+	margin-bottom: 25px;
+	height: 100px !important;
+}
+.modal .nav {
+	margin: 20px 10px;
+}
+
+@media(max-width: 767px) {
+
+	.authSection .authCard {
+		width: 85%;
+	}
+	.authSection .authCard .logoImg {
+		width: 160px;
+	}
+	.authSection .authCard .label {
+		font-size: 14px;
+	}
+	.authSection .authCard button {
+		font-size: 14px;
+	}
+}
+
+textarea {
+	height: 150px !important;
+  }
+
+@media(min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media(min-width: 992px) and (max-width: 1199px) {
+
+}
