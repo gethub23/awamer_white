@@ -46,10 +46,14 @@ class Notify implements ShouldQueue
      */
     public function handle()
     {
-        // dd($this->users->tokens) ; 
-        $this->sendNotification($this->users , $this->data) ;
+        $tokens = [];
+        foreach ($this->users as $user) {
+            foreach ($user->devices as $device) {
+               $tokens[] = $device->device_id ; 
+            }
+        }
+        
+        $this->sendNotification($tokens , $this->data) ;
         Notification::send($this->users, new NotifyUser($this->data));
-
-        // $user->notify(new Notify($this->data));
     }
 }
