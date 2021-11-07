@@ -1,23 +1,26 @@
 <?php
 
 namespace App\Traits;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use FCM;
 use App\Models\UserToken ;
+use App\Models\SiteSetting;
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
-use FCM;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 trait  Firebase
 {
-    public function sendNotification($user , $data)
+    public function sendNotification($tokens , $data)
     {
-        $firebaseToken = UserToken::where('user_id' , $user->id)->pluck('device_id')->all();
-        $SERVER_API_KEY = 'AAAAVYoWgDU:APA91bEU9m3M7z5TeNAlKqwl2sI5XU78yNRDCNPt95M2RDjfZG9O5ZGxrH_wcqIClEDY3TWgyMOp9vH56O5ilbm2vYp-8tIN_8dGvnbtea4s5hMlXYyCQZR2h0kM07l3pXB9iiZbgz_q';
+
+        // $firebaseToken = UserToken::where('user_id' , $user->id)->pluck('device_id')->all();
+        $SERVER_API_KEY = SiteSetting::where('key' , 'firebase_key')->first()->value ;
         $data = [
-            "registration_ids" => $firebaseToken,
+            "registration_ids" => $tokens,
             "notification" => [
-                "title" => $data['title_'.$user->lang],
-                "body"  => $data['message_'.$user->lang],
+                "title" => $data['title_'.lang()],
+                "body"  => $data['message_'.lang()],
                 'sound' => true,
             ],
             'data'  => $data

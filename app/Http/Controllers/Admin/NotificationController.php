@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Jobs\Notify;
 use App\Models\User;
+use App\Jobs\SendSms;
+use App\Models\Admin;
+use App\Jobs\AdminNotify;
+use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,19 +24,28 @@ class NotificationController extends Controller
         if ($request->user_type == 'all_users' ) {
             $rows = User::with(['devices'])->get() ; 
         }else if($request->user_type == 'active_users'){
-            $rows = User::with('devices')->where('active' , true)->get() ; 
+            $rows = User::where('active' , true)->get() ; 
         }else if($request->user_type == 'not_active_users'){
-            $rows = User::with('devices')->where('active' , false)->get() ; 
+            $rows = User::where('active' , false)->get() ; 
         }else if($request->user_type == 'blocked_users'){
-            $rows = User::with('devices')->where('block' , true)->get() ; 
+            $rows = User::where('block' , true)->get() ; 
         }else if($request->user_type == 'not_blocked_users'){
-            $rows = User::with('devices')->where('block' , flase)->get() ; 
+            $rows = User::where('block' , false)->get() ; 
         }else if($request->user_type == 'admins'){
             $rows = Admin::get() ; 
         }
-        // dd($rows);
+        if ($request->type == 'notify') {
+            if ($request->user_type == 'admins') {
+                dispatch(new AdminNotify($rows, $request));
+            }else{
+                dispatch(new Notify($rows, $request));
+            }
+        }else if ($request->type == 'email') {
+            dispatch(new SendEmailJob($rows->pluck('email'), $request));
+        }else{
+            dispatch(new SendSms($rows->pluck('phone')->toArray() , $request->message));
+        }
 
-        dispatch(new Notify($rows, $request));
-        
+        return response()->json() ; 
     }
 }

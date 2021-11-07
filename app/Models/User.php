@@ -61,4 +61,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserToken::class);
     }
 
+    public function scopeWithDevices($builder)
+    {
+        $builder
+            ->join('user_tokens', 'users.id', '=', 'user_tokens.user_id')
+            ->select('users.id as user_id', 'user_tokens.device_id', 'user_tokens.device_type');
+    }
+
+
 }

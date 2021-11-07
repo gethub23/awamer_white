@@ -28,6 +28,30 @@
                           {{awtTrans('عن التطبيق')}}
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-privacy" data-toggle="pill" href="#account-vertical-privacy" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('سياسة الخصوصية')}}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-smtp" data-toggle="pill" href="#account-vertical-smtp" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('بيانات الايميل')}}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('بيانات الاشعارات')}}
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link d-flex py-75" id="account-pill-api" data-toggle="pill" href="#account-vertical-api" aria-expanded="false">
+                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          {{awtTrans('بيانات api')}}
+                      </a>
+                  </li>
 
               </ul>
           </div>
@@ -215,6 +239,175 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                      </div>
+                                    </div>
+                                </form>
+                              </div>
+                              
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-privacy" aria-labelledby="account-pill-privacy" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('سياسة خصوصية  التطبيق بالعربية')}}</label>
+                                                    <textarea class="form-control" name="privacy_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالعربية')}}">{{$data['privacy_ar']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('سياسة خصوصية  التطبيق بالانجليزية')}}</label>
+                                                    <textarea class="form-control" name="privacy_en" id="" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالانجليزية')}}">{{$data['privacy_en']}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                      </div>
+                                    </div>
+                                </form>
+                              </div>
+                              
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-smtp" aria-labelledby="account-pill-smtp" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('اسم المستخدم')}}</label>
+                                                    <input type="text" class="form-control" name="smtp_user_name" id="account-name" placeholder="{{awtTrans('اسم  المستخدم ')}}" value="{{$data['smtp_user_name']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('كلمة السر')}}</label>
+                                                    <input type="password" class="form-control" name="smtp_password" id="account-name" placeholder="{{awtTrans('كلمة السر')}}" value="{{$data['smtp_password']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('الايميل المرسل')}}</label>
+                                                    <input type="text" class="form-control" name="smtp_mail_from" id="account-name" placeholder="{{awtTrans('الايميل المرسل')}}" value="{{$data['smtp_mail_from']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('اسم المرسل')}}</label>
+                                                    <input type="text" class="form-control" name="smtp_sender_name" id="account-name" placeholder="{{awtTrans('اسم  المرسل ')}}" value="{{$data['smtp_sender_name']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('اسم الهوست')}}</label>
+                                                    <input type="text" class="form-control" name="smtp_host" id="account-name" placeholder="{{awtTrans('اسم  الهوست ')}}" value="{{$data['smtp_host']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('نوع التشفير')}}</label>
+                                                    <input type="text" class="form-control" name="smtp_encryption" id="account-name" placeholder="{{awtTrans('نوع التشفير')}}" value="{{$data['smtp_encryption']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('رقم البورت')}}</label>
+                                                    <input type="number" class="form-control" name="smtp_port" id="account-name" placeholder="{{awtTrans('رقم البورت')}}" value="{{$data['smtp_port']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                      </div>
+                                    </div>
+                                </form>
+                              </div>
+
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-notifications" aria-labelledby="account-pill-notifications" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('server key')}}</label>
+                                                    <input type="text" class="form-control" name="firebase_key" id="account-name" placeholder="{{awtTrans('server key')}}" value="{{$data['firebase_key']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('sender id')}}</label>
+                                                    <input type="text" class="form-control" name="firebase_sender_id" id="account-name" placeholder="{{awtTrans('sender id')}}" value="{{$data['firebase_sender_id']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                          <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
+                                          <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                      </div>
+                                    </div>
+                                </form>
+                              </div>
+
+                              <div role="tabpanel" class="tab-pane" id="account-vertical-api" aria-labelledby="account-pill-api" aria-expanded="false">
+                                <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
+                                    @method('put')
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('server key')}}</label>
+                                                    <input type="text" class="form-control" name="firebase_key" id="account-name" placeholder="{{awtTrans('server key')}}" value="{{$data['firebase_key']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('sender id')}}</label>
+                                                    <input type="text" class="form-control" name="firebase_sender_id" id="account-name" placeholder="{{awtTrans('sender id')}}" value="{{$data['firebase_sender_id']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="col-12 d-flex justify-content-center mt-3">
                                           <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
                                           <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>

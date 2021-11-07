@@ -4,25 +4,27 @@ namespace App\Jobs;
 
 use App\Models\User;
 use App\Libraries\Sms;
+use App\Traits\SmsTrait;
 use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class SendSms implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels , SmsTrait;
 
-    public $user;
+    public $phones , $message;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($phones , $message)
     {
-        $this->user = $user;
+        $this->phones = $phones;
+        $this->message = $message;
     }
 
     /**
@@ -32,6 +34,6 @@ class SendSms implements ShouldQueue
      */
     public function handle()
     {
-        Sms::send_sms_yamamah($this->user);
+        $this->sendSms($this->phones , $this->message);
     }
 }
