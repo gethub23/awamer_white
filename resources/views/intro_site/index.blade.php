@@ -26,6 +26,9 @@
     {{-- start parteners section --}}
         @include('intro_site.parts.contact_us')
     {{-- end parteners section --}}
+
+    {!! $settings['live_chat'] !!}
+
 </div>
 
 <!-- end body-content --> 

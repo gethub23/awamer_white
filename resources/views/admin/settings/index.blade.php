@@ -1,5 +1,4 @@
 @extends('admin.layout.master')
-
 @section('content')
   
 <div class="content-body">
@@ -198,7 +197,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('الشروط والاحكام بالعربية')}}</label>
-                                                    <textarea class="form-control" name="terms_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_ar']}}</textarea>
+                                                    <textarea class="form-control" name="terms_ar" id="terms_ar_editor" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_ar']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,7 +205,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('الشروط والاحكام  بالانجليزية')}}</label>
-                                                    <textarea class="form-control" name="terms_en" id="" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_en']}}</textarea>
+                                                    <textarea class="form-control" name="terms_en" id="terms_en_editor" cols="30" rows="10" placeholder="{{awtTrans('الشروط والاحكام')}}">{{$data['terms_en']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,7 +226,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('عن التطبيق بالعربية')}}</label>
-                                                    <textarea class="form-control" name="about_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالعربية')}}">{{$data['about_ar']}}</textarea>
+                                                    <textarea class="form-control" name="about_ar" id="about_ar_editor" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالعربية')}}">{{$data['about_ar']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +234,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('عن التطبيق بالانجليزية')}}</label>
-                                                    <textarea class="form-control" name="about_en" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالانجليزية')}}">{{$data['about_en']}}</textarea>
+                                                    <textarea class="form-control" name="about_en" id="about_en_editor" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق بالانجليزية')}}">{{$data['about_en']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,7 +255,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('سياسة خصوصية  التطبيق بالعربية')}}</label>
-                                                    <textarea class="form-control" name="privacy_ar" id="" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالعربية')}}">{{$data['privacy_ar']}}</textarea>
+                                                    <textarea class="form-control" name="privacy_ar" id="privacy_ar_editor" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالعربية')}}">{{$data['privacy_ar']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +263,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label for="account-name">{{awtTrans('سياسة خصوصية  التطبيق بالانجليزية')}}</label>
-                                                    <textarea class="form-control" name="privacy_en" id="" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالانجليزية')}}">{{$data['privacy_en']}}</textarea>
+                                                    <textarea class="form-control" name="privacy_en" id="privacy_en_editor" cols="30" rows="10" placeholder="{{awtTrans('سياسة خصوصية  التطبيق بالانجليزية')}}">{{$data['privacy_en']}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -438,6 +437,26 @@
 
 @endsection
 @section('js')
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+            CKEDITOR.replace( 'terms_ar_editor' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'terms_en_editor' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'privacy_ar_editor' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'privacy_en_editor' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'about_ar_editor' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'about_en_editor' );
+    </script>
+
   {{-- show selected image script --}}
     @include('admin.shared.addImage')
   {{-- show selected image script --}}

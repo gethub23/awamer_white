@@ -1200,6 +1200,9 @@ return [
     "server key"=>"مفتاح الخادم",
     "sender id"=>"هوية المرسل",
     "sender id"=>"هوية المرسل",
+"التاريخ"=>"التاريخ",
+"التاريخ "=>"التاريخ",
+"حالة العميل"=>"حالة العميل",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 

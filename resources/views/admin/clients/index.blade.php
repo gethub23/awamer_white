@@ -28,8 +28,7 @@
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('البريد الالكتروني')}}</th>
                 <th>{{awtTrans('رقم الهاتف')}}</th>
-                <th>{{awtTrans('حالة الحظر')}}</th>
-                <th>{{awtTrans('التفعيل')}}</th>
+                <th>{{awtTrans('حالة العميل')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </x-slot>
             <x-slot name="tableBody">
@@ -55,17 +54,6 @@
                                 @else
                                     <span class="btn btn-sm round btn-outline-success">
                                     {{awtTrans('غير محظور')}}  <i class="la la-check font-medium-2"></i>
-                                </span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($row->active)
-                                    <span class="btn btn-sm round btn-outline-success">
-                                    {{awtTrans('مفعل')}}  <i class="la la-close font-medium-2"></i>
-                                </span>
-                                @else
-                                    <span class="btn btn-sm round btn-outline-danger">
-                                    {{awtTrans('غير مفعل')}}  <i class="la la-check font-medium-2"></i>
                                 </span>
                                 @endif
                             </td>
