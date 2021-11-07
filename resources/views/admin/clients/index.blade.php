@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+    @include('admin.shared.datatables.date-search')
     {{-- table --}}
         <x-admin.table  addbutton="{{route('admin.clients.create')}}" deletebutton="{{route('admin.clients.deleteAll')}}" extrabuttons="true" >
             <x-slot name="extrabuttonsdiv">
@@ -22,6 +23,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('الصورة')}}</th>
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('البريد الالكتروني')}}</th>
@@ -40,6 +42,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
+                            <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                             <td><img src="{{asset($row->avatar)}}" width="50px" height="50px" alt=""></td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->email}}</td>
@@ -100,7 +103,6 @@
             "use strict"
 
             $('#DataTables_Table_0').DataTable().destroy();
-
             var dataListView = $("#DataTables_Table_0").DataTable({
                 responsive: true,
                 processing: true,
@@ -110,6 +112,7 @@
                 },
                 columns: [
                     {data: 'id'       , name: 'id'},
+                    {data: 'created_at' , name: 'created_at'},
                     {data: 'image'    , name: 'image'},
                     {data: 'name'     , name: 'name'},
                     {data: 'email'    , name: 'email'},
@@ -137,6 +140,7 @@
                 },
                 order: [[1, "asc"]],
                 bInfo: false,
+                searching : true,
                 pageLength: 4,
                 buttons: [
                     {
@@ -164,8 +168,6 @@
                 }, 50);
              });
             });
-
-
     </script>
     @endif
     {{-- delete all script --}}

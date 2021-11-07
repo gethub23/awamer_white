@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+    @include('admin.shared.datatables.date-search')
     {{-- table --}}
         <x-admin.table  addbutton="{{route('admin.fqs.create')}}" deletebutton="{{route('admin.fqs.deleteAll')}}">
             <x-slot name="tableHead">
@@ -18,6 +19,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('السؤال')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </x-slot>
@@ -30,6 +32,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->question}}</td>
                         <td class="product-action">
                             <span class="action-edit text-primary"><a href="{{route('admin.fqs.edit' , ['id' => $row->id])}}"><i class="feather icon-edit"></i></a></span>

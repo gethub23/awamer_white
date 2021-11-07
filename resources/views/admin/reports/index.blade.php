@@ -9,6 +9,7 @@
 @endsection
     
 @section('content')
+    @include('admin.shared.datatables.date-search')
     {{-- table --}}
         <x-admin.table   deletebutton="{{route('admin.reports.deleteAll')}}">
             <x-slot name="tableHead">
@@ -18,6 +19,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('*')}}</th>
                 <th>{{awtTrans('الرابط')}}</th>
                 <th>{{awtTrans('ال ip')}}</th>
@@ -32,6 +34,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->subject}}</td>
                         <td><a href="{{$row->url}}"> {{awtTrans('اضغط هنا')}} </a></td>
                         <td>{{$row->ip}}</td>

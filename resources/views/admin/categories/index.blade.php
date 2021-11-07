@@ -10,7 +10,8 @@
 
 @section('content')
     {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.categories.create' , ['id' => $id])}}" deletebutton="{{route('admin.categories.deleteAll')}}">
+    @include('admin.shared.datatables.date-search')
+    <x-admin.table  addbutton="{{route('admin.categories.create' , ['id' => $id])}}" deletebutton="{{route('admin.categories.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">

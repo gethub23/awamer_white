@@ -22,6 +22,8 @@ return [
     'choose_key'              => 'country key' ,
     'blocked'                 => 'You are Blocked By Admin' ,
     'more'                    => 'More' ,
+    'Minimum date'                  => 'Minimum date',
+    'Maximum date'                  => 'Maximum date ',
     'email_ex'                => 'email not exists' ,
     'phone_ex'                => 'phone not exists' ,
     'phone_req'               => 'phone is required' ,
