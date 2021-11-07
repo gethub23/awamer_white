@@ -9,38 +9,73 @@ use App\Jobs\NotifyUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Client\AddEditClientRequest;
+use Yajra\DataTables\DataTables;
 
 class ClientController extends Controller
 {
 
     /***************************  get all clients  **************************/
-    public function index()
+    public function index(Request $request)
     {
-        $rows = User::latest()->get();
-        return view('admin.clients.index', compact('rows'));
+        if ($request->ajax())
+            return $this->prepareDatatable($request);
+
+        return view('admin.clients.index');
     }
+
+    public function prepareDatatable($data = []){
+        $rows     = User::query();
+        return DataTables::of($rows)
+            ->addColumn('id', function ($row) {
+                return (string) view('admin.shared.datatables.checkbox'     , compact('row'));
+            })
+            ->addColumn('image', function($row){
+                return   '<td><a target="_blank" href="'.$row->avatar.'"><img src="'.$row->avatar.'" width="50px" height="50px" alt=""></a></td>';
+            })
+            ->addColumn('phone', function($row){
+                return   '<td><a href="tel:'.$row->phone.'">'.$row->phone.'</a></td>';
+            })
+            ->addColumn('email', function($row){
+                return    '<td><a href="mailto:'.$row->email.'">'.$row->email.'</a></td>';
+            })
+            ->addColumn('block', function ($row) {
+                return (string) view('admin.shared.datatables.user.block'   , compact('row'));
+            })
+            ->addColumn('activate', function ($row) {
+                return (string) view('admin.shared.datatables.user.block'   , compact('row'));
+            })
+            ->addColumn('controls', function ($row) {
+                return (string) view('admin.shared.datatables.user.controls', compact('row'));
+            })
+            ->rawColumns(['id','image','phone','email','block','activate','controls'])
+            ->make(true);
+    }
+
     /***************************  get active clients  **************************/
-    public function active()
+    public function active(Request $request)
     {
-        $rows = User::where(['active' => 1])->get();
-        return view('admin.clients.index', compact('rows'));
+        $rows   = User::where(['active' => true])->get();
+        return view('admin.clients.index',compact('rows'));
     }
+
     /***************************  get not active clients  **************************/
     public function notActive()
     {
-        $rows = User::where(['active' => 0])->get();
+        $rows = User::where(['active' => false])->get();
         return view('admin.clients.index', compact('rows'));
     }
+
     /***************************  get active clients  **************************/
     public function block()
     {
-        $rows = User::where(['block' => 1])->get();
+        $rows = User::where(['block' => true])->get();
         return view('admin.clients.index', compact('rows'));
     }
+
     /***************************  get active clients  **************************/
     public function notBlock()
     {
-        $rows = User::where(['block' => 0])->get();
+        $rows = User::where(['block' => false])->get();
         return view('admin.clients.index', compact('rows'));
     }
 
@@ -57,12 +92,14 @@ class ClientController extends Controller
         Report::addToLog('  اضافه مستخدم') ;
         return response()->json(['url' => route('admin.clients.index')]);
     }
+
     /***************************  store  **************************/
     public function edit($id)
     {
         $row = User::findOrFail($id);
         return view('admin.clients.edit' , ['row' => $row]);
     }
+
     /***************************  update client  **************************/
     public function update(AddEditClientRequest $request, $id)
     {
@@ -96,7 +133,6 @@ class ClientController extends Controller
         dispatch(new NotifyUser($clients, $request , $request->type));
         return response()->json();
     }
-    
 
     public function destroyAll(Request $request)
     {

@@ -24,7 +24,7 @@
             </x-slot>
             <x-slot name="tableBody">
                 @foreach($rows as $row)
-                    <tr class="delete_row">
+                    <tr >
                         <td class="text-center">
                             <label class="container-checkbox">
                                 <input type="checkbox" class="checkSingle" id="{{$row->id}}">

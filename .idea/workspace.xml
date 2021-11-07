@@ -2,16 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f43f9b04-2259-4a02-8649-49c02c7bc9d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/shared/datatables/checkbox.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/shared/datatables/user/activate.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/shared/datatables/user/block.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/shared/datatables/user/controls.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/awamer_white.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/awamer_white.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_21_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_21_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/storage/images/users/default.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/storage/images/users/default.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/clients/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/countries/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/countries/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/shared/deleteAll.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/shared/deleteAll.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/0e/ee/0eeef8ba3ad618c244351237d4bcd57f34001499" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/7a/45/7a451f090e93512d99e5957b3944dbfa1361583c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/7e/7c/7e7c59bc691a4a41d97b7f13222213c48073dc56" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Helpers/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Helpers/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Controllers/Api/V1/ChatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Controllers/Api/V1/ChatController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Controllers/Api/V1/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Controllers/Api/V1/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/Create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/Update.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/Update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/UpdateProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Admin/UpdateProfile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Client/AddEditClientRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Requests/Admin/Client/AddEditClientRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Resources/Api/OrderDetailsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Resources/Api/OrderDetailsResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Http/Resources/Api/RoomResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Http/Resources/Api/RoomResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Notifications/OrderOfferNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Notifications/OrderOfferNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Repositories/Eloquent/SettingRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Repositories/Eloquent/SettingRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/app/Services/SettingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/app/Services/SettingService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/chat-app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/chat-app/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/lang/en/apis.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/lang/en/apis.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/admins/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/admins/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/clients/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/clients/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/clients/providers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/clients/providers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/layout/partial/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/layout/partial/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/proclamations/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/proclamations/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/roles/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/hawiat/resources/views/admin/settings/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/ReactotronConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/ReactotronConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/Chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/ChatRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/ChatRoom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/DetilsE3lan.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/DetilsE3lan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/FormE3lan.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/FormE3lan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_motors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_motors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_plates.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_plates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_special.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/components/details_special.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/altmaiuez 40/src/consts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/altmaiuez 40/src/consts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -133,9 +190,27 @@
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-editor" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-buttons" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-html" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-fractal" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
     </include_path>
   </component>
   <component name="ProjectId" id="20MS2XwDnXmKGFgati2ZgC3sF8l" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -149,12 +224,19 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/shared/datatables" />
+      <recent name="$PROJECT_DIR$/resources/views/admin/shared/datatables/user" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f43f9b04-2259-4a02-8649-49c02c7bc9d4" name="Default Changelist" comment="" />
@@ -163,10 +245,22 @@
       <option name="presentableId" value="Default" />
       <updated>1635852756819</updated>
       <workItem from="1635852758603" duration="297000" />
+      <workItem from="1636026767760" duration="39922000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
