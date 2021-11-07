@@ -1,11 +1,13 @@
 <script>
-    $('.delete_all_button').hide()
-            $("#checkedAll").change(function(){
+            $('.delete_all_button').hide()
+            $(document).on('change','#checkedAll',function(){
                 if(this.checked){
-                    $(".checkSingle").each(function(){
-                        this.checked=true;
-                        $('.delete_all_button').show()
-                    })
+                    setTimeout(function (){
+                        $(".checkSingle").each(function(index, element){
+                            this.checked = true;
+                            $('.delete_all_button').show()
+                        })
+                    },500);
                 }else{
                     $(".checkSingle").each(function(){
                         this.checked=false;
@@ -13,7 +15,7 @@
                     })
                 }
             });
-            $(".checkSingle").click(function () {
+            $(document).on('click','.checkSingle',function () {
                 if ($(this).is(":checked")){
                     var isAllChecked = 0;
                     $(".checkSingle").each(function(){

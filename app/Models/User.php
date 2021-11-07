@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Models;
-
 use App\Traits\UploadTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Yajra\DataTables\Html\Options\HasFeatures;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use UploadTrait;
- 
+    use HasFeatures;
+
     protected $guarded      = ['id'];
 
     protected $hidden       = [

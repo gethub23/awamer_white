@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         mkhdev\AWT\AWTServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -233,7 +234,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'JWTAuth' 	   => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory'   => Tymon\JWTAuth\Facades\JWTFactory::class,
-
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

@@ -10,3 +10,4 @@ yarn-error.log
 vendor
 rr
 .rr.yaml
+.idea

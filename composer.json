@@ -8,18 +8,18 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "7.3.29",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "mkhdev/awt": "^1.1",
         "spatie/laravel-translatable": "^4.3",
         "stevebauman/location": "^5.2",
         "tymon/jwt-auth": "dev-develop",
-        "yajra/laravel-datatables": "1.5",
+        "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
@@ -46,7 +46,8 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories" 
+            "database/factories"
+
         ],
         "files": [
             "app/Helpers/helper.php"

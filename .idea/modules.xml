@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../react/altmaiuez 40/.idea/NewMazad.iml" filepath="$PROJECT_DIR$/../react/altmaiuez 40/.idea/NewMazad.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/awamer_white.iml" filepath="$PROJECT_DIR$/.idea/awamer_white.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../backend/hawiat/.idea/hawiat.iml" filepath="$PROJECT_DIR$/../backend/hawiat/.idea/hawiat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../backend/meetUp/.idea/meetUp.iml" filepath="$PROJECT_DIR$/../backend/meetUp/.idea/meetUp.iml" />
     </modules>
   </component>
 </project>
