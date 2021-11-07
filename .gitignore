@@ -11,3 +11,5 @@ vendor
 rr
 .rr.yaml
 .idea
+/resources/lang/ar/awt.php
+/resources/lang/en/awt.php
