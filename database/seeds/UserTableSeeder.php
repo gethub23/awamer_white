@@ -12,6 +12,15 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-       factory(User::class,100)->create();
+        for ($i=0; $i < 10 ; $i++) { 
+            User::create([
+                'name'      => 'fekry',
+                'email'     => 'aa926626'.rand(1111111,333333).'@gmail.com',
+                'phone'     => rand(100000000,9000000000) ,
+                'password'  => 123456,
+                'block'     => rand(0,1),
+                'active'    => rand(0,1),
+            ]);
+        }
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('css')
-   
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
 @endsection
   
 @section('content')
@@ -166,6 +166,9 @@
 
 
 @section('js')
+
+<script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 <script>
     $(document).ready(function(){
         $(document).on('submit','.notify-form',function(e){
@@ -181,7 +184,7 @@
                 beforeSend: function(){
                     $(".send-notify-button").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').attr('disable',true)
                 },
-                success: function(response){
+                success: (response)=>{
                     $(".text-danger").remove()
                     $('.store input').removeClass('border-danger')
                     $(".send-notify-button").html("{{awtTrans('ارسال')}}").attr('disable',false)
@@ -194,9 +197,7 @@
                                 confirmButtonClass: 'btn btn-primary',
                                 buttonsStyling: false,
                             })
-                    setTimeout(function(){
-                        window.location.reload()
-                    }, 1000);
+                    $(this).trigger("reset")
                 },
                 error: function (xhr) {
                     $(".send-notify-button").html("{{awtTrans('ارسال')}}").attr('disable',false)

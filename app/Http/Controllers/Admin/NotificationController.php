@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Jobs\Notify;
 use App\Models\User;
 use App\Models\Admin;
+use App\Jobs\AdminNotify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,7 +34,7 @@ class NotificationController extends Controller
         }
         
         if ($request->user_type == 'admins') {
-            dispatch(new Notify($rows, $request));
+            dispatch(new AdminNotify($rows, $request));
         }else{
             dispatch(new Notify($rows, $request));
         }
