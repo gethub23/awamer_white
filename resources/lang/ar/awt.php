@@ -804,6 +804,13 @@ return [
 "server key"=>"مفتاح الخادم",
 "sender id"=>"هوية المرسل",
 "sender id"=>"هوية المرسل",
+"بيانات api"=>"بيانات api",
+"live chat"=>"دردشة مباشرة",
+"live chat"=>"دردشة مباشرة",
+"google analytics"=>"تحليلات كوكل",
+"google analytics"=>"تحليلات كوكل",
+"google places"=>"أماكن جوجل",
+"google places"=>"أماكن جوجل",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 

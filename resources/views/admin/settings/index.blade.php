@@ -393,8 +393,8 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
-                                                    <label for="account-name">{{awtTrans('server key')}}</label>
-                                                    <input type="text" class="form-control" name="firebase_key" id="account-name" placeholder="{{awtTrans('server key')}}" value="{{$data['firebase_key']}}">
+                                                    <label for="account-name">{{awtTrans('live chat')}}</label>
+                                                    <input type="text" class="form-control" name="live_chat" id="account-name" placeholder="{{awtTrans('live chat')}}" value="{{$data['live_chat']}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -402,8 +402,17 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
-                                                    <label for="account-name">{{awtTrans('sender id')}}</label>
-                                                    <input type="text" class="form-control" name="firebase_sender_id" id="account-name" placeholder="{{awtTrans('sender id')}}" value="{{$data['firebase_sender_id']}}">
+                                                    <label for="account-name">{{awtTrans('google analytics')}}</label>
+                                                    <input type="text" class="form-control" name="google_analytics" id="account-name" placeholder="{{awtTrans('google analytics')}}" value="{{$data['google_analytics']}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label for="account-name">{{awtTrans('google places')}}</label>
+                                                    <input type="text" class="form-control" name="google_places" id="account-name" placeholder="{{awtTrans('google places')}}" value="{{$data['google_places']}}">
                                                 </div>
                                             </div>
                                         </div>
