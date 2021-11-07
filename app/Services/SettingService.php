@@ -29,6 +29,8 @@ class SettingService {
            'intro_about'                =>$app_info['intro_about_'.lang()],
            'intro_about_ar'             =>$app_info['intro_about_ar'],
            'intro_about_en'             =>$app_info['intro_about_en'],
+           'privacy_ar'                 =>$app_info['privacy_ar'],
+           'privacy_en'                 =>$app_info['privacy_en'],
            'about_image_2'              =>$app_info['about_image_2'],
            'about_image_1'              =>$app_info['about_image_1'],
            'services_text_ar'           =>$app_info['services_text_ar'],
@@ -54,6 +56,21 @@ class SettingService {
            'hover_color'                =>$app_info['hover_color'],
            'intro_meta_description'     =>$app_info['intro_meta_description'],
            'intro_meta_keywords'        =>$app_info['intro_meta_keywords'],
+
+           'smtp_user_name'             =>$app_info['smtp_user_name'],
+           'smtp_password'              =>$app_info['smtp_password'],
+           'smtp_mail_from'             =>$app_info['smtp_mail_from'],
+           'smtp_sender_name'           =>$app_info['smtp_sender_name'],
+           'smtp_port'                  =>$app_info['smtp_port'],
+           'smtp_host'                  =>$app_info['smtp_host'],
+           'smtp_encryption'            =>$app_info['smtp_encryption'],
+
+           'firebase_key'               =>$app_info['firebase_key'],
+           'firebase_sender_id'         =>$app_info['firebase_sender_id'],
+
+           'google_places'              =>$app_info['google_places'],
+           'google_analytics'           =>$app_info['google_analytics'],
+           'live_chat'                  =>$app_info['live_chat'],
         ];
         return $data;
     }
