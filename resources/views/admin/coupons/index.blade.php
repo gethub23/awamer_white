@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+    @include('admin.shared.datatables.date-search')
     {{-- table --}}
         <x-admin.table  addbutton="{{route('admin.coupons.create')}}" deletebutton="{{route('admin.coupons.deleteAll')}}">
             <x-slot name="tableHead">
@@ -19,6 +20,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('رقم الكوبون')}}</th>
                 <th>{{awtTrans('نوع الخصم')}}</th>
                 <th>{{awtTrans('قيمة الخصم')}}</th>
@@ -35,6 +37,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->identity}}</td>
                         <td>{{$row->type == 'ratio' ? 'نسبة' :  'رقم ثابت'}}</td>
                         <td>{{$row->discount}}</td>

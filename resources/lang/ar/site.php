@@ -172,6 +172,8 @@ return [
     'newPassword'             => 'كلمه السر الجديده',
     'newPasswordConfirm'      => 'تاكيد كلمه السر الجديده',
     'passwordChanges'         => 'تم تغيير كلمه السر بنجاح',
+    'Minimum date'                  => 'التاريخ بداية من ',
+    'Maximum date'                  => 'التاريخ إلي ',
     'delete'                  => 'حذف',
     'deleted'                 => 'تم الحذف بنجاح',
     'number_send'             => 'تم ارسال الرقم بنجاح ',

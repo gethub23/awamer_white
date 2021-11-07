@@ -10,7 +10,8 @@
 
 @section('content')
     {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.cities.create')}}" deletebutton="{{route('admin.cities.deleteAll')}}">
+    @include('admin.shared.datatables.date-search')
+    <x-admin.table  addbutton="{{route('admin.cities.create')}}" deletebutton="{{route('admin.cities.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -18,6 +19,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('الدولة')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
@@ -31,6 +33,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->name}}</td>
                         <td>{{$row->country->name}}</td>
                         <td class="product-action">
@@ -58,4 +61,10 @@
     {{-- delete one user script --}}
         @include('admin.shared.deleteOne')
     {{-- delete one user script --}}
+
+
+    <script type="text/javascript">
+
+
+    </script>
 @endsection

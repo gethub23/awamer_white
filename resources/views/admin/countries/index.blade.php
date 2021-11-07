@@ -9,8 +9,9 @@
 @endsection
 
 @section('content')
+    @include('admin.shared.datatables.date-search')
     {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.countries.create')}}" deletebutton="{{route('admin.countries.deleteAll')}}">
+    <x-admin.table  addbutton="{{route('admin.countries.create')}}" deletebutton="{{route('admin.countries.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -18,6 +19,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('كود الدولة')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
@@ -31,6 +33,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->name}}</td>
                         <td>{{$row->key}}</td>
                         <td class="product-action">

@@ -10,7 +10,8 @@
 
 @section('content')
     {{-- table --}}
-        <x-admin.table  deletebutton="{{route('admin.complaints.deleteAll')}}">
+    @include('admin.shared.datatables.date-search')
+    <x-admin.table  deletebutton="{{route('admin.complaints.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -18,6 +19,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ ')}}</th>
                 <th>{{awtTrans('اسم صاحب الشكوي ')}}</th>
                 <th>{{awtTrans('رقم هاتف صاحب الشكوي ')}}</th>
                 <th>{{awtTrans('البريد الالكتروني لصاحب الشكوي ')}}</th>
@@ -32,6 +34,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->user_name}}</td>
                         <td>{{$row->phone}}</td>
                         <td>{{$row->email}}</td>

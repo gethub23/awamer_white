@@ -29,6 +29,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/dashboard-ecommerce.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/pages/card-analytics.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/custom-rtl.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style-rtl.css')}}">
     @else
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/vendors.min.css')}}">

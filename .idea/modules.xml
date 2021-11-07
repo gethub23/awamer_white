@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/awamer_white.iml" filepath="$PROJECT_DIR$/.idea/awamer_white.iml" />
       <module fileurl="file://$PROJECT_DIR$/../backend/hawiat/.idea/hawiat.iml" filepath="$PROJECT_DIR$/../backend/hawiat/.idea/hawiat.iml" />
       <module fileurl="file://$PROJECT_DIR$/../backend/meetUp/.idea/meetUp.iml" filepath="$PROJECT_DIR$/../backend/meetUp/.idea/meetUp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../backend/taqeed/.idea/taqeed.iml" filepath="$PROJECT_DIR$/../backend/taqeed/.idea/taqeed.iml" />
     </modules>
   </component>
 </project>

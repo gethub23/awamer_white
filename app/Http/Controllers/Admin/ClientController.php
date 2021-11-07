@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Traits\Report;
 use App\Jobs\BlockUser;
 use App\Jobs\NotifyUser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Client\AddEditClientRequest;
@@ -29,6 +30,9 @@ class ClientController extends Controller
             ->addColumn('id', function ($row) {
                 return (string) view('admin.shared.datatables.checkbox'     , compact('row'));
             })
+            ->addColumn('created_at', function($row){
+                return    '<td>'. Carbon::parse($row->created_at)->format('d/m/Y').'</td>';
+            })
             ->addColumn('image', function($row){
                 return   '<td><a target="_blank" href="'.$row->avatar.'"><img src="'.$row->avatar.'" width="50px" height="50px" alt=""></a></td>';
             })
@@ -47,7 +51,7 @@ class ClientController extends Controller
             ->addColumn('controls', function ($row) {
                 return (string) view('admin.shared.datatables.user.controls', compact('row'));
             })
-            ->rawColumns(['id','image','phone','email','block','activate','controls'])
+            ->rawColumns(['id','created_at','image','phone','email','block','activate','controls'])
             ->make(true);
     }
 
