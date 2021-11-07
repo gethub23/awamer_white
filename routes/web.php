@@ -1003,7 +1003,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
         /*------------ end Of cities ----------*/
         
-        
         /*------------ start Of fqs ----------*/
             Route::get('fqs', [
                 'uses'      => 'FqsController@index',
@@ -1250,7 +1249,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'      => 'CouponController@index',
                 'as'        => 'coupons.index',
                 'title'     => 'كوبونات الخصم',
-                'icon'      => '<i class="feather icon-image"></i>',
+                'icon'      => '<i class="fa fa-gift"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,'coupons.renew',]
@@ -1305,6 +1304,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من كوبونات الخصم'
             ]);
         /*------------ end Of coupons ----------*/
+
+        /*------------ start Of notifications ----------*/
+            Route::get('notifications', [
+                'uses'      => 'NotificationController@index',
+                'as'        => 'notifications.index',
+                'title'     => 'الاشعارات',
+                'icon'      => '<i class="feather icon-mail"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['notifications.send',]
+            ]);
+
+            # coupons store
+            Route::post('send-notifications', [
+                'uses'  => 'NotificationController@sendNotifications',
+                'as'    => 'notifications.send',
+                'title' => ' ارسال اشعار او بريد للعميل'
+            ]);
+        /*------------ end Of notifications ----------*/
         #new_routes_here
                      
                      
