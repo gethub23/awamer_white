@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Faker\Factory as Faker;
 
 class UserTableSeeder extends Seeder
 {
@@ -12,11 +13,12 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 10 ; $i++) { 
+        $faker =         Faker::create('ar_SA');
+        for ($i=0; $i < 10 ; $i++) {
             User::create([
-                'name'      => 'fekry',
-                'email'     => 'aa926626'.rand(1111111,333333).'@gmail.com',
-                'phone'     => rand(100000000,9000000000) ,
+                'name'      => $faker->name,
+                'phone'     => $faker->unique()->phoneNumber,
+                'email'     => $faker->unique()->email,
                 'password'  => 123456,
                 'block'     => rand(0,1),
                 'active'    => rand(0,1),

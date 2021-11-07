@@ -101,7 +101,24 @@
       <script type="text/javascript">
         $(document).ready(function() {
             "use strict"
+            // destroy exists datatable to reinitialize yajra
+            // call yajra tables
+            initDatatable();
 
+
+            // set datepicker for search
+            $('.minFilter').datepicker();
+            $('.maxFilter').datepicker();
+
+            $('#doDateSearch').click( function() {
+             var min  = $('.minFilter').val() ;
+             var max  = $('.maxFilter').val() ;
+                initDatatable(min,max);
+           });
+        });
+
+
+        function initDatatable(min,max ){
             $('#DataTables_Table_0').DataTable().destroy();
             var dataListView = $("#DataTables_Table_0").DataTable({
                 responsive: true,
@@ -109,6 +126,10 @@
                 serverSide: true,
                 "ajax"    : {
                     "url" : "{{ route('admin.clients.index') }}",
+                    "data": {
+                        min : min,
+                        max : max
+                    }
                 },
                 columns: [
                     {data: 'id'       , name: 'id'},
@@ -166,9 +187,9 @@
                         $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
                     }
                 }, 50);
-             });
             });
-    </script>
+        }
+      </script>
     @endif
     {{-- delete all script --}}
     @include('admin.shared.deleteAll')

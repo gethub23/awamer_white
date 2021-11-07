@@ -510,6 +510,8 @@ return [
 "الدول والمدن"=>"States and cities",
 "المستخديمن"=>"Used",
 "قسم كيف نعمل"=>"How do we work?",
+"الاقسام"=>"sections",
+"كوبونات الخصم"=>"Discount coupons",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 

@@ -26,6 +26,11 @@ class ClientController extends Controller
 
     public function prepareDatatable($data = []){
         $rows     = User::query();
+
+
+        if(!is_null($data['min']) && !is_null($data['max']))
+            $rows->whereBetween('created_at', [$data['min'], $data['max']]);
+
         return DataTables::of($rows)
             ->addColumn('id', function ($row) {
                 return (string) view('admin.shared.datatables.checkbox'     , compact('row'));
