@@ -2,12 +2,12 @@
             $('.delete_all_button').hide()
             $(document).on('change','#checkedAll',function(){
                 if(this.checked){
-                    setTimeout(function (){
+                    // setTimeout(function (){
                         $(".checkSingle").each(function(index, element){
                             this.checked = true;
                             $('.delete_all_button').show()
                         })
-                    },500);
+                    // },500);
                 }else{
                     $(".checkSingle").each(function(){
                         this.checked=false;

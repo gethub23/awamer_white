@@ -11,43 +11,43 @@
 
                   <li class="nav-item">
                       <a class="nav-link d-flex py-75 active" id="account-pill-main" data-toggle="pill" href="#account-vertical-main" aria-expanded="true">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-settings mr-50 font-medium-3"></i>
                           {{awtTrans('إعدادات التطبيق')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" style="margin-top: 3px" > 
                       <a class="nav-link d-flex py-75" id="account-pill-terms" data-toggle="pill" href="#account-vertical-terms" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-edit-1 mr-50 font-medium-3"></i>
                           {{awtTrans('الشروط والاحكام')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item " style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-about" data-toggle="pill" href="#account-vertical-about" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-edit-1 mr-50 font-medium-3"></i>
                           {{awtTrans('عن التطبيق')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item " style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-privacy" data-toggle="pill" href="#account-vertical-privacy" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-award mr-50 font-medium-3"></i>
                           {{awtTrans('سياسة الخصوصية')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item " style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-smtp" data-toggle="pill" href="#account-vertical-smtp" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-mail mr-50 font-medium-3"></i>
                           {{awtTrans('بيانات الايميل')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item " style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-notifications" data-toggle="pill" href="#account-vertical-notifications" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-bell mr-50 font-medium-3"></i>
                           {{awtTrans('بيانات الاشعارات')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item " style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-api" data-toggle="pill" href="#account-vertical-api" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-droplet mr-50 font-medium-3"></i>
                           {{awtTrans('بيانات api')}}
                       </a>
                   </li>

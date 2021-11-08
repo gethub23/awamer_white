@@ -1,10 +1,17 @@
 @extends('admin.layout.master')
+@section('css')
+    <style>
+        #weatherWidgetInner {
+            background-color: rgb(16 22 58);
+        }
+    </style>
+@endsection
 @section('content')
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card bg-analytics text-white">
                     <div class="card-content">
-                        <div class="card-body text-center p-0">
+                        <div class="card-body text-center">
                             <img src="{{asset('admin/app-assets/images/elements/decore-left.png')}}" class="img-left" alt="card-img-left">
                             <img src="{{asset('admin/app-assets/images/elements/decore-right.png')}}" class="img-right" alt="card-img-right">
                             <div class="text-center">
@@ -17,7 +24,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="طقس" data-label_2="الرياض" data-theme="sky" >الطقس</a>
+                <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="RIYADH" data-label_2="الطقس" data-font="Cairo" data-icons="Climacons" data-theme="original" data-basecolor="rgb(16 22 58)" >RIYADH الطقس</a>
             </div>
         </div>
         <div class="row align-center">
@@ -232,12 +239,14 @@
                 </div>
             </div>
         </div>
-
-        
-        
-        
 @endsection
 @section('js')
+
+    <script>
+        setTimeout(() => {
+            $('#weatherWidgetInner').css('background-color' , 'rgb(16 22 58)')
+        }, 5000);
+    </script>
     <script src="{{asset('admin/charts_functions.js')}}"></script>
     <script>
 
