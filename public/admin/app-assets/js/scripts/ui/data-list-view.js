@@ -109,6 +109,7 @@ $(document).ready(function() {
     }, 50);
   });
 
+
   $.fn.dataTable.ext.search.push(
       function (settings, data, dataIndex) {
         var min = $('#min').datepicker("getDate");

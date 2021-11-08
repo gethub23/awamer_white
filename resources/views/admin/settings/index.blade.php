@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('content')
-  
+
 <div class="content-body">
   <!-- account setting page start -->
   <section id="page-account-settings">
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="col-12">
                                       <div class="row">
-                                
+
                                         <div class="imgMontg col-2 text-center">
                                             <div class="dropBox">
                                                 <div class="textCenter d-flex flex-lg-column">
@@ -178,7 +178,7 @@
                                             </div>
                                         </div>
                                       </div>
-                                
+
                                     </div>
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('حفظ التغييرات')}}</button>
@@ -187,7 +187,7 @@
                                 </div>
                                 </form>
                               </div>
-                              
+
                               <div role="tabpanel" class="tab-pane" id="account-vertical-terms" aria-labelledby="account-pill-terms" aria-expanded="false">
                                 <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
                                     @method('put')
@@ -245,7 +245,7 @@
                                     </div>
                                 </form>
                               </div>
-                              
+
                               <div role="tabpanel" class="tab-pane" id="account-vertical-privacy" aria-labelledby="account-pill-privacy" aria-expanded="false">
                                 <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
                                     @method('put')
@@ -274,7 +274,7 @@
                                     </div>
                                 </form>
                               </div>
-                              
+
                               <div role="tabpanel" class="tab-pane" id="account-vertical-smtp" aria-labelledby="account-pill-smtp" aria-expanded="false">
                                 <form accept="{{route('admin.settings.update')}}" method="post" enctype="multipart/form-data">
                                     @method('put')
@@ -289,7 +289,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
@@ -324,7 +324,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
@@ -365,7 +365,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
@@ -397,7 +397,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">
@@ -406,7 +406,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <div class="controls">

@@ -9,9 +9,10 @@
 @endsection
 
 @section('content')
-    @include('admin.shared.datatables.date-search')
+    @include('admin.shared.datatables.date-filter')
     {{-- table --}}
         <x-admin.table  addbutton="{{route('admin.clients.create')}}" deletebutton="{{route('admin.clients.deleteAll')}}" extrabuttons="true" >
+
             <x-slot name="extrabuttonsdiv">
                 <a type="button" data-toggle="modal" data-target="#notify" class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light notify" data-id="all" ><i class="feather icon-bell"></i> {{awtTrans('ارسال اشعار')}}</a>
                 <a type="button" data-toggle="modal" data-target="#mail" class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light mail" data-id="all" ><i class="feather icon-mail"></i> {{awtTrans('ارسال ايميل')}}</a>
@@ -28,7 +29,8 @@
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('البريد الالكتروني')}}</th>
                 <th>{{awtTrans('رقم الهاتف')}}</th>
-                <th>{{awtTrans('حالة العميل')}}</th>
+                <th>{{awtTrans('حالة الحظر')}}</th>
+                <th>{{awtTrans('التفعيل')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </x-slot>
             <x-slot name="tableBody">
@@ -54,6 +56,17 @@
                                 @else
                                     <span class="btn btn-sm round btn-outline-success">
                                     {{awtTrans('غير محظور')}}  <i class="la la-check font-medium-2"></i>
+                                </span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($row->active)
+                                    <span class="btn btn-sm round btn-outline-success">
+                                    {{awtTrans('مفعل')}}  <i class="la la-close font-medium-2"></i>
+                                </span>
+                                @else
+                                    <span class="btn btn-sm round btn-outline-danger">
+                                    {{awtTrans('غير مفعل')}}  <i class="la la-check font-medium-2"></i>
                                 </span>
                                 @endif
                             </td>
@@ -90,63 +103,7 @@
         $(document).ready(function() {
             "use strict"
 
-            $('#DataTables_Table_0').DataTable().destroy();
-            var dataListView = $("#DataTables_Table_0").DataTable({
-                responsive: true,
-                processing: true,
-                serverSide: true,
-                "ajax"    : {
-                    "url" : "{{ route('admin.clients.index') }}",
-                },
-                columns: [
-                    {data: 'id'       , name: 'id'},
-                    {data: 'created_at' , name: 'created_at'},
-                    {data: 'image'    , name: 'image'},
-                    {data: 'name'     , name: 'name'},
-                    {data: 'email'    , name: 'email'},
-                    {data: 'phone'    , name: 'phone'},
-                    {data: 'block'    , name: 'block'},
-                    {data: 'activate' , name: 'activate'},
-                    {data: 'controls' , name: 'controls'},
-                ],
-                columnDefs: [
-                    {
-                        orderable: true,
-                        targets: 0,
-                        checkboxes: { selectRow: true }
-                    }
-                ],
-                dom:
-                    '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
-                oLanguage: {
-                    sLengthMenu: "_MENU_",
-                    sSearch: ""
-                },
-                aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
-                select: {
-                    style: "multi"
-                },
-                order: [[1, "asc"]],
-                bInfo: false,
-                searching : true,
-                pageLength: 4,
-                buttons: [
-                    {
-                        text: "<i class='feather icon-plus'></i> Add New",
-                        action: function() {
-                            $(this).removeClass("btn-secondary")
-                            $(".add-new-data").addClass("show")
-                            $(".overlay-bg").addClass("show")
-                            $("#data-name, #data-price").val("")
-                            $("#data-category, #data-status").prop("selectedIndex", 0)
-                        },
-                        className: "btn-outline-primary"
-                    }
-                ],
-                initComplete: function(settings, json) {
-                    $(".dt-buttons .btn").removeClass("btn-secondary")
-                }
-            });
+            var dataListView =  initDatatable();
 
             dataListView.on('draw.dt', function(){
                 setTimeout(function(){
@@ -154,9 +111,87 @@
                         $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
                     }
                 }, 50);
-             });
             });
-    </script>
+
+        $('.minFilter').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $('.maxFilter').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+
+        $('#doDateSearch').click( function(e) {
+               e.preventDefault();
+               var min = $('.minFilter').val()
+               var max = $('.maxFilter').val()
+               initDatatable(min,max)
+        });
+        });
+
+      function initDatatable(min,max){
+          $('#DataTables_Table_0').DataTable().destroy();
+         return   $("#DataTables_Table_0").DataTable({
+              responsive: true,
+              processing: true,
+              serverSide: true,
+              "ajax"    : {
+                  "url" : "{{ route('admin.clients.index') }}",
+                  "data": {
+                      min  : min,
+                      max  : max,
+                  }
+              },
+              columns: [
+                  {data: 'id'         , name: 'id'},
+                  {data: 'created_at' , name: 'created_at'},
+                  {data: 'image'      , name: 'image'},
+                  {data: 'name'       , name: 'name'},
+                  {data: 'email'      , name: 'email'},
+                  {data: 'phone'      , name: 'phone'},
+                  {data: 'block'      , name: 'block'},
+                  {data: 'activate'   , name: 'activate'},
+                  {data: 'controls'   , name: 'controls'},
+              ],
+              columnDefs: [
+                  {
+                      orderable: true,
+                      targets: 0,
+                      checkboxes: { selectRow: true }
+                  }
+              ],
+              dom:
+                  '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
+              oLanguage: {
+                  sLengthMenu: "_MENU_",
+                  sSearch: ""
+              },
+              aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
+              select: {
+                  style: "multi"
+              },
+              order: [[1, "asc"]],
+              bInfo: false,
+              searching : true,
+              pageLength: 4,
+              buttons: [
+                  {
+                      text: "<i class='feather icon-plus'></i> Add New",
+                      action: function() {
+                          $(this).removeClass("btn-secondary")
+                          $(".add-new-data").addClass("show")
+                          $(".overlay-bg").addClass("show")
+                          $("#data-name, #data-price").val("")
+                          $("#data-category, #data-status").prop("selectedIndex", 0)
+                      },
+                      className: "btn-outline-primary"
+                  }
+              ],
+              initComplete: function(settings, json) {
+                  $(".dt-buttons .btn").removeClass("btn-secondary")
+              }
+          });
+      }
+      </script>
     @endif
     {{-- delete all script --}}
     @include('admin.shared.deleteAll')
