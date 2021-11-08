@@ -4,7 +4,7 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card bg-analytics text-white">
                     <div class="card-content">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center p-0">
                             <img src="{{asset('admin/app-assets/images/elements/decore-left.png')}}" class="img-left" alt="card-img-left">
                             <img src="{{asset('admin/app-assets/images/elements/decore-right.png')}}" class="img-right" alt="card-img-right">
                             <div class="text-center">
@@ -20,7 +20,7 @@
                 <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="طقس" data-label_2="الرياض" data-theme="sky" >الطقس</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row align-center">
             @foreach($menus as $key => $menu)
                 @php $color = $colores[array_rand($colores)] @endphp
                 <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
@@ -63,7 +63,7 @@
                 </a>
             @endforeach
         </div>
-        <div class="row">
+        <div class="row hight-card">
             <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">

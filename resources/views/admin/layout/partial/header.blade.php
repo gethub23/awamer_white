@@ -45,6 +45,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/pages/card-analytics.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/custom-rtl.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style_en.css')}}">
     @endif
 
     <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/charts/apexcharts.css')}}">
