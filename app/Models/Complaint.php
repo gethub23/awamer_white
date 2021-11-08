@@ -16,4 +16,14 @@ class Complaint extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    /**
+     * Get all of the replays for the Complaint
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replays()
+    {
+        return $this->hasMany(ComplaintReplay::class, 'complaint_id', 'id');
+    }
 }

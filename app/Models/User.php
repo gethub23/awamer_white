@@ -69,4 +69,9 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function replays()
+    {
+        return $this->morphMany(ComplaintReplay::class, 'replayer');
+    }
+
 }

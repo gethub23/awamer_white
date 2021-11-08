@@ -838,10 +838,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => [
-                    'complaints.delete' ,'complaints.deleteAll','complaints.show',
+                    'complaints.delete' ,'complaints.deleteAll','complaints.show','complaint.replay'
                 ]
             ]);
 
+             # complaint replay
+             Route::post('complaints-replay/{id}', [
+                'uses'  => 'ComplaintController@replay',
+                'as'    => 'complaint.replay',
+                'title' => 'رد علي شكوي او مقترح'
+            ]);
              # socials update
              Route::get('complaints/{id}', [
                 'uses'  => 'ComplaintController@show',

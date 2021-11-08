@@ -22,6 +22,14 @@ class ComplaintController extends Controller
         return view('admin.complaints.show', compact('row'));
     }
 
+
+    public function replay(Request $request ,$id)
+    {
+        $complaint = Complaint::findOrFail($id);
+        auth('admin')->user()->replays()->create(['replay' => $request->replay , 'complaint_id' => $id]);
+        return response()->json(['url' => route('admin.all_complaints')]) ;
+    }
+
     /***************************  delete  **************************/
     public function destroy($id)
     {
