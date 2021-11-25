@@ -33,6 +33,7 @@ class AuthController extends Controller
         $this->updateCode($user);
 
         $this->updateDeviceId( $user , $data , $token );
+
         $this->response('success' , __('auth.registered') , ['token' => $token ] );
     }
 
@@ -78,7 +79,7 @@ class AuthController extends Controller
         // get user with phone number
         $user               = User::where('phoneNumber',$request->phoneNumber)->first();
         // save activation code to user updates table
-        $code               =   rand(1111,9999);
+        $code               =   generateRandomCode();
         UserUpdate::updateOrCreate([
             'user_id'       =>  $user->id,
             'type'          =>  'password',
@@ -165,7 +166,7 @@ class AuthController extends Controller
 
     // resend activation code for user 
     public function updateCode($user){
-        $user->update(['code' => rand(1111,9999) , 'code_expire' => Carbon::now()->addMinute()]);
+        $user->update(['code' => generateRandomCode() , 'code_expire' => Carbon::now()->addMinute()]);
     }
 
     // resend code function

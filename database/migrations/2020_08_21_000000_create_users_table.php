@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_notify')->default(true);
             $table->string('code', 10)->nullable();
             $table->dateTime('code_expire')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

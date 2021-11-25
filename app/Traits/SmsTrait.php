@@ -9,7 +9,7 @@ trait  SmsTrait
 
     public function sendSms($phone , $msg)
     {
-        $key = SMS::where(['active' , 1]) ->first()->key ; 
+        $key = SMS::where(['active' => 1]) ->first()->key ; 
         switch ($key) {
             case 'yamamah':
                 $this->yamamah($phone , $msg) ;

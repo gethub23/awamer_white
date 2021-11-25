@@ -452,62 +452,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             
         /*------------ end Of intro site ----------*/
 
-        /************ Admins ************/
-            #index
-            Route::get('admins', [
-                'uses'  => 'AdminController@index',
-                'as'    => 'admins.index',
-                'title' => 'المشرفين',
-                'icon'  => '<i class="feather icon-users"></i>',
-                'type'      => 'parent',
-                'child'     => [
-                    'admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
-                    ]
-            ]);
-
-            # admins store
-            Route::get('admins/create', [
-                'uses'  => 'AdminController@create',
-                'as'    => 'admins.create',
-                'title' => ' صفحة اضافة مشرف'
-            ]);
-
-            #store
-            Route::post('admins/store', [
-                'uses'  => 'AdminController@store',
-                'as'    => 'admins.store',
-                'title' => 'اضافة مشرف'
-            ]);
-
-            # admins update
-            Route::get('admins/{id}/edit', [
-                'uses'  => 'AdminController@edit',
-                'as'    => 'admins.edit',
-                'title' => 'صفحه تحديث مشرف'
-            ]);
-            #update
-            Route::put('admins/{id}', [
-                'uses'  => 'AdminController@update',
-                'as'    => 'admins.update',
-                'title' => 'تعديل مشرف'
-            ]);
-
-            #delete
-            Route::delete('admins/{id}', [
-                'uses'  => 'AdminController@destroy',
-                'as'    => 'admins.delete',
-                'title' => 'حذف مشرف'
-            ]);
-
-            #delete
-            Route::post('delete-all-admins', [
-                'uses'  => 'AdminController@destroyAll',
-                'as'    => 'admins.deleteAll',
-                'title' => 'حذف مجموعه من المشرفين'
-            ]);
-
-        /************ #Admins ************/
-
         /*------------ start Of users Controller ----------*/
 
             Route::get('users', [
@@ -613,287 +557,80 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             /************ #Clients ************/
         /*------------ end Of users Controller ----------*/
 
-        /*------------ start Of Settings----------*/
-            Route::get('settings', [
-                'uses'      => 'SettingController@index',
-                'as'        => 'settings.index',
-                'title'     => 'الاعدادات',
-                'icon'      => '<i class="feather icon-settings"></i>',
+        /************ Admins ************/
+            #index
+            Route::get('admins', [
+                'uses'  => 'AdminController@index',
+                'as'    => 'admins.index',
+                'title' => 'المشرفين',
+                'icon'  => '<i class="feather icon-users"></i>',
                 'type'      => 'parent',
                 'child'     => [
-                    'settings.index','settings.update','settings.message.all','settings.message.one','settings.send_email' ,
-                ]
+                    'admins.index', 'admins.store', 'admins.update','admins.edit', 'admins.delete','admins.deleteAll','admins.create','admins.edit',
+                    ]
             ]);
 
-            #update
-            Route::put('settings', [
-                'uses' => 'SettingController@update',
-                'as' => 'settings.update',
-                'title' => 'تحديث الاعدادات'
-            ]);
-
-            #message all
-            Route::post('settings/{type}/message-all', [
-                'uses'  => 'SettingController@messageAll',
-                'as'    => 'settings.message.all',
-                'title' => 'مراسلة الجميع'
-            ])->where('type','email|sms|notification');
-
-            #message one
-            Route::post('settings/{type}/message-one', [
-                'uses'  => 'SettingController@messageOne',
-                'as'    => 'settings.message.one',
-                'title' => 'مراسلة مستخدم'
-            ])->where('type','email|sms|notification');
-
-            #send email
-            Route::post('settings/send-email', [
-                'uses'  => 'SettingController@sendEmail',
-                'as'    => 'settings.send_email',
-                'title' => 'ارسال ايميل'
-            ]);
-        /*------------ end Of Settings ----------*/
-
-        /*------------ start Of Roles----------*/
-            Route::get('roles', [
-                'uses'      => 'RoleController@index',
-                'as'        => 'roles.index',
-                'title'     => 'قائمة الصلاحيات',
-                'icon'      => '<i class="feather icon-eye"></i>',
-                'type'      => 'parent',
-                'child'     => [
-                    'roles.index','roles.create', 'roles.store', 'roles.edit', 'roles.update', 'roles.delete' , 
-                ]
-            ]);
-
-            #add role page
-            Route::get('roles/create', [
-                'uses'  => 'RoleController@create',
-                'as'    => 'roles.create',
-                'title' => 'اضافة صلاحيه',
-
-            ]);
-
-            #store role
-            Route::post('roles/store', [
-                'uses' => 'RoleController@store',
-                'as' => 'roles.store',
-                'title' => 'تمكين اضافة صلاحيه'
-            ]);
-
-            #edit role page
-            Route::get('roles/{id}/edit', [
-                'uses' => 'RoleController@edit',
-                'as' => 'roles.edit',
-                'title' => 'تعديل صلاحيه'
-            ]);
-
-            #update role
-            Route::put('roles/{id}', [
-                'uses' => 'RoleController@update',
-                'as' => 'roles.update',
-                'title' => 'تمكين تعديل صلاحيه'
-            ]);
-
-            #delete role
-            Route::delete('roles/{id}', [
-                'uses' => 'RoleController@destroy',
-                'as' => 'roles.delete',
-                'title' => 'حذف صلاحيه'
-            ]);
-        /*------------ end Of Roles----------*/
-
-        /*------------ start Of statistics ----------*/
-            Route::get('statistics', [
-                'uses'      => 'StatisticsController@index',
-                'as'        => 'statistics.index',
-                'title'     => 'الاحصائيات',
-                'icon'      => '<i class="feather icon-bar-chart"></i>',
-                'type'      => 'parent',
-                'child'     => [
-                    'statistics.index',
-                ]
-            ]);
-        /*------------ end Of statistics ----------*/
-
-        /*------------ start Of seos ----------*/
-            Route::get('seos', [
-                'uses'      => 'SeoController@index',
-                'as'        => 'seos.index',
-                'title'     => 'سيو',
-                'icon'      => '<i class="feather icon-list"></i>',
-                'type'      => 'parent',
-                'child'     => [
-                    'seos.index','seos.store', 'seos.update', 'seos.delete' , 'seos.deleteAll' , 
-                ]
-            ]);
-
-            # seos store
-            Route::get('seos/create', [
-                'uses'  => 'SeoController@create',
-                'as'    => 'seos.create','clients.edit',
-                'title' => ' صفحة اضافة سيو'
-            ]);
-
-            # seos update
-            Route::get('seos/{id}/edit', [
-                'uses'  => 'SeoController@edit',
-                'as'    => 'seos.edit',
-                'title' => 'صفحه تحديث سيو'
+            # admins store
+            Route::get('admins/create', [
+                'uses'  => 'AdminController@create',
+                'as'    => 'admins.create',
+                'title' => ' صفحة اضافة مشرف'
             ]);
 
             #store
-            Route::post('seos/store', [
-                'uses'  => 'SeoController@store',
-                'as'    => 'seos.store',
-                'title' => ' اضافة سيو'
+            Route::post('admins/store', [
+                'uses'  => 'AdminController@store',
+                'as'    => 'admins.store',
+                'title' => 'اضافة مشرف'
             ]);
 
+            # admins update
+            Route::get('admins/{id}/edit', [
+                'uses'  => 'AdminController@edit',
+                'as'    => 'admins.edit',
+                'title' => 'صفحه تحديث مشرف'
+            ]);
             #update
-            Route::put('seos/{id}', [
-                'uses'  => 'SeoController@update',
-                'as'    => 'seos.update',
-                'title' => 'تحديث سيو'
+            Route::put('admins/{id}', [
+                'uses'  => 'AdminController@update',
+                'as'    => 'admins.update',
+                'title' => 'تعديل مشرف'
             ]);
 
-            #deletّe
-            Route::delete('seos/{id}', [
-                'uses'  => 'SeoController@destroy',
-                'as'    => 'seos.delete',
-                'title' => 'حذف سيو'
-            ]);
             #delete
-            Route::post('delete-all-seos', [
-                'uses'  => 'SeoController@destroyAll',
-                'as'    => 'seos.deleteAll',
-                'title' => 'حذف مجموعه من السيو'
+            Route::delete('admins/{id}', [
+                'uses'  => 'AdminController@destroy',
+                'as'    => 'admins.delete',
+                'title' => 'حذف مشرف'
             ]);
-        /*------------ end Of seos ----------*/
 
-        /*------------ start Of socials ----------*/
-            Route::get('socials', [
-                'uses'      => 'SocialController@index',
-                'as'        => 'socials.index',
-                'title'     => 'وسائل التواصل',
-                'icon'      => '<i class="feather icon-thumbs-up"></i>',
+            #delete
+            Route::post('delete-all-admins', [
+                'uses'  => 'AdminController@destroyAll',
+                'as'    => 'admins.deleteAll',
+                'title' => 'حذف مجموعه من المشرفين'
+            ]);
+
+        /************ #Admins ************/
+
+        /*------------ start Of notifications ----------*/
+            Route::get('notifications', [
+                'uses'      => 'NotificationController@index',
+                'as'        => 'notifications.index',
+                'title'     => 'الاشعارات',
+                'icon'      => '<i class="ficon feather icon-bell"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => ['socials.create', 'socials.store', 'socials.show', 'socials.update', 'socials.edit', 'socials.delete' ,'socials.deleteAll']
+                'child'     => ['notifications.send',]
             ]);
 
-            # socials store
-            Route::get('socials/create', [
-                'uses'  => 'SocialController@create',
-                'as'    => 'socials.create',
-                'title' => ' صفحة اضافة تواصل'
+            # coupons store
+            Route::post('send-notifications', [
+                'uses'  => 'NotificationController@sendNotifications',
+                'as'    => 'notifications.send',
+                'title' => ' ارسال اشعار او بريد للعميل'
             ]);
-            
-            # socials store
-            Route::post('socials', [
-                'uses'  => 'SocialController@store',
-                'as'    => 'socials.store',
-                'title' => ' اضافة تواصل'
-            ]);
-
-            # socials update
-            Route::get('socials/{id}', [
-                'uses'  => 'SocialController@show',
-                'as'    => 'socials.show',
-                'title' => 'صفحه عرض تواصل'
-            ]);
-            # socials update
-            Route::get('socials/{id}/edit', [
-                'uses'  => 'SocialController@edit',
-                'as'    => 'socials.edit',
-                'title' => 'صفحه تحديث تواصل'
-            ]);
-            # socials update
-            Route::put('socials/{id}', [
-                'uses'  => 'SocialController@update',
-                'as'    => 'socials.update',
-                'title' => 'تحديث تواصل'
-            ]);
-
-            # socials delete
-            Route::delete('socials/{id}', [
-                'uses'  => 'SocialController@destroy',
-                'as'    => 'socials.delete',
-                'title' => 'حذف تواصل'
-            ]);
-
-            #delete all socials
-            Route::post('delete-all-socials', [
-                'uses'  => 'SocialController@destroyAll',
-                'as'    => 'socials.deleteAll',
-                'title' => 'حذف مجموعه من وسائل التواصل'
-            ]);
-        /*------------ end Of socials ----------*/
-        
-        /*------------ start Of complaints ----------*/
-            Route::get('all-complaints', [
-                'as'        => 'all_complaints',
-                'uses'      => 'ComplaintController@index',
-                'icon'      => '<i class="feather icon-mail"></i>',
-                'title'     => 'الشكاوي والمقترحات',
-                'type'      => 'parent',
-                'sub_route' => false,
-                'child'     => [
-                    'complaints.delete' ,'complaints.deleteAll','complaints.show',
-                ]
-            ]);
-
-             # socials update
-             Route::get('complaints/{id}', [
-                'uses'  => 'ComplaintController@show',
-                'as'    => 'complaints.show',
-                'title' => 'صفحه عرض شكوي'
-            ]);
-            # complaints delete
-            Route::delete('complaints/{id}', [
-                'uses'  => 'ComplaintController@destroy',
-                'as'    => 'complaints.delete',
-                'title' => 'حذف شكوي'
-            ]);
-
-            #delete all complaints
-            Route::post('delete-all-complaints', [
-                'uses'  => 'ComplaintController@destroyAll',
-                'as'    => 'complaints.deleteAll',
-                'title' => 'حذف مجموعه من الشكاوي'
-            ]);
-        /*------------ end Of complaints ----------*/
-
-        /*------------ start Of reports----------*/
-            Route::get('reports', [
-                'uses'      => 'ReportController@index',
-                'as'        => 'reports',
-                'icon'      => '<i class="feather icon-home"></i>',
-                'title'     => 'التقارير',
-                'type'      => 'parent',
-                'sub_route' => false,
-                'child'     => ['reports.delete' ,'reports.deleteAll' ,'reports.show']
-            ]);
-            
-            # reports show
-            Route::get('reports/{id}', [
-                'uses'  => 'ReportController@show',
-                'as'    => 'reports.show',
-                'title' => 'عرض تقرير'
-            ]);
-            # reports delete
-            Route::delete('reports/{id}', [
-                'uses'  => 'ReportController@destroy',
-                'as'    => 'reports.delete',
-                'title' => 'حذف تقرير'
-            ]);
-
-            #delete all reports
-            Route::post('delete-all-reports', [
-                'uses'  => 'ReportController@destroyAll',
-                'as'    => 'reports.deleteAll',
-                'title' => 'حذف مجموعه من التقارير'
-            ]);
-        /*------------ end Of dashboard ----------*/
+        /*------------ end Of notifications ----------*/
 
         /*------------ start Of countries ----------*/
             Route::get('countries', [
@@ -954,7 +691,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'uses'      => 'CityController@index',
                 'as'        => 'cities.index',
                 'title'     => 'المدن',
-                'icon'      => '<i class="feather icon-flag"></i>',
+                'icon'      => '<i class="feather icon-globe"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => ['cities.create', 'cities.store','cities.edit', 'cities.update', 'cities.delete'  ,'cities.deleteAll' ,]
@@ -1002,68 +739,128 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من المدن'
             ]);
         /*------------ end Of cities ----------*/
-        
-        
-        /*------------ start Of fqs ----------*/
-            Route::get('fqs', [
-                'uses'      => 'FqsController@index',
-                'as'        => 'fqs.index',
-                'title'     => 'الاسئلة الشائعة',
-                'icon'      => '<i class="feather icon-alert-circle"></i>',
+
+        /*------------ start Of categories ----------*/
+            Route::get('categories-show/{id?}', [
+                'uses'      => 'CategoryController@index',
+                'as'        => 'categories.index',
+                'title'     => 'الاقسام',
+                'icon'      => '<i class="feather icon-list"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => ['fqs.create', 'fqs.store','fqs.edit', 'fqs.update', 'fqs.delete'  ,'fqs.deleteAll' ,]
+                'child'     => ['categories.create', 'categories.store','categories.edit', 'categories.update', 'categories.delete'  ,'categories.deleteAll' ,]
             ]);
 
-            # fqs store
-            Route::get('fqs/create', [
-                'uses'  => 'FqsController@create',
-                'as'    => 'fqs.create',
-                'title' => ' صفحة اضافة سؤال'
+            # categories store
+            Route::get('categories/create/{id?}', [
+                'uses'  => 'CategoryController@create',
+                'as'    => 'categories.create',
+                'title' => ' صفحة اضافة قسم'
             ]);
             
 
-            # fqs store
-            Route::post('fqs/store', [
-                'uses'  => 'FqsController@store',
-                'as'    => 'fqs.store',
-                'title' => ' اضافة سؤال'
+            # categories store
+            Route::post('categories/store', [
+                'uses'  => 'CategoryController@store',
+                'as'    => 'categories.store',
+                'title' => ' اضافة قسم'
             ]);
 
-            # fqs update
-            Route::get('fqs/{id}/edit', [
-                'uses'  => 'FqsController@edit',
-                'as'    => 'fqs.edit',
-                'title' => 'صفحه تحديث سؤال'
+            # categories update
+            Route::get('categories/{id}/edit', [
+                'uses'  => 'CategoryController@edit',
+                'as'    => 'categories.edit',
+                'title' => 'صفحه تحديث قسم'
             ]);
 
-            # fqs update
-            Route::put('fqs/{id}', [
-                'uses'  => 'FqsController@update',
-                'as'    => 'fqs.update',
-                'title' => 'تحديث سؤال'
+            # categories update
+            Route::put('categories/{id}', [
+                'uses'  => 'CategoryController@update',
+                'as'    => 'categories.update',
+                'title' => 'تحديث قسم'
             ]);
 
-            # fqs delete
-            Route::delete('fqs/{id}', [
-                'uses'  => 'FqsController@destroy',
-                'as'    => 'fqs.delete',
-                'title' => 'حذف سؤال'
+            # categories delete
+            Route::delete('categories/{id}', [
+                'uses'  => 'CategoryController@destroy',
+                'as'    => 'categories.delete',
+                'title' => 'حذف قسم'
             ]);
-            #delete all fqs
-            Route::post('delete-all-fqs', [
-                'uses'  => 'FqsController@destroyAll',
-                'as'    => 'fqs.deleteAll',
-                'title' => 'حذف مجموعه من الاسئلة الشائعة'
+            #delete all categories
+            Route::post('delete-all-categories', [
+                'uses'  => 'CategoryController@destroyAll',
+                'as'    => 'categories.deleteAll',
+                'title' => 'حذف مجموعه من الاقسام'
             ]);
-        /*------------ end Of fqs ----------*/
+        /*------------ end Of categories ----------*/
         
+        /*------------ start Of coupons ----------*/
+            Route::get('coupons', [
+                'uses'      => 'CouponController@index',
+                'as'        => 'coupons.index',
+                'title'     => 'كوبونات الخصم',
+                'icon'      => '<i class="fa fa-gift"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,'coupons.renew',]
+            ]);
+
+            # coupons store
+            Route::get('coupons/create', [
+                'uses'  => 'CouponController@create',
+                'as'    => 'coupons.create',
+                'title' => ' صفحة اضافة كوبون خصم'
+            ]);
+            
+
+            # coupons store
+            Route::post('coupons/store', [
+                'uses'  => 'CouponController@store',
+                'as'    => 'coupons.store',
+                'title' => ' اضافة كوبون خصم'
+            ]);
+
+            # coupons update
+            Route::get('coupons/{id}/edit', [
+                'uses'  => 'CouponController@edit',
+                'as'    => 'coupons.edit',
+                'title' => 'صفحه تحديث كوبون خصم'
+            ]);
+
+            # coupons update
+            Route::put('coupons/{id}', [
+                'uses'  => 'CouponController@update',
+                'as'    => 'coupons.update',
+                'title' => 'تحديث كوبون خصم'
+            ]);
+
+            # renew coupon
+            Route::post('coupons/renew', [
+                'uses'  => 'CouponController@renew',
+                'as'    => 'coupons.renew',
+                'title' => 'تحديث حالة كوبون خصم'
+            ]);
+
+            # coupons delete
+            Route::delete('coupons/{id}', [
+                'uses'  => 'CouponController@destroy',
+                'as'    => 'coupons.delete',
+                'title' => 'حذف كوبون خصم'
+            ]);
+            #delete all coupons
+            Route::post('delete-all-coupons', [
+                'uses'  => 'CouponController@destroyAll',
+                'as'    => 'coupons.deleteAll',
+                'title' => 'حذف مجموعه من كوبونات الخصم'
+            ]);
+        /*------------ end Of coupons ----------*/
+
         /*------------ start Of intros ----------*/
             Route::get('intros', [
                 'uses'      => 'IntroController@index',
                 'as'        => 'intros.index',
                 'title'     => 'الصفحات التعريفية',
-                'icon'      => '<i class="feather icon-image"></i>',
+                'icon'      => '<i class="feather icon-loader"></i>',
                 'type'      => 'parent',
                 'sub_route' => false,
                 'child'     => ['intros.create', 'intros.store','intros.edit', 'intros.update', 'intros.delete'  ,'intros.deleteAll' ,]
@@ -1165,7 +962,214 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
                 'title' => 'حذف مجموعه من البنرات الاعلانية'
             ]);
         /*------------ end Of images ----------*/
+
+        /*------------ start Of socials ----------*/
+            Route::get('socials', [
+                'uses'      => 'SocialController@index',
+                'as'        => 'socials.index',
+                'title'     => 'وسائل التواصل',
+                'icon'      => '<i class="feather icon-message-circle"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['socials.create', 'socials.store', 'socials.show', 'socials.update', 'socials.edit', 'socials.delete' ,'socials.deleteAll']
+            ]);
+
+            # socials store
+            Route::get('socials/create', [
+                'uses'  => 'SocialController@create',
+                'as'    => 'socials.create',
+                'title' => ' صفحة اضافة تواصل'
+            ]);
+            
+            # socials store
+            Route::post('socials', [
+                'uses'  => 'SocialController@store',
+                'as'    => 'socials.store',
+                'title' => ' اضافة تواصل'
+            ]);
+
+            # socials update
+            Route::get('socials/{id}', [
+                'uses'  => 'SocialController@show',
+                'as'    => 'socials.show',
+                'title' => 'صفحه عرض تواصل'
+            ]);
+            # socials update
+            Route::get('socials/{id}/edit', [
+                'uses'  => 'SocialController@edit',
+                'as'    => 'socials.edit',
+                'title' => 'صفحه تحديث تواصل'
+            ]);
+            # socials update
+            Route::put('socials/{id}', [
+                'uses'  => 'SocialController@update',
+                'as'    => 'socials.update',
+                'title' => 'تحديث تواصل'
+            ]);
+
+            # socials delete
+            Route::delete('socials/{id}', [
+                'uses'  => 'SocialController@destroy',
+                'as'    => 'socials.delete',
+                'title' => 'حذف تواصل'
+            ]);
+
+            #delete all socials
+            Route::post('delete-all-socials', [
+                'uses'  => 'SocialController@destroyAll',
+                'as'    => 'socials.deleteAll',
+                'title' => 'حذف مجموعه من وسائل التواصل'
+            ]);
+        /*------------ end Of socials ----------*/
         
+        /*------------ start Of complaints ----------*/
+            Route::get('all-complaints', [
+                'as'        => 'all_complaints',
+                'uses'      => 'ComplaintController@index',
+                'icon'      => '<i class="feather icon-mail"></i>',
+                'title'     => 'الشكاوي والمقترحات',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => [
+                    'complaints.delete' ,'complaints.deleteAll','complaints.show','complaint.replay'
+                ]
+            ]);
+
+            # complaint replay
+            Route::post('complaints-replay/{id}', [
+                'uses'  => 'ComplaintController@replay',
+                'as'    => 'complaint.replay',
+                'title' => 'رد علي شكوي او مقترح'
+            ]);
+            # socials update
+            Route::get('complaints/{id}', [
+                'uses'  => 'ComplaintController@show',
+                'as'    => 'complaints.show',
+                'title' => 'صفحه عرض شكوي'
+            ]);
+            # complaints delete
+            Route::delete('complaints/{id}', [
+                'uses'  => 'ComplaintController@destroy',
+                'as'    => 'complaints.delete',
+                'title' => 'حذف شكوي'
+            ]);
+
+            #delete all complaints
+            Route::post('delete-all-complaints', [
+                'uses'  => 'ComplaintController@destroyAll',
+                'as'    => 'complaints.deleteAll',
+                'title' => 'حذف مجموعه من الشكاوي'
+            ]);
+        /*------------ end Of complaints ----------*/
+
+        /*------------ start Of fqs ----------*/
+            Route::get('fqs', [
+                'uses'      => 'FqsController@index',
+                'as'        => 'fqs.index',
+                'title'     => 'الاسئلة الشائعة',
+                'icon'      => '<i class="feather icon-alert-circle"></i>',
+                'type'      => 'parent',
+                'sub_route' => false,
+                'child'     => ['fqs.create', 'fqs.store','fqs.edit', 'fqs.update', 'fqs.delete'  ,'fqs.deleteAll' ,]
+            ]);
+
+            # fqs store
+            Route::get('fqs/create', [
+                'uses'  => 'FqsController@create',
+                'as'    => 'fqs.create',
+                'title' => ' صفحة اضافة سؤال'
+            ]);
+            
+
+            # fqs store
+            Route::post('fqs/store', [
+                'uses'  => 'FqsController@store',
+                'as'    => 'fqs.store',
+                'title' => ' اضافة سؤال'
+            ]);
+
+            # fqs update
+            Route::get('fqs/{id}/edit', [
+                'uses'  => 'FqsController@edit',
+                'as'    => 'fqs.edit',
+                'title' => 'صفحه تحديث سؤال'
+            ]);
+
+            # fqs update
+            Route::put('fqs/{id}', [
+                'uses'  => 'FqsController@update',
+                'as'    => 'fqs.update',
+                'title' => 'تحديث سؤال'
+            ]);
+
+            # fqs delete
+            Route::delete('fqs/{id}', [
+                'uses'  => 'FqsController@destroy',
+                'as'    => 'fqs.delete',
+                'title' => 'حذف سؤال'
+            ]);
+            #delete all fqs
+            Route::post('delete-all-fqs', [
+                'uses'  => 'FqsController@destroyAll',
+                'as'    => 'fqs.deleteAll',
+                'title' => 'حذف مجموعه من الاسئلة الشائعة'
+            ]);
+        /*------------ end Of fqs ----------*/
+
+        /*------------ start Of seos ----------*/
+            Route::get('seos', [
+                'uses'      => 'SeoController@index',
+                'as'        => 'seos.index',
+                'title'     => 'سيو',
+                'icon'      => '<i class="feather icon-list"></i>',
+                'type'      => 'parent',
+                'child'     => [
+                    'seos.index','seos.store', 'seos.update', 'seos.delete' , 'seos.deleteAll' , 
+                ]
+            ]);
+
+            # seos store
+            Route::get('seos/create', [
+                'uses'  => 'SeoController@create',
+                'as'    => 'seos.create','clients.edit',
+                'title' => ' صفحة اضافة سيو'
+            ]);
+
+            # seos update
+            Route::get('seos/{id}/edit', [
+                'uses'  => 'SeoController@edit',
+                'as'    => 'seos.edit',
+                'title' => 'صفحه تحديث سيو'
+            ]);
+
+            #store
+            Route::post('seos/store', [
+                'uses'  => 'SeoController@store',
+                'as'    => 'seos.store',
+                'title' => ' اضافة سيو'
+            ]);
+
+            #update
+            Route::put('seos/{id}', [
+                'uses'  => 'SeoController@update',
+                'as'    => 'seos.update',
+                'title' => 'تحديث سيو'
+            ]);
+
+            #deletّe
+            Route::delete('seos/{id}', [
+                'uses'  => 'SeoController@destroy',
+                'as'    => 'seos.delete',
+                'title' => 'حذف سيو'
+            ]);
+            #delete
+            Route::post('delete-all-seos', [
+                'uses'  => 'SeoController@destroyAll',
+                'as'    => 'seos.deleteAll',
+                'title' => 'حذف مجموعه من السيو'
+            ]);
+        /*------------ end Of seos ----------*/
+
         /*------------ start Of sms ----------*/
             Route::get('sms', [
                 'uses'      => 'SMSController@index',
@@ -1190,132 +1194,143 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             ]);
 
         /*------------ end Of sms ----------*/
-        
-        /*------------ start Of categories ----------*/
-            Route::get('categories-show/{id?}', [
-                'uses'      => 'CategoryController@index',
-                'as'        => 'categories.index',
-                'title'     => 'الاقسام',
-                'icon'      => '<i class="feather icon-image"></i>',
+
+        /*------------ start Of statistics ----------*/
+            Route::get('statistics', [
+                'uses'      => 'StatisticsController@index',
+                'as'        => 'statistics.index',
+                'title'     => 'الاحصائيات',
+                'icon'      => '<i class="feather icon-activity"></i>',
+                'type'      => 'parent',
+                'child'     => [
+                    'statistics.index',
+                ]
+            ]);
+        /*------------ end Of statistics ----------*/
+
+        /*------------ start Of reports----------*/
+            Route::get('reports', [
+                'uses'      => 'ReportController@index',
+                'as'        => 'reports',
+                'icon'      => '<i class="feather icon-edit-2"></i>',
+                'title'     => 'التقارير',
                 'type'      => 'parent',
                 'sub_route' => false,
-                'child'     => ['categories.create', 'categories.store','categories.edit', 'categories.update', 'categories.delete'  ,'categories.deleteAll' ,]
-            ]);
-
-            # categories store
-            Route::get('categories/create/{id?}', [
-                'uses'  => 'CategoryController@create',
-                'as'    => 'categories.create',
-                'title' => ' صفحة اضافة قسم'
+                'child'     => ['reports.delete' ,'reports.deleteAll' ,'reports.show']
             ]);
             
-
-            # categories store
-            Route::post('categories/store', [
-                'uses'  => 'CategoryController@store',
-                'as'    => 'categories.store',
-                'title' => ' اضافة قسم'
+            # reports show
+            Route::get('reports/{id}', [
+                'uses'  => 'ReportController@show',
+                'as'    => 'reports.show',
+                'title' => 'عرض تقرير'
+            ]);
+            # reports delete
+            Route::delete('reports/{id}', [
+                'uses'  => 'ReportController@destroy',
+                'as'    => 'reports.delete',
+                'title' => 'حذف تقرير'
             ]);
 
-            # categories update
-            Route::get('categories/{id}/edit', [
-                'uses'  => 'CategoryController@edit',
-                'as'    => 'categories.edit',
-                'title' => 'صفحه تحديث قسم'
+            #delete all reports
+            Route::post('delete-all-reports', [
+                'uses'  => 'ReportController@destroyAll',
+                'as'    => 'reports.deleteAll',
+                'title' => 'حذف مجموعه من التقارير'
             ]);
-
-            # categories update
-            Route::put('categories/{id}', [
-                'uses'  => 'CategoryController@update',
-                'as'    => 'categories.update',
-                'title' => 'تحديث قسم'
-            ]);
-
-            # categories delete
-            Route::delete('categories/{id}', [
-                'uses'  => 'CategoryController@destroy',
-                'as'    => 'categories.delete',
-                'title' => 'حذف قسم'
-            ]);
-            #delete all categories
-            Route::post('delete-all-categories', [
-                'uses'  => 'CategoryController@destroyAll',
-                'as'    => 'categories.deleteAll',
-                'title' => 'حذف مجموعه من الاقسام'
-            ]);
-        /*------------ end Of categories ----------*/
+        /*------------ end Of reports ----------*/
         
-        /*------------ start Of coupons ----------*/
-            Route::get('coupons', [
-                'uses'      => 'CouponController@index',
-                'as'        => 'coupons.index',
-                'title'     => 'كوبونات الخصم',
-                'icon'      => '<i class="feather icon-image"></i>',
+        /*------------ start Of Roles----------*/
+            Route::get('roles', [
+                'uses'      => 'RoleController@index',
+                'as'        => 'roles.index',
+                'title'     => 'قائمة الصلاحيات',
+                'icon'      => '<i class="feather icon-eye"></i>',
                 'type'      => 'parent',
-                'sub_route' => false,
-                'child'     => ['coupons.create', 'coupons.store','coupons.edit', 'coupons.update', 'coupons.delete'  ,'coupons.deleteAll' ,'coupons.renew',]
+                'child'     => [
+                    'roles.index','roles.create', 'roles.store', 'roles.edit', 'roles.update', 'roles.delete' , 
+                ]
             ]);
 
-            # coupons store
-            Route::get('coupons/create', [
-                'uses'  => 'CouponController@create',
-                'as'    => 'coupons.create',
-                'title' => ' صفحة اضافة كوبون خصم'
-            ]);
-            
+            #add role page
+            Route::get('roles/create', [
+                'uses'  => 'RoleController@create',
+                'as'    => 'roles.create',
+                'title' => 'اضافة صلاحيه',
 
-            # coupons store
-            Route::post('coupons/store', [
-                'uses'  => 'CouponController@store',
-                'as'    => 'coupons.store',
-                'title' => ' اضافة كوبون خصم'
             ]);
 
-            # coupons update
-            Route::get('coupons/{id}/edit', [
-                'uses'  => 'CouponController@edit',
-                'as'    => 'coupons.edit',
-                'title' => 'صفحه تحديث كوبون خصم'
+            #store role
+            Route::post('roles/store', [
+                'uses' => 'RoleController@store',
+                'as' => 'roles.store',
+                'title' => 'تمكين اضافة صلاحيه'
             ]);
 
-            # coupons update
-            Route::put('coupons/{id}', [
-                'uses'  => 'CouponController@update',
-                'as'    => 'coupons.update',
-                'title' => 'تحديث كوبون خصم'
+            #edit role page
+            Route::get('roles/{id}/edit', [
+                'uses' => 'RoleController@edit',
+                'as' => 'roles.edit',
+                'title' => 'تعديل صلاحيه'
             ]);
 
-            # renew coupon
-            Route::post('coupons/renew', [
-                'uses'  => 'CouponController@renew',
-                'as'    => 'coupons.renew',
-                'title' => 'تحديث حالة كوبون خصم'
+            #update role
+            Route::put('roles/{id}', [
+                'uses' => 'RoleController@update',
+                'as' => 'roles.update',
+                'title' => 'تمكين تعديل صلاحيه'
             ]);
 
-            # coupons delete
-            Route::delete('coupons/{id}', [
-                'uses'  => 'CouponController@destroy',
-                'as'    => 'coupons.delete',
-                'title' => 'حذف كوبون خصم'
+            #delete role
+            Route::delete('roles/{id}', [
+                'uses' => 'RoleController@destroy',
+                'as' => 'roles.delete',
+                'title' => 'حذف صلاحيه'
             ]);
-            #delete all coupons
-            Route::post('delete-all-coupons', [
-                'uses'  => 'CouponController@destroyAll',
-                'as'    => 'coupons.deleteAll',
-                'title' => 'حذف مجموعه من كوبونات الخصم'
+        /*------------ end Of Roles----------*/
+
+        /*------------ start Of Settings----------*/
+            Route::get('settings', [
+                'uses'      => 'SettingController@index',
+                'as'        => 'settings.index',
+                'title'     => 'الاعدادات',
+                'icon'      => '<i class="feather icon-settings"></i>',
+                'type'      => 'parent',
+                'child'     => [
+                    'settings.index','settings.update','settings.message.all','settings.message.one','settings.send_email' ,
+                ]
             ]);
-        /*------------ end Of coupons ----------*/
+
+            #update
+            Route::put('settings', [
+                'uses' => 'SettingController@update',
+                'as' => 'settings.update',
+                'title' => 'تحديث الاعدادات'
+            ]);
+
+            #message all
+            Route::post('settings/{type}/message-all', [
+                'uses'  => 'SettingController@messageAll',
+                'as'    => 'settings.message.all',
+                'title' => 'مراسلة الجميع'
+            ])->where('type','email|sms|notification');
+
+            #message one
+            Route::post('settings/{type}/message-one', [
+                'uses'  => 'SettingController@messageOne',
+                'as'    => 'settings.message.one',
+                'title' => 'مراسلة مستخدم'
+            ])->where('type','email|sms|notification');
+
+            #send email
+            Route::post('settings/send-email', [
+                'uses'  => 'SettingController@sendEmail',
+                'as'    => 'settings.send_email',
+                'title' => 'ارسال ايميل'
+            ]);
+        /*------------ end Of Settings ----------*/
+
         #new_routes_here
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                     
     });
 
 });

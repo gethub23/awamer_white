@@ -16,15 +16,15 @@
                           {{awtTrans('إعدادات التطبيق')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-texts" data-toggle="pill" href="#account-vertical-texts" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-edit mr-50 font-medium-3"></i>
                           {{awtTrans('نصوص متكرره')}}
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" style="margin-top: 3px">
                       <a class="nav-link d-flex py-75" id="account-pill-about" data-toggle="pill" href="#account-vertical-about" aria-expanded="false">
-                          <i class="feather icon-globe mr-50 font-medium-3"></i>
+                          <i class="feather icon-file mr-50 font-medium-3"></i>
                           {{awtTrans('عن التطبيق')}}
                       </a>
                   </li>

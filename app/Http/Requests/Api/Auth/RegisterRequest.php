@@ -26,22 +26,26 @@ class RegisterRequest extends BaseApiRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
             'name'           => 'required',
             'country_code'   => 'required',
             'phone'          => 'required|numeric|min:10|unique:users,phone',
-            'phoneNumber'    => 'required||unique:users,phoneNumber',
+            'phoneNumber'    => 'required|unique:users,phoneNumber',
             'email'          => 'required|email|unique:users,email',
             'password'       => 'required',
             'device_id'      => 'nullable',
+            'device_type'    => 'nullable',
             'image'          => 'nullable',
         ];
     }
-
     protected function prepareForValidation()
     {
-           $this->merge(['phoneNumber'=>$this->country_code . ltrim($this->phone,'0')]);
+        $this->merge(['phoneNumber'=>$this->country_code . ltrim($this->phone,'0')]);
     }
+
+
+
 }

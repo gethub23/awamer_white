@@ -22,6 +22,8 @@ class SettingSeeder extends Seeder
                 [ 'key' => 'terms_en'                       , 'value' => 'terms'                ],
                 [ 'key' => 'about_ar'                       , 'value' => 'من نحن'               ],
                 [ 'key' => 'about_en'                       , 'value' => 'about'                ],
+                [ 'key' => 'privacy_ar'                     , 'value' => 'سياسة الخصوصية باللغه العربية'                ],
+                [ 'key' => 'privacy_en'                     , 'value' => 'Privacy in english'                ],
                 [ 'key' => 'logo'                           , 'value' => 'logo.png'             ],
                 [ 'key' => 'fav_icon'                       , 'value' => 'no_data.png'             ],
                 [ 'key' => 'login_background'               , 'value' => 'login_background.png'             ],
@@ -53,6 +55,21 @@ class SettingSeeder extends Seeder
                 [ 'key' => 'color'                          , 'value' => '#10163a'    ],
                 [ 'key' => 'buttons_color'                  , 'value' => '#7367F0'    ],
                 [ 'key' => 'hover_color'                    , 'value' => '#262c49'    ],
+
+                [ 'key' => 'smtp_user_name'                 , 'value' => 'smtp_user_name'    ],
+                [ 'key' => 'smtp_password'                  , 'value' => 'smtp_password'    ],
+                [ 'key' => 'smtp_mail_from'                 , 'value' => 'smtp_mail_from'    ],
+                [ 'key' => 'smtp_sender_name'               , 'value' => 'smtp_sender_name'    ],
+                [ 'key' => 'smtp_port'                      , 'value' => '80'    ],
+                [ 'key' => 'smtp_host'                      , 'value' => 'send.smtp.com'    ],
+                [ 'key' => 'smtp_encryption'                , 'value' => 'LTS'    ],
+
+                [ 'key' => 'firebase_key'                   , 'value' => 'AAAAVYoWgDU:APA91bEU9m3M7z5TeNAlKqwl2sI5XU78yNRDCNPt95M2RDjfZG9O5ZGxrH_wcqIClEDY3TWgyMOp9vH56O5ilbm2vYp-8tIN_8dGvnbtea4s5hMlXYyCQZR2h0kM07l3pXB9iiZbgz_q'    ],
+                [ 'key' => 'firebase_sender_id'             , 'value' => '662557294717'    ],
+
+                [ 'key' => 'google_places'                  , 'value' => 'AIzaSyAXV7nrpIKpuqyaNWNQYr3IP86_rJgcHWc'    ],
+                [ 'key' => 'google_analytics'               , 'value' => 'google_analytics'    ],
+                [ 'key' => 'live_chat'                      , 'value' => '<iframe src="https://chat.socialintents.com/c/yoururl" width="480" height="540" frameborder="0"></iframe>'    ],
             ];
 			SiteSetting ::insert( $data );
     }

@@ -19,7 +19,7 @@
         "spatie/laravel-translatable": "^4.3",
         "stevebauman/location": "^5.2",
         "tymon/jwt-auth": "dev-develop",
-        "yajra/laravel-datatables": "1.5",
+        "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
@@ -47,6 +47,10 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a667b8b684fd923e7fb10c12bab735909992ac0
         ],
         "files": [
             "app/Helpers/helper.php"

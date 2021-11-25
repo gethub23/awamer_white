@@ -9,8 +9,7 @@
 @endsection
 
 @section('content')
-    {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.categories.create' , ['id' => $id])}}" deletebutton="{{route('admin.categories.deleteAll')}}">
+    <x-admin.table filter="true"  addbutton="{{route('admin.categories.create' , ['id' => $id])}}" deletebutton="{{route('admin.categories.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -48,8 +47,13 @@
 
 @section('js')
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+    <script src="{{asset('admin/datatable_custom.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 

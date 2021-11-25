@@ -45,7 +45,9 @@ function lang(){
 }
 
 
-
+function generateRandomCode(){
+    return rand(1111,9999);
+}
 
 
 

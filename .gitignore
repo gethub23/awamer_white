@@ -10,3 +10,7 @@ yarn-error.log
 vendor
 rr
 .rr.yaml
+.idea
+.idea/*
+/resources/lang/ar/awt.php
+/resources/lang/en/awt.php

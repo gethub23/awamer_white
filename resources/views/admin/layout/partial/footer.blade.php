@@ -25,6 +25,10 @@
     <!-- END: Theme JS-->
 
     <script src="{{asset('admin/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
     <!-- BEGIN: Page JS-->
     <script>
         // $(document).ready( function() {

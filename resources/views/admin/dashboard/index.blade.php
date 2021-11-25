@@ -1,4 +1,11 @@
 @extends('admin.layout.master')
+@section('css')
+    <style>
+        #weatherWidgetInner {
+            background-color: rgb(16 22 58);
+        }
+    </style>
+@endsection
 @section('content')
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
@@ -17,10 +24,10 @@
                 </div>
             </div>
             <div class="col-6">
-                <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="طقس" data-label_2="الرياض" data-theme="sky" >الطقس</a>
+                <a class="weatherwidget-io" href="https://forecast7.com/ar/24d7146d68/riyadh/" data-label_1="RIYADH" data-label_2="الطقس" data-font="Cairo" data-icons="Climacons" data-theme="original" data-basecolor="rgb(16 22 58)" >RIYADH الطقس</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row align-center">
             @foreach($menus as $key => $menu)
                 @php $color = $colores[array_rand($colores)] @endphp
                 <a href="{{$menu['url']}}" class="col-xl-2 col-md-4 col-sm-6">
@@ -63,7 +70,7 @@
                 </a>
             @endforeach
         </div>
-        <div class="row">
+        <div class="row hight-card">
             <div class="col-lg-4 col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between pb-0">
@@ -232,12 +239,14 @@
                 </div>
             </div>
         </div>
-
-        
-        
-        
 @endsection
 @section('js')
+
+    <script>
+        setTimeout(() => {
+            $('#weatherWidgetInner').css('background-color' , 'rgb(16 22 58)')
+        }, 5000);
+    </script>
     <script src="{{asset('admin/charts_functions.js')}}"></script>
     <script>
 

@@ -13,6 +13,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+
         $faker                =         Faker::create('ar_SA');
 
         for ($i=0; $i < 10 ; $i++) { 

@@ -51,4 +51,10 @@ class Admin extends Authenticatable
         }
     }
 
+
+    public function replays()
+    {
+        return $this->morphMany(ComplaintReplay::class, 'replayer');
+    }
+
 }

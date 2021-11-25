@@ -9,8 +9,7 @@
 @endsection
 
 @section('content')
-    {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.countries.create')}}" deletebutton="{{route('admin.countries.deleteAll')}}">
+    <x-admin.table  filter="true"  addbutton="{{route('admin.countries.create')}}" deletebutton="{{route('admin.countries.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -18,19 +17,21 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('الاسم')}}</th>
                 <th>{{awtTrans('كود الدولة')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </x-slot>
             <x-slot name="tableBody">
                 @foreach($rows as $row)
-                    <tr class="delete_row">
+                    <tr >
                         <td class="text-center">
                             <label class="container-checkbox">
                                 <input type="checkbox" class="checkSingle" id="{{$row->id}}">
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->name}}</td>
                         <td>{{$row->key}}</td>
                         <td class="product-action">
@@ -46,8 +47,13 @@
 
 @section('js')
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+    <script src="{{asset('admin/datatable_custom.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 

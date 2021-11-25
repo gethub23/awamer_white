@@ -13,8 +13,7 @@
 @endsection
 
 @section('content')
-    {{-- table --}}
-        <x-admin.table  addbutton="{{route('admin.coupons.create')}}" deletebutton="{{route('admin.coupons.deleteAll')}}">
+        <x-admin.table filter="true"  addbutton="{{route('admin.coupons.create')}}" deletebutton="{{route('admin.coupons.deleteAll')}}">
             <x-slot name="tableHead">
                 <th>
                     <label class="container-checkbox">
@@ -22,6 +21,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
+                <th>{{awtTrans('التاريخ')}}</th>
                 <th>{{awtTrans('رقم الكوبون')}}</th>
                 <th>{{awtTrans('نوع الخصم')}}</th>
                 <th>{{awtTrans('قيمة الخصم')}}</th>
@@ -38,6 +38,7 @@
                                 <span class="checkmark"></span>
                             </label>
                         </td>
+                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d/m/Y')}}</td>
                         <td>{{$row->identity}}</td>
                         <td>{{$row->type == 'ratio' ? 'نسبة' :  'رقم ثابت'}}</td>
                         <td>{{$row->discount}}</td>
@@ -151,8 +152,13 @@
 
 @section('js')
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+    <script src="{{asset('admin/datatable_custom.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 <<<<<<< HEAD

@@ -45,7 +45,7 @@ class MakeRepoModel extends Command
             $folderNmae = strtolower(Str::plural(class_basename($model)));
             
             // #create model with mogration and model content 
-                Artisan::call('make:model',['name' => 'Models/'.$model,'-m' => true]);
+                Artisan::call('make:model',['name' => $model,'-m' => true]);
                 File::copy('app/Models/copy.php',base_path('app/Models/'.$model.'.php'));
                 file_put_contents('app/Models/'.$model.'.php', preg_replace("/Copy/", $model, file_get_contents('app/Models/'.$model.'.php')));
                 file_put_contents('app/Models/'.$model.'.php', preg_replace("/copys/", $folderNmae, file_get_contents('app/Models/'.$model.'.php')));
