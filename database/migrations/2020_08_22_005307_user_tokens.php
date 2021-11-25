@@ -15,7 +15,6 @@ class UserTokens extends Migration
     {
         Schema::create('user_tokens', function (Blueprint $table) {
             $table->id();
-            $table -> longText( 'token' );
             $table -> string( 'device_id' );
             $table -> string( 'device_type' );
             $table -> unsignedBigInteger( 'user_id' ) -> unsigned() -> index();

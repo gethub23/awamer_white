@@ -16,17 +16,17 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                               => $this->id,
+            'id'                               => (integer) $this->id,
             'name'                             => (string)  $this->name,
             'email'                            => (string)  $this->email,
+            'country_code'                     => (string)  $this->country_code,
             'phone'                            => (string)  $this->phone,
-            'avatar'                           => (string)  $this->avatar,
-            'block'                            => (boolean) $this->block,
-            'active'                           => (boolean) $this->active,
+            'phoneNumber'                      => (string)  $this->fullPhoneNumber(),
+            'image'                            => (string)  $this->image,
             'lang'                             => (string)  $this->lang,
             'token'                            => (string)  $this->token,
-            'is_notify'                        => (string) $this->is_notify ,
-            'device_id'                        => (string) $this->device_id,
+            'is_notify'                        => (boolean) $this->is_notify ,
+            'device_id'                        => (string)  $this->device_id,
         ];
     }
 }

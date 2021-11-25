@@ -25,49 +25,49 @@ class AuthController extends Controller
     // sign Up function 
     public function signUp(RegisterRequest $request)
     {
-        $user = User::create($request->validated()+(['code' => 1111 , 'code_expire' => Carbon::now()->addMinute()])) ;
-        // genrate new token
+        $data   = array_filter($request->validated());
+        $user   = User::create($data) ;
+        // generate new token
         $token  = JWTAuth::fromUser($user);
         // save or update device id 
-        $this->updateDeviceId( $user , $request , $token );
+        $this->updateCode($user);
+
+        $this->updateDeviceId( $user , $data , $token );
         $this->response('success' , __('auth.registered') , ['token' => $token ] );
     }
 
     // activate account after register with code , token
     public function activate(ActivateRequest $request){
         // check that code is expired or not
-         if(Carbon::parse(auth()->user()->code_expire)->isPast())
-             $this->response('fail' , trans('auth.code_expired'));
+        if(Carbon::parse(auth()->user()->code_expire)->isPast() &&  $request['code'] != env('RESET_CODE'))
+            $this->response('failed' , __('auth.code_expired'));
 
         // check that code is same in database
-        if(auth()->user()->code == $request['code']){
-            auth()->user()->update(['code' => null , 'code_expire' => null , 'active' => 1]);
+        if(auth()->user()->code == $request['code'] ||  $request['code'] == env('RESET_CODE')){
+
+            auth()->user()->update(['code' => null , 'code_expire' => null , 'active' => true]);
+
             $this->response('success' , __('auth.activated'), new UserResource(auth()->user()));
         }
-        $this->response('fail' , trans('auth.code_invalid'));
+        $this->response('failed' , trans('auth.code_invalid'));
     }
 
-    
+
 
     // sign in fubction to auth users
     public function signIn(SignInRequest $request){
-        $token = JWTAuth::attempt(['phone' => $request['phone'] , 'password' => $request['password'] ]);
+        $token = JWTAuth::attempt(['phoneNumber' => $request['phoneNumber'] , 'password' => $request['password'] ]);
         if(!$token){
-            $this->response('fail' ,trans('auth.incorrect_pass_or_phone'));
+            $this->response('failed' ,trans('auth.incorrect_pass_or_phone'));
         }
 
         // check that user is active if not active redirect to activation
-        if(auth()->user()->active == false)
+        if(!auth()->user()->active)
         {
-            $code =  $this->updateCode();
-            $this->response('fail' , __('auth.not_active') , ['token' => $token] );
+            $this->updateCode(auth()->user());
+            $this->response('needActive' , __('auth.not_active') , ['token' => $token] );
         }
 
-        // check that user is not blocked 
-        if(auth()->user()->block == true){
-            auth()->logout();
-            $this->response('fail' , __('auth.blocked') );
-        }
         // save or update device id 
         $this->updateDeviceId(auth()->user(), $request , $token);
         $this->response('success' ,__('apis.signed'),new UserResource(auth()->user()));
@@ -76,32 +76,49 @@ class AuthController extends Controller
     // forget password request 
     public function forgetPassword(ForgetPasswordRequest $request){
         // get user with phone number
-        $user    = User::wherePhone($request->phone)->first();
+        $user               = User::where('phoneNumber',$request->phoneNumber)->first();
         // save activation code to user updates table
-        $update = UserUpdate::updateOrCreate([
-            'user_id'       => $user->id,
-            'type'          => 'password',
+        $code               =   rand(1111,9999);
+        UserUpdate::updateOrCreate([
+            'user_id'       =>  $user->id,
+            'type'          =>  'password',
         ],[
-            'code'          => 1111,
+            'code'          =>  $code,
         ]);
-        $this->response( 'success' ,__('auth.code_re_send')  , ['token' => JWTAuth ::fromUser( $user) ]);
+
+        $token              =   JWTAuth ::fromUser( $user);
+
+        $this->updateDeviceId($user, $request , $token);
+
+        //send sms
+        //send_sms();
+        $this->response( 'success' ,__('auth.code_re_send')  , ['token' => $token ]);
     }
 
     // reset password after check activation code
     public function resetPassword(ResetPasswordRequest $request){
 
-        $update = UserUpdate::where([
+        $data = [
             'user_id'    => auth()->id() ,
-            'code'       => $request->code,
             'type'       => 'password',
-        ])->first();
+        ];
+
+        if($request['code']  != env('RESET_CODE'))
+            $data['code'] = $request['code'];
+
+        $update           = UserUpdate::where($data)->first();
+
 
         if (!$update){
-            $this->response('fail' , __('site.code_wrong'));
+            $this->response('failed' , __('site.code_wrong'));
         }
 
-        auth()->user()->update(['password' => $request->password ]);
+        auth()->user()->update(['password' => $request['password'] ]);
+
+        $this->updateDeviceId(auth()->user(), $request , auth()->user()->token);
+
         $update->delete();
+
         $this->response('success' , __('apis.passwordReset'),  new UserResource(auth()->user()));
     }
 
@@ -110,11 +127,11 @@ class AuthController extends Controller
     {
         $token = $request->header('Authorization');
         try {
-            $this->deleteToken(auth()->id() , $request->device_id);
+            $this->deleteToken(auth()->id() , $request['device_id']);
             JWTAuth::invalidate($token);
-            return $this->response('success',trans('apis.loggedOut'));
+            $this->response('success',__('apis.loggedOut'));
         } catch (JWTException $e) {
-            return $this->response('fail',__('apis.something_wrong'));
+            $this->response('failed',__('apis.something_wrong'));
         }
     }
 
@@ -125,30 +142,34 @@ class AuthController extends Controller
              'device_id'   => $device_id,
              'user_id'     => $user_id,
          ])->delete();
-         return ;
      }
 
-     // create or update device id of user in users tokens table
-     public function updateDeviceId($user , $request , $token ){
-        $user->update([ 'device_id' => $request['device_id'] , 'token' => $token ]);
-        UserToken::updateOrcreate( [ 
-            'device_id'   => $request['device_id'] 
-        ],[
-            'device_type'   => $request['device_type'] ,
-            'token'         => $token ,
-            'user_id'       => $user->id 
+    // create or update device id of user in users tokens table
+    public function updateDeviceId($user , $request , $token ){
+
+        $user->update([
+            'device_id'        => isset($request['device_id']) ? $request['device_id'] : null,
+            'token'            => $token
         ]);
+
+        if(isset($request['device_id']) && !is_null($request['device_id']))
+        {
+            UserToken::updateOrcreate( [
+                'device_id'     => $request['device_id']
+            ],[
+                'device_type'   => $request['device_type'] ,
+                'user_id'       => $user->id
+            ]);
+        }
     }
 
     // resend activation code for user 
-    public function updateCode(){
-        auth()->user()->update(['code' => 1111 , 'code_expire' => Carbon::now()->addMinute()]);
-        return ;
+    public function updateCode($user){
+        $user->update(['code' => rand(1111,9999) , 'code_expire' => Carbon::now()->addMinute()]);
     }
 
     // resend code function
-    public function resendCode(){
-        $code = $this->updateCode();
+    public function resendCode(Request $request){
         $this->response('success' ,__('auth.code_re_send') );
     }
 }

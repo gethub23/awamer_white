@@ -8,6 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @property mixed country_code
+ * @property mixed phone
+ */
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -19,21 +23,25 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-    protected $fillable     = ['name','phone','email','password','avatar','device_id','code','token',
-        'code_expire','active','latitude','longitude','address','is_notify','key','block'];
+    protected $fillable     = ['name','phone','email','password','image','device_id','code','token','phoneNumber',
+        'code_expire','active','latitude','approved','longitude','address','is_notify','country_code','block'];
 
 
 
-    public function getAvatarAttribute($value)
+    public function fullPhoneNumber(){
+       return $this->country_code . ltrim($this->phone,'0');
+    }
+
+    public function getImageAttribute($value)
     {
         return asset('/storage/images/users/'.$value);
     }
 
-    public function setAvatarAttribute($value)
+    public function setImageAttribute($value)
     {
         if ($value != null)
         {
-            $this->attributes['avatar'] = $this->uploadAllTyps($value, 'users' , 100 , 100);
+            $this->attributes['image'] = $this->uploadAllTyps($value, 'users' , 100 , 100);
         }
     }
 

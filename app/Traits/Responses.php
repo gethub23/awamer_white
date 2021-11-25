@@ -23,15 +23,12 @@ trait  Responses
 
     /**
      * keys : success, fail, needActive, exit, blocked
-    */
+     */
     function response($key, $msg, $data = [], $anotherKey = [], $page = false)
     {
         if( auth()->check() )   {
-            if(auth()->user()->ban)
+            if(auth()->user()->block)
                 $key =  'blocked';
-
-            if(!auth()->user()->active)
-                $key = 'needActive';
         }
 
         $allResponse['key'] = (string)$key;
@@ -51,5 +48,7 @@ trait  Responses
             }
         }
         throw new HttpResponseException(response()->json($allResponse, 200));
+
+
     }
 }

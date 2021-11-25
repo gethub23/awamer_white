@@ -25,10 +25,17 @@ class SignInRequest extends BaseApiRequest
     public function rules()
     {
         return [
+            'country_code'    => 'required',
             'phone'           => 'required|min:10|numeric|exists:users,phone',
+            'phoneNumber'     => 'required|exists:users,phoneNumber',
             'password'        => 'required',
-            'device_id'       => 'required',
+            'device_id'       => 'nullable',
             'device_type'     => 'required',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge(['phoneNumber'=>$this->country_code . ltrim($this->phone,'0')]);
     }
 }

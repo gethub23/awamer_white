@@ -27,6 +27,8 @@ class ResetPasswordRequest extends BaseApiRequest
         return [
             'code'            => 'required|min:4' , 
             'password'        => 'required',
+            'device_type'     => 'required',
+            'device_id'       => 'nullable',
         ];
     }
 }

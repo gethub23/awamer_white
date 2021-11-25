@@ -18,18 +18,20 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('country_code')->default('+966');
             $table->string('phone')->unique();
+            $table->string('phoneNumber')->unique();
             $table->string('password');
-            $table->string('avatar', 50)->default('default.png');
-            $table->string('device_id')->default('');
+            $table->string('image', 50)->default('default.png');
+            $table->string('device_id')->nullable();
             $table->longText('token')->default('');
             $table->boolean('active')->default(0);
             $table->boolean('block')->default(0);
+            $table->boolean('approved')->default(1);
             $table->string('lang', 2)->default('ar');
             $table->boolean('is_notify')->default(true);
             $table->string('code', 10)->nullable();
             $table->dateTime('code_expire')->nullable();
-
             $table->softDeletes();
             $table->timestamps();
         });
